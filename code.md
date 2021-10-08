@@ -3,7 +3,7 @@ layout: page
 title: Code
 ---
 
-My full-time position is in developing and applying the [Salesforce.org toolchain](https://github.com/SFDO-Tooling), particularly [CumulusCI](https://github.com/SFDO-Tooling/CumulusCI), as a release engineer at Salesforce.org.
+My full-time position is in developing and applying the [Salesforce.org toolchain](https://github.com/SFDO-Tooling), particularly [CumulusCI](https://github.com/SFDO-Tooling/CumulusCI), as an engineer at Salesforce.org.
 
 You can find all of my personal projects at [GitHub](https://github.com/davidmreed?tab=repositories). I work primarily on the Salesforce platform and in Python.
 

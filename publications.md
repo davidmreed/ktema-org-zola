@@ -7,13 +7,18 @@ I've given many talks on Salesforce, mostly focusing on topics like Apex testing
 
 ## Publications
 
+- [Find Bugs Earlier with Second-Generation Packaging](https://medium.com/salesforce-architects/find-bugs-earlier-with-second-generation-packaging-f7c7a0b5300a), on the Salesforce Architect Blog (with Brandon Parker).
 - [Build Applications with CumulusCI](https://trailhead.salesforce.com/en/content/learn/trails/build-applications-with-cumulusci), a six-module trail on Trailhead (coauthored).
 
 ## Presentations on CumulusCI Suite
 
+I chatted with the fantastic Josh Birk about CumulusCI on the [Salesforce Developer Podcast](https://developer.salesforce.com/podcast/2021/10/episode-102-cumulusci-with-david-reed). I was also interviewed by Atlas Can for SalesforceBen about [How Salesforce.org Uses DevOps](https://www.salesforceben.com/learn-how-salesforce-org-uses-devops/), where we dug into the details of how and why to build a DevOps practice on CumulusCI.
+
+Learn how to [Extend NPSP with 2GP Unlocked Packages](https://www.youtube.com/watch?v=emntX94WvMw) in the Salesforce Interchange series.
+
 I've visited a number of conferences and user groups to present on how to automate Salesforce development using CumulusCI. You can view recordings of presentations on "Automate the App Lifecycle with CumulusCI" from [Virtual Dreamin' 2020](https://www.youtube.com/watch?v=xoLiVbYFdKA), the [London Salesforce Developers Group](https://www.youtube.com/watch?v=-KG9tCYlgmA), the [Kitchener, Canada Developers Group](https://www.sudipta-deb.in/2020/04/kitchener-canada-developer-group-event.html) ([video](https://www.youtube.com/watch?v=Guc8ZX1Dg6A)), at [ApexHours](https://www.youtube.com/watch?v=SBuyAkE3-h8), and in [Denver, Colorado](https://zoom.us/rec/play/tMJ8f7qsrTM3SYbD5QSDA6UqW47rLa6s1SRNqfcNyhm2UHIGZAKnb-EaN-o-6ntWanpaVfngazZMehC1?continueMode=true) ([slides](https://www.ktema.org/public/cumulusci/Automate_the_App_Lifecycle_with_CumulusCI.pdf)). I've also spoken to developer groups in the Netherlands; Munich, Germany; Mount Laurel, New Jersey; and Moscow, Russia.
 
-Learn about delivering Salesforce applications to customers with MetaDeploy in my Cactusforce 2020 presentation, [Building the NPSP Trailhead Installer with MetaDeploy](https://www.cactusforce.com/2021-session/2021/1/15/david-reed-building-the-npsp-trailhead-installer-with-metadeploy).
+Learn about delivering Salesforce applications to customers with MetaDeploy in my Cactusforce 2021 presentation, [Building the NPSP Trailhead Installer with MetaDeploy](https://www.cactusforce.com/2021-session/2021/1/15/david-reed-building-the-npsp-trailhead-installer-with-metadeploy).
 
 ## Other Talks
 

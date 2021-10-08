@@ -3,18 +3,19 @@ layout: page
 title: About
 ---
 
-I am a Lead Member of Technical Staff in Release Engineering at Salesforce.org. Opinions expressed on this site are my own. I'm 9x certified on the Salesforce platform; I specialize in Apex development, Python, and development lifecycle.
+I am a Lead Member of Technical Staff in Release Engineering at Salesforce.org. Opinions expressed on this site are my own. I'm 9x certified on the Salesforce platform; I specialize in Apex and LWC development, Python, and development lifecycle.
 
 My outside interests include Ancient Greek, Plato, science fiction, curling, and officiating women's flat track roller derby.
 
-You can find me at 
+You can find me at
 
- - [david@ktema.org](mailto:david@ktema.org);
- - [@aoristdual](https://twitter.com/aoristdual);
- - on [Salesforce Stack Exchange](https://salesforce.stackexchange.com/users/46017/david-reed), where I am an elected community moderator;
- - on [LinkedIn](https://www.linkedin.com/in/david-reed-16175b31) (if you'd like to connect, please send me a note);
- - and as `davidmreed` on [GitHub](https://github.com/davidmreed) or on [GitLab](https://gitlab.com/davidmreed). 
- - You can find my public key at [Keybase](https://keybase.io/davidreed).
+- [david@ktema.org](mailto:david@ktema.org);
+- [@aoristdual](https://twitter.com/aoristdual);
+- on [Salesforce Stack Exchange](https://salesforce.stackexchange.com/users/46017/david-reed), where I am an elected community moderator;
+- on [LinkedIn](https://www.linkedin.com/in/david-reed-16175b31);
+- and as `davidmreed` on [GitHub](https://github.com/davidmreed).
+
+I can also be found hanging out on various Salesforce community Slacks and on the [SFXD Discord](https://sfxd.github.io/).
 
 <a href="https://stackexchange.com/users/1185774"><img src="https://stackexchange.com/users/flair/1185774.png" width="208" height="58" alt="profile for David Reed on Stack Exchange, a network of free, community-driven Q&amp;A sites" title="profile for David Reed on Stack Exchange, a network of free, community-driven Q&amp;A sites"></a>
 
@@ -36,6 +37,4 @@ I request that all Salesforce Stack Exchange business be handled on Salesforce S
 <img style="display: inline;" src="{{ site.baseurl }}/public/SFU_CRT_BDG_Admin_RGB.png" alt="Salesforce Certified Administrator" />
 </div>
 
-
-> <span class="greek">κτῆμά τε ἐς αἰεὶ μᾶλλον ἢ ἀγώνισμα ἐς τὸ παραχρῆμα ἀκούειν ξύγκειται.</span><br />
-  &mdash; Thucydides, [<cite>History of the Peloponnesian War</cite> 1.22](http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+1.22&fromdoc=Perseus%3Atext%3A1999.01.0247)
+> <span class="greek">κτῆμά τε ἐς αἰεὶ μᾶλλον ἢ ἀγώνισμα ἐς τὸ παραχρῆμα ἀκούειν ξύγκειται.</span><br /> > &mdash; Thucydides, [<cite>History of the Peloponnesian War</cite> 1.22](http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+1.22&fromdoc=Perseus%3Atext%3A1999.01.0247)
