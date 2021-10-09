@@ -9,6 +9,14 @@ title: Understanding Collections in Apex
 
 ## Types and Generics
 
+Apex is a _strongly, statically typed_ language. This means that every value in Apex is of a specific type (like a string, or an integer), and that type is known at compile time.
+
+Apex's type system is relatively simple compared to many other programming languages.
+
+In modern Apex, collections are the only location where you'll find significant use of _generics_. Generics are a way of combining types. For example, an array of strings in Apex has the type `List<String>`. The type name given in `<>` _specializes_ the `List`, which is a _generic type_, to hold a specific kind of values. The `List` and `Set` class each have one type parameter. The `Map` class has two.
+
+A collection, including a specialized one like `List<String>`, is fundamentally a _different type_ from the values it contains (`String`s).
+
 ## Performance Concepts
 
 Operating on data stored in collections can be very expensive in CPU time. In order to write code that is performant and reliable, it's critical to understand the performance characteristics of different collection operations.
@@ -17,11 +25,13 @@ The complexity of operations is often described in computer science using _Big-O
 
 > If my data gets bigger, how much more work has to be done to process it?
 
-If the work required to process the data stays the same regardless of the data's growth, the operation executes in _constant time_, in Big-O notation `O(1)`. That means that for 10 records and for 100 records, the work required is of the same complexity. (Note that this _doesn't_ mean the operations will take exactly the same time).
+If the work required to process the data stays the same regardless of the data's growth, the operation executes in _constant time_, in Big-O notation `O(1)`. That means that for 10 records and for 100 records, the work required is of the same complexity. (Note that this _doesn't_ mean the operations will take precisely the same clock time).
 
 If the work grows at the same rate as the data, the operation executes in _linear time_, or `O(N)`. That means that 100 records would require 10 times as much work as 10 records.
 
-If the work grows exponentially as the data grows, the operation executes in _exponential time_, such as `O(N^2)`. That means that 100 records would require _100_ times as much work as 10 records.
+If the work grows exponentially as the data grows, the operation executes in _exponential time_, such as `O(N^2)`. That means that 100 records would require _100_ times as much work as 10 records. There are also other classes of complexity that grow faster than linear, but are not exponential.
+
+If you dig into algorithms, you'll find lots of other Big-O classes, but these are what we need for an introductory discussion.
 
 We always want to design our code in a way that keeps the computational complexity as low as possible for any given problem, to ensure that our code remains performant as data scales, to avoid governor limit exceptions, and to provide a good experience for our users. Not all problems can be reduced to constant time, or even linear time, but recognizing the three cases in our use of collections allows us to make informed decisions about the safeguards we need to protect our code, data, and users.
 
@@ -47,7 +57,7 @@ for (Account a: someList) {
 }
 ```
 
-This is not linear, but exponential time. This pattern should virtually always reduce to one `List` and one `Map`, where the `Map`'s keys are the values you want to use to connect the members of the two collections:
+This is not linear, but exponential time. This pattern should virtually always reduce to one `List` and one `Map`, where the `Map`'s keys are the shared values you want to use to connect the members of the two collections:
 
 ```apex
 Map<Id, Account> accountMap = new Map<Id, Account>(...);
@@ -60,12 +70,12 @@ for (Contact c: contactList) {
 }
 ```
 
-This code is linear, because it only traverses one `List`, but still must traverse all of the values in that `List`. For more about this pattern, see [TODO].
+This code is linear, because it only traverses one `List`, but it's not constant time - it still must traverse all of the values in that `List`. For more about this pattern, see [TODO].
 
 ### For Users of Other Languages
 
 - Apex `List`s are always homogeneous (they contain only one type of value). That type can, however, be `Object` or `sObject`.
--
+- Apex does not have a distinction between stack- and heap-allocated or static and dynamic arrays. All `List` objects are mutable and growable.
 
 ## Sets
 
