@@ -31,4 +31,12 @@ h6,
   color: $link-color !important;
 }
 
+span .back-arrow {
+  display: none !important;
+}
+
+#sidebar .site-title {
+  font-size: 3rem !important;
+}
+
 @import "hydeout";
