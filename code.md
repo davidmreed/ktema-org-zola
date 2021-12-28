@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Code
+sidebar_link: true
 ---
 
 My full-time position is in developing and applying the [Salesforce.org toolchain](https://github.com/SFDO-Tooling), particularly [CumulusCI](https://github.com/SFDO-Tooling/CumulusCI), as an engineer at Salesforce.org.

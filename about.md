@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About
+sidebar_link: true
 ---
 
 I am a Lead Member of Technical Staff in Release Engineering at Salesforce.org. Opinions expressed on this site are my own. I'm 9x certified on the Salesforce platform; I specialize in Apex and LWC development, Python, and development lifecycle.

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Talks & Publications
+sidebar_link: true
 ---
 
 I've given many talks on Salesforce, mostly focusing on topics like Apex testing, continuous integration, CumulusCI, Salesforce DX, and version control. I love meeting with Salesforce groups to teach and advocate in these areas. If your group is looking for content in these areas, please drop me a line.
