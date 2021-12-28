@@ -21,22 +21,16 @@ h6,
   font-weight: 200 !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.post-title {
-  color: $link-color !important;
-}
-
 span .back-arrow {
   display: none !important;
 }
 
 #sidebar .site-title {
   font-size: 3rem !important;
+}
+
+span .post-date {
+  margin-bottom: 0.5rem;
 }
 
 @import "hydeout";
