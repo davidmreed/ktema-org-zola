@@ -38,4 +38,6 @@ I request that all Salesforce Stack Exchange business be handled on Salesforce S
 <img style="display: inline;" src="{{ site.baseurl }}/public/SFU_CRT_BDG_Admin_RGB.png" alt="Salesforce Certified Administrator" />
 </div>
 
-> <span class="greek">κτῆμά τε ἐς αἰεὶ μᾶλλον ἢ ἀγώνισμα ἐς τὸ παραχρῆμα ἀκούειν ξύγκειται.</span><br /> > &mdash; Thucydides, [<cite>History of the Peloponnesian War</cite> 1.22](http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+1.22&fromdoc=Perseus%3Atext%3A1999.01.0247)
+> <span style="font-family: 'GFS Didot', 'Times New Roman', serif; font-size: 120%;">κτῆμά τε ἐς αἰεὶ μᾶλλον ἢ ἀγώνισμα ἐς τὸ παραχρῆμα ἀκούειν ξύγκειται.</span>
+
+<br /> &mdash; Thucydides, [<cite>History of the Peloponnesian War</cite> 1.22](http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+1.22&fromdoc=Perseus%3Atext%3A1999.01.0247)
