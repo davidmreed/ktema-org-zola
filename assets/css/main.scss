@@ -2,8 +2,8 @@
 # Jekyll needs front matter for SCSS files
 ---
 
-$sidebar-bg-color: red;
-$link-color: red;
+$sidebar-bg-color: $red;
+$link-color: $red;
 $root-font-family: "Oxygen", -apple-system, BlinkMacSystemFont, "Segoe UI",
   "Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   Arial, sans-serif !default;
