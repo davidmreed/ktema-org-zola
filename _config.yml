@@ -11,3 +11,6 @@ plugins:
   - jekyll-seo-tag
 
 paginate: 5
+
+links:
+  github: https://github.com/davidmreed
