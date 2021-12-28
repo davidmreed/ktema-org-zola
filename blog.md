@@ -1,5 +1,5 @@
 ---
 layout: index
-title: Home
+title: Blog
 sidebar_link: true
 ---
