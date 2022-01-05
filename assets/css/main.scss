@@ -12,6 +12,10 @@ $heading-spacing: -0.025rem !default;
 $sidebar-sticky: false !default;
 $root-line-height: 2 !important;
 
+.container > * {
+  max-width: 50rem !important;
+}
+
 h1,
 h2,
 h3,
@@ -31,6 +35,18 @@ h6,
 h1:last-child,
 h2:last-child {
   margin-bottom: 1rem !important;
+}
+.link-icons {
+  font-size: 150%;
+  letter-spacing: 0.25rem;
+}
+
+.link-icons a {
+  text-decoration: none;
+}
+
+.link-icons a:hover {
+  text-decoration: none;
 }
 
 @import "hydeout";
