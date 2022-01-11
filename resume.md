@@ -62,7 +62,7 @@ h2, h3 {
 
 </style>
 
-<div style="float: right; padding-left: 4rem;">
+<div style="float: right; margin-left: 2.5rem; padding-left: 1.5rem; border-left: solid 1px #eee;">
 <h2>Contact</h2>
 <div class="link-icons">
 <div>
