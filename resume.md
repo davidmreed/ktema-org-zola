@@ -279,6 +279,8 @@ h2, h3 {
 - Designed and built custom data import and deduplication solution in Python and Flask.
 - Supervised associate-level staff member.
 
+<hr style="margin-top: 2rem; margin-bottom: 1rem;" />
+
 ## Presentations and Open Source
 
 - Author of [Baris](https://github.com/davidmreed/baris), an open-source Rust crate for async, parallelized Salesforce integrations.
