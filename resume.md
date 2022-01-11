@@ -213,9 +213,11 @@ h2, h3 {
       <span class="pill">Apex</span> 
       <span class="pill">JavaScript</span> 
       <span class="pill">LWC</span> 
+      <span class="pill">Salesforce&nbsp;DX</span> 
       <span class="pill">Django</span> 
       <span class="pill">FastAPI</span> 
       <span class="pill">Heroku</span> 
+      <span class="pill">Postgres</span> 
       <span class="pill">Docker</span>
       <span class="pill">GitHub&nbsp;Actions</span>
       <span class="pill">CircleCI</span>
