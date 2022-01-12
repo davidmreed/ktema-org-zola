@@ -40,6 +40,8 @@ html {
   margin-top: 2rem;
 }
 
+
+
 .pill {
   border-radius: 32px;
   margin: 0.125rem 0.125rem;
@@ -73,7 +75,7 @@ h2, h3 {
     aria-label="Email"
     href="{{ site.links.email }}">
 <i class="fas fa-envelope"></i>
-</a> <code>david@ktema.org</code>
+<code>david@ktema.org</code></a>
 </div>
 <div>
 <a
@@ -123,7 +125,7 @@ h2, h3 {
     aria-label="LinkedIn Profile"
     href="{{ site.links.linkedin }}">
 <i class="fab fa-linkedin"></i>
-</a><code>davidreed-salesforce</code>
+<code>davidreed-salesforce</code></a>
 </div>
 <div>
 <a
@@ -202,7 +204,8 @@ h2, h3 {
       <p>
         Salesforce MVP alumnus, 2019<br />
         Moderator & top 6 all-time contributor, Salesforce Stack Exchange, 2019-<br />
-        Frequent community speaker
+        Frequent community speaker<br />
+        Open source maintainer and contributor
       </p>
     </div>
     <div class="card">
