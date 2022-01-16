@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Résumé  |  David Reed
+title: David Reed | Engineer, architect, communicator 
 ---
 
 <style type="text/css">
@@ -14,6 +14,21 @@ title: Résumé  |  David Reed
     font-size: 0.8rem !important;
     width: 100%;
   }
+  .container > * {
+    max-width: 100% !important;
+  }
+}
+
+  @page {
+    margin-top: 0.75in;
+    margin-bottom: 0.5in;
+    margin-left: 0.75in;
+    margin-right: 0.5in;
+  }
+@media screen {
+    .print-title {
+        display: none;
+    }
 }
 
 html {
@@ -40,8 +55,6 @@ html {
   margin-top: 2rem;
 }
 
-
-
 .pill {
   border-radius: 32px;
   margin: 0.125rem 0.125rem;
@@ -63,6 +76,8 @@ h2, h3 {
 }
 
 </style>
+
+<h1 class="print-title">David Reed &nbsp;&nbsp; | &nbsp;&nbsp; <span style="font-size: 80%;">Engineer, architect, communicator</span></h1>
 
 <div style="float: right; margin-left: 2.5rem; padding-left: 1.5rem; border-left: solid 1px #eee;">
 <h2>Contact</h2>
@@ -143,50 +158,48 @@ h2, h3 {
 <img 
   src="assets/images/certs/2021-03_Badge_SF-Certified_Application-Architect_500x490px.png" 
   alt="Salesforce Certified Application Architect" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/SF-Certified_Data-Architect.png" 
   alt="Salesforce Certified Data Architect" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/SF-Certified_Sharing-and-Visibility-Architect.png" 
   alt="Salesforce Certified Sharing and Visibility Architect" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/Certified_Dev-Lifecycle-and-Deploy-Architect.png" 
   alt="Salesforce Certified Development Lifecycle and Deployment Architect" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/2021-03_Badge_SF-Certified_Platform-Developer-II_500x490px.png" 
   alt="Salesforce Certified Platform Developer II" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/2021-03_Badge_SF-Certified_Platform-Developer-I_500x490px.png" 
   alt="Salesforce Certified Platform Developer I" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/2021-03_Badge_SF-Certified_Nonprofit-Cloud-Consultant_500x490px.png" 
   alt="Salesforce Certified Nonprofit Cloud Consultant" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/2021-03_Badge_SF-Certified_Platform-App-Builder_500x490px.png" 
   alt="Salesforce Certified Platform App Builder" 
-  width="120">
+  width="100">
 
 <img 
   src="assets/images/certs/2021-03_Badge_SF-Certified_Administrator_500x490px.png" 
   alt="Salesforce Certified Administrator" 
-  width="120">
-
+  width="100">
 </div>
-
 </div>
 
 <div>
@@ -196,7 +209,7 @@ h2, h3 {
       <p>
         Salesforce architecture, development, and DevOps<br />
         Python, Rust, Apex, and JavaScript engineering<br />
-        Technical leadership, education, and evangelism<br />
+        Technical leadership, community building, and developer relations<br />
       </p>
     </div>
     <div class="card">
@@ -244,10 +257,9 @@ h2, h3 {
 
 ### Interim Product Manager, CumulusCI Suite, Salesforce (2021-)
 
-- Owned the vision and roadmap for a suite of 5 applications.
+- Owned the vision and roadmap for a suite of 6 applications.
 - Set engineering priorities for scrum team of 13.
 - Coordinated requirements with multiple stakeholder teams across business units.
-- Balanced product management and scrum responsibilities with engineering leadership.
 
 ### Lead Member of Technical Staff, Salesforce (2019-)
 
@@ -286,11 +298,9 @@ h2, h3 {
 
 <hr style="margin-top: 2rem; margin-bottom: 1rem;" />
 
-## Presentations and Open Source
+## Presentations and Open Source Projects 
 
 - Author of [Baris](https://github.com/davidmreed/baris), an open-source Rust crate for async, parallelized Salesforce integrations.
 - Author of [Amaxa](https://github.com/davidmreed/amaxa), an open-source Python Salesforce ETL tool for multi-object data loads.
 - Author of [Bibliothekai](https://bibliothekai.ktema.org), an open-source app built in Python, Django, and Lightning Web Components for cataloging and reviewing translations of classical texts.
-- Release engineer for [Declarative Lookup Rollup Summaries](https://github.com/SFDO-Community/declarative-lookup-rollup-summaries).
 - Dozens of public presentations (see [ktema.org/publications](https://ktema.org/publications) for complete CV).
-- Member of organizing committee, PhillyForce ‘19
