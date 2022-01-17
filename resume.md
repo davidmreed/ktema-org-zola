@@ -207,16 +207,17 @@ h2, h3 {
     <div class="card">
       <h2>Top Skills</h2>
       <ul style="list-style-type: none; margin: 0; padding: 0; padding-bottom: 1rem;">
-        <li>Salesforce architecture, development, and DevOps</li>
-        <li>Python, Rust, Apex, and JavaScript engineering</li>
-        <li>Technical leadership, community building, and developer relations</li>
+        <li>Salesforce architecture, development, ISV packaging</li>
+        <li>DevOps and automation for Salesforce</li>
+        <li>Python, Rust, JavaScript engineering</li>
+        <li>Technical leadership, education, developer relations</li>
       </ul>
     </div>
     <div class="card">
       <h2>Community</h2>
       <ul style="list-style-type: none; margin: 0; padding: 0; padding-bottom: 1rem;">
-        <li>Salesforce MVP alumnus, 2019</li>
         <li>Elected moderator, Salesforce Stack Exchange, 2019-</li>
+        <li>Salesforce MVP alumnus, 2019</li>
         <li>Frequent community speaker</li>
         <li>Open source maintainer and contributor</li>
       </ul>
