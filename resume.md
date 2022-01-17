@@ -206,20 +206,20 @@ h2, h3 {
   <section class="cards">
     <div class="card">
       <h2>Top Skills</h2>
-      <p>
-        Salesforce architecture, development, and DevOps<br />
-        Python, Rust, Apex, and JavaScript engineering<br />
-        Technical leadership, community building, and developer relations<br />
-      </p>
+      <ul style="list-style-type: none; margin: 0; padding: 0; padding-bottom: 1rem;">
+        <li>Salesforce architecture, development, and DevOps</li>
+        <li>Python, Rust, Apex, and JavaScript engineering</li>
+        <li>Technical leadership, community building, and developer relations</li>
+      </ul>
     </div>
     <div class="card">
       <h2>Community</h2>
-      <p>
-        Salesforce MVP alumnus, 2019<br />
-        Moderator & top 6 all-time contributor, Salesforce Stack Exchange, 2019-<br />
-        Frequent community speaker<br />
-        Open source maintainer and contributor
-      </p>
+      <ul style="list-style-type: none; margin: 0; padding: 0; padding-bottom: 1rem;">
+        <li>Salesforce MVP alumnus, 2019</li>
+        <li>Elected moderator, Salesforce Stack Exchange, 2019-</li>
+        <li>Frequent community speaker</li>
+        <li>Open source maintainer and contributor</li>
+      </ul>
     </div>
     <div class="card">
       <h2>Technologies</h2>
@@ -230,8 +230,10 @@ h2, h3 {
       <span class="pill">JavaScript</span> 
       <span class="pill">LWC</span> 
       <span class="pill">Salesforce&nbsp;DX</span> 
-      <span class="pill">CumulusCI&nbsp;Suite</span> 
+      <span class="pill">CumulusCI</span>
+      <span class="pill">Managed&nbsp;Packaging</span>
       <span class="pill">NPSP</span> 
+      <span class="pill">CI/CD</span>
       <span class="pill">Django</span> 
       <span class="pill">FastAPI</span> 
       <span class="pill">Heroku</span> 
@@ -257,27 +259,27 @@ h2, h3 {
 
 ### Interim Product Manager, CumulusCI Suite, Salesforce (2021-)
 
-- Owned the vision and roadmap for a suite of 6 applications.
+- Owned the vision and roadmap for suite of 6 applications.
 - Set engineering priorities for scrum team of 13.
 - Coordinated requirements with multiple stakeholder teams across business units.
 
 ### Lead Member of Technical Staff, Salesforce (2019-)
 
-- Created new build automation solutions using CumulusCI, Salesforce DX, Python, Robot Framework, and the Metadata and Tooling APIs.
+- Created new CI/CD and build automation solutions using CumulusCI, Salesforce DX, Python, Robot Framework, and Metadata and Tooling APIs.
 - Architected MetaPush application for safe, performant ISV push upgrades.
 - Executed build, release, and delivery processes for more than 50 Salesforce managed packages reaching tens of thousands of customers.
 - Drove implementation of 2GP builds and tests across more than 30 projects.
+- Directly supported 5+ product teams as packaging SME.
 - Designed and built Metadata ETL framework for safe org configuration.
 - Built intelligent data load engine, yielding 500% speed increases.
-- Built GitHub Actions standards to support formatting, linting, testing, and static analysis for JavaScript, Apex, Python, Markdown, SQL, JSON, and YAML.
 - Coauthored 6 Trailhead modules and thousands of words of documentation.
 - Presented over 20 public-facing talks, articles, and blog posts evangelizing CumulusCI and related topics.
-- Led SFDO-wide Permissions Working Group and CumulusCI Champions Council.
+- Led Salesforce.org Permissions Working Group and CumulusCI Champions Council.
 
 ### Salesforce Application Architect, Radian Group (2017-2019)
 
-- Developed custom Lightning app to manage intake of >$10M/mo insurance premiums.
-- Onboarded 3 Sales organizations in Lightning Sales Cloud and built extensive customizations.
+- Developed custom Lightning app to manage intake of over $10M/mo insurance premiums.
+- Onboarded 3 major organizations to Lightning Sales Cloud.
 - Built backend and user-facing functionality in Apex, LWC, and Visualforce.
 - Planned and executed Salesforce-to-Salesforce org and data merge for corporate acquisition.
 - Developed new ETL solution in Python for sandbox seeding & data transfer.
