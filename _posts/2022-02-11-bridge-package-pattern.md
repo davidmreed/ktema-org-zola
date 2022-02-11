@@ -14,7 +14,7 @@ Understanding the value of the bridge package pattern requires that we get into 
 
 At Massive Events, you're building a new managed package product to help organize galas, fundraising events, and classes. Integration with the Nonprofit Success Pack (NPSP) is a key objective for your product: nonprofit customers will need to connect event income to General Accounting Units, apply Action Plans to event attendees, and cultivate participants through a donor pipeline. 
 
-Naturally, you envision your product as an _extension package_ of NPSP. An extension package includes components that directly reference components of another ("core") package, meaning that installation of the extension package will always require the core package. Massive Events will add schema to NPSP objects, establish relationships between Massive Events objects and NPSP objects, and call `global` methods in NPSP's Apex classes. Here's what the package architecture looks like.
+Naturally, you envision your product as an _extension package_ of NPSP. An extension package includes components that directly reference components of another ("core") package, meaning that installation of the extension package will always require the core package. Massive Events will add schema to NPSP objects, establish relationships between Massive Events objects and NPSP objects, and call `global` methods in NPSP's Apex classes. Here's what the package architecture looks like (arrows denote the direction of dependencies).
 
 ![Extension package architecture](/assets/images/MassiveEventsPackages.png)
 
@@ -30,7 +30,7 @@ Massive Events might say "So what? We're a nonprofit-focused product; requiring 
 
 The solution to this challenge is the _bridge package pattern_. It's a way of structuring the application into packages in a way that allows Massive Events to isolate their dependency on NPSP from the core functionality of their package into a separate _bridge_, leaving the door open to later pivoting the core application to support other types of Salesforce org.
 
-The package structure for Massive Events would look like this under the bridge package approach:
+The package structure for Massive Events would look like this under the bridge package approach. Again, arrows denote the direction of dependency relationships.
 
 ![Package architecture with bridges](/assets/images/MassiveEventsWithBridges.png)
 
@@ -54,7 +54,7 @@ There _are_ situations where removing this dependency is possible. I've done it 
 
 Fundamentally, if manageability rules allow you to remove the component(s) that establish the dependency from your package, or alter them to remove the dependency from the component, you can drop the package-to-package dependency. There are numerous situations where that is not possible, including but by no means limited to the Flow case referenced above and situations where a cross-package Apex reference occurs in the signature of a `global` method. There are others, too, where the customer impact of such a component deletion is unacceptable: if the extension package includes a field on a core package object, deleting that field and recreating it in a bridge package instead could force customers into a data migration, and might impact integrated systems as well.
 
-It's much easier to consider these types of changes if the package hasn't already been shipped to customers. Removing references from a Permission Set, for example, is a viable strategy to remove a managed package dependency, but has moderate potential impact on customers.
+It's much easier to consider these types of changes if the package hasn't already been shipped to customers. Removing references from a Permission Set, for example, is a viable strategy to remove a managed package dependency before delivery to customers, but has moderate potential impact on existing users.
 
 ## Conclusion
 
