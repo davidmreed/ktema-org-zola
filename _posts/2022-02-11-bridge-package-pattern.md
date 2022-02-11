@@ -44,7 +44,7 @@ In this architecture, the Massive Events core package includes as much of the ap
 
 A great example of the bridge package pattern is [Outbound Funds Module](https://github.com/SalesforceFoundation/OutboundFundsModule) (OFM). OFM helps organizations that disburse grant funds track their operations. It supports the Nonprofit Success Pack, but doesn't require it, because it's structured with a bridge package just like the one shown above for Massive Events. Since Outbound Funds Module is open source, you can check out how both it and its [NPSP bridge package](https://github.com/SalesforceFoundation/OutboundFundsModuleNPSP) are designed.
 
-## What if you need a bridge and don't have one?
+## Adding Bridges Later
 
 Earlier, we noted that
 
