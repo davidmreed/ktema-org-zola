@@ -1,7 +1,6 @@
 ---
 layout: page
 title: David Reed | Engineer, architect, communicator 
-sidebar_link: true
 ---
 
 <style type="text/css">
