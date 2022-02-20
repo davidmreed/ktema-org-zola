@@ -62,7 +62,7 @@ Where you can find me:<br/>
 
 <hr />
 
-You might be looking for a [project](/code) I maintain (like [Amaxa](https://amaxa.readthedocs.io) or [Bibliothekai](https://bibliothekai.ktema.org)), for an [article](/blog) I've written, or for links to the [talks](/publications) I've given on CumulusCI, Salesforce, DevOps, and other topics.
+You might be looking for a [project](/code) I maintain (like [Amaxa](https://amaxa.readthedocs.io), [Baris](https://github.com/davidmreed/baris), or [Bibliothekai](https://bibliothekai.ktema.org)), for an [article](/blog) I've written, or for links to the [talks](/publications) I've given on CumulusCI, Salesforce, DevOps, and other topics.
 
 <blockquote style="font-family: 'GFS Didot', 'Times New Roman', serif; font-size: 120%;">κτῆμά τε ἐς αἰεὶ μᾶλλον ἢ ἀγώνισμα ἐς τὸ παραχρῆμα ἀκούειν ξύγκειται.</blockquote>
  &mdash; Thucydides, [<cite>History of the Peloponnesian War</cite> 1.22](http://www.perseus.tufts.edu/hopper/text?doc=Thuc.+1.22&fromdoc=Perseus%3Atext%3A1999.01.0247)
