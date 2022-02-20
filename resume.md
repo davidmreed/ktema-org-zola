@@ -1,6 +1,8 @@
 ---
 layout: page
-title: David Reed | Engineer, architect, communicator 
+title: David Reed | Engineer, architect, communicator
+sidebar_link: true
+short_title: Resume
 ---
 
 <style type="text/css">
