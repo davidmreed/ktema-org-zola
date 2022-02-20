@@ -8,6 +8,10 @@ My full-time position is in developing and applying the [Salesforce.org toolchai
 
 My primary projects are currently:
 
+## Baris
+
+[Baris](https://github.com/davidmreed/baris) is a Rust library for working with Salesforce data in async, parallelized applications. Baris is an early-stage project.
+
 ## Bibliothekai
 
 [Bibliothekai](https://bibliothekai.ktema.org) is an application for finding and evaluating the best translations of classical Greek and Latin texts. Bibliothekai currently catalogs almost a thousand translations, along with links to professional reviews and online texts where available.
