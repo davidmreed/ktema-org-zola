@@ -13,7 +13,9 @@ Under the hood, all Anonymous Apex tools make a Tooling API call to the [run Ano
 
 > Unlike classes and triggers, anonymous blocks execute as the current user and can fail to compile if the code violates the user's object- and field-level permissions.
 
-The API enforces CRUD, FLS, and record-level sharing against the code you're running - it runs in user mode, not the system mode you're used to for triggers and other Apex automation. If you attempt to run code that references a field or object to which you do not have FLS or CRUD, you obtain an error that can be very confusing:
+The API enforces CRUD, FLS, and record-level sharing against the code you're running - it runs in user mode, not the system mode you're used to for triggers and other Apex automation. But further, CRUD and FLS is actually enforced _at compile time_.
+
+If you attempt to Execute Anonmyous code that references a field or object to which you do not have FLS or CRUD, you obtain an error that can be very confusing:
 
 ```lang-java
 for (Account a: [SELECT Id, Star_Helix_Liaison__c FROM Account]) {
@@ -35,8 +37,8 @@ Suppose you're testing a class structure like this, perhaps as a data-transfer o
 
 ```lang-java
 class TransitRequest {
-    class ShipTonnage {
-        
+    class ShipManifest {
+        Integer tonnage;
     }
 }
 ```
@@ -45,9 +47,9 @@ If you include this code in an Anonymous Apex body, you'll get a compile-time er
 
 > Inner types are not allowed to have inner types.
 
-But we only have one inner type here! That's perfectly legal in Apex... except when we're in the Execute Anonymous context. Here, the entire code block is wrapped in an anonymous outer class by the system, _of which `Foo` is an inner class_. That means that in Execute Anonymous, but _not_ anywhere else we use this code, `ShipTonnage` is an illegal inner class of an inner class.
+But we only have one inner type here! That's perfectly legal in Apex... except when we're in the Execute Anonymous context. Here, the entire code block is wrapped in an anonymous outer class by the system, _of which `TransitRequest` is an inner class_. That means that in Execute Anonymous, but _not_ anywhere else we use this code, `ShipManifest` is an illegal inner class of an inner class.
 
-(You could move `ShipTonnage` out of the context of `TransitRequest` to allow it compile in Anonymous Apex, but it's a better plan to switch to different tools for testing an exploration, such as writing Apex unit tests).
+(You could move `ShipManifest` out of the context of `TransitRequest` to allow it compile in Anonymous Apex, but it's a better plan to switch to different tools for testing an exploration, such as writing Apex unit tests).
 
 For the same underlying reason, you cannot use the `static` keyword on a method defined in a class in your Anonymous Apex: [inner classes cannot use the `static` keyword](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_static.htm), and every class in Anonymous Apex is an inner class.
 
@@ -118,12 +120,12 @@ If you want a clearer representation that you can both store safely *and* inspec
 
 Using JSON doesn't mean you can log arbitrary amounts of data: the system will still truncate the string in your logs to the first 501 characters. However, it's generally a more readable representation, and likely gives you *more* to look at in the debug log.
 
-## Better Approachs and Conclusions
+## Better Approaches and Conclusions
 
-It's not at all my intention to say "One should never use the Developer Console", or tools like `sfdx force:apex:execute` that run Anonymous Apex. My takeaways, rather, are these:
+It's not at all my intention to say "One should never use the Developer Console", or tools like `sfdx force:apex:execute` that run Anonymous Apex". My takeaways, rather, are these:
 
 It's a good idea to be suspicious of the apparent ease and low barrier to entry of the Developer Console and Anonymous Apex tooling. You're still interacting with a complex software system and need to fully understand the context of the actions that you take, which can be highly unintuitive with these specific tools. In particular, if you're an Apex learner or early-career Salesforce developer, these tools may confuse you more than they help you learn. Pathologies that you observe in Anonymous Apex may not occur in real use, and vice versa; code that works fine in production may not even compile in Anonymous Apex!
 
 While these tools still have a place in debugging and hands-on exploration, use them very carefully, and keep the key context differences in mind.
 
-And lastly: if you need to debug a problem or prove out behavior in the system, just write tests. The barrier to entry is a little bit higher, true, but the explicit control tests give you over the code environment means you have better odds of success, and you'll come away from the process with validations you can deploy and use again and again.
+And lastly: if you need to debug a problem or prove out behavior in the system, **just write tests**. The barrier to entry is a little bit higher, true, but the explicit control tests give you over the code environment means you have better odds of success, and you'll come away from the process with validations you can deploy and use again and again.
