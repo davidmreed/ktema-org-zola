@@ -98,11 +98,18 @@ The unpackaged metadata is deployed too late to satisfy this compile-time depend
 
 ---
 
-The only routes to build a second-generation package that contains an unsatisfied compile-time metadata dependency are 
+Packaging certain metadata types often creates references to components that cannot themselves be packaged. Picklist values are a very common source of this challenge: a package might include a Record Type and Business Process on a standard object, where the Business Process includes static references to picklist values added to a Standard Value Set. 
+
+Because those picklist changes aren't packageable entities, and we have no way, as we found above, to run a deployment to create them before package creation, it's not possible to build a second-generation managed package containing such a structure. A similar limitation applies where the references are to customized picklists located in another managed package.
+
+There are three routes to ship a package that has this type of dependency on a component that cannot or should not be included within the package itself.
 
 1. Use an org-dependent Unlocked Package by adding `--orgdependent` to `sfdx force:package:create`. For these packages, metadata validation takes place at install time rather than build time, allowing the metadata dependency to be satisfied in the target org rather than in the build org.
 2. Create a Skip Validation 2GP beta by adding `--skipvalidation` to `sfdx force:package:version:create`. This also defers metadata validation to install time. However, Skip Validation packages cannot be promoted to Released state. As such, this strategy is only usable during development and testing, and cannot be used for delivering a package.
+3. Deliver a first-generation managed package. This is the only viable strategy to deliver a _managed_ (as opposed to Unlocked) package that must build with static references to metadata that can't be included in the package.
 
-The only viable strategy to deliver a _managed_ (as opposed to Unlocked) package that must build with static metadata references to unpackaged metadata is to use first-generation packaging. In 1GP, the referenced unpackaged metadata can be present in the packaging org, but not included in the package itself. This structure results in the dependency being validated at install time.
+    In 1GP, the referenced unpackaged metadata can be present in the packaging org, but not included in the package itself. This structure results in the dependency being validated at install time. 
 
-Adopting this strategy may result in a more challenging user experience at install time, but does allow a package that must include this type of dependency to utilize all the benefits of managed packaging, such as IP protection and AppExchange distribution. [Metadata ETL](https://cumulusci.readthedocs.io/en/stable/metadata_etl.html) in CumulusCI is a strategy that can help address these challenges for first-generation packages.
+Adopting strategy (1) or (3) for delivering a package to customer orgs may result in a more challenging user experience at install time. However, it does allow a package that must include this type of dependency to utilize all benefits of managed packaging, such as IP protection and AppExchange distribution, or of unlocked packaging.
+
+[Metadata ETL](https://cumulusci.readthedocs.io/en/stable/metadata_etl.html) in CumulusCI is a strategy that can help address these challenges while delivering packages to customers. Metadata ETL makes it possible to define safe automation to perform updates on customer-owned, unpackaged metadata to allow these packages to install cleanly.
