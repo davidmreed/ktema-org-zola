@@ -141,7 +141,7 @@ h2, h3 {
     title="Mastodon"
     aria-label="Mastodon Profile"
     href="{{ site.links.mastodon }}">
-<i class="fab fa-mastodon"></i><code>@aoristdual@mastodon.technology</code>
+<i class="fab fa-mastodon"></i><code>@aoristdual</code>
 </a>
 </div>
 <div>
