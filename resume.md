@@ -269,12 +269,6 @@ h2, h3 {
 
 ## Recent Experience
 
-### Interim Product Manager, CumulusCI Suite, Salesforce (2021-2022)
-
-- Owned the vision and roadmap for suite of 6 applications.
-- Set engineering priorities for scrum team of 13.
-- Coordinated requirements with multiple stakeholder teams across business units.
-
 ### Principal Member of Technical Staff, Salesforce (2019-)
 
 - Created new CI/CD and build automation solutions using CumulusCI, Salesforce DX, Python, Robot Framework, and Metadata and Tooling APIs.
@@ -287,6 +281,12 @@ h2, h3 {
 - Coauthored 6 Trailhead modules and thousands of words of documentation.
 - Presented over 20 public-facing talks, articles, and blog posts evangelizing CumulusCI and related topics.
 - Led Salesforce.org Permissions Working Group and CumulusCI Champions Council.
+
+### Interim Product Manager, CumulusCI Suite, Salesforce (2021-2022)
+
+- Owned the vision and roadmap for suite of 6 applications.
+- Set engineering priorities for scrum team of 13.
+- Coordinated requirements with multiple stakeholder teams across business units.
 
 ### Salesforce Application Architect, Radian Group (2017-2019)
 
