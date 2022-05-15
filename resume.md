@@ -138,6 +138,15 @@ h2, h3 {
 <div>
 <a
     class="icon"
+    title="Mastodon"
+    aria-label="Mastodon Profile"
+    href="{{ site.links.mastodon }}">
+<i class="fab fa-mastodon"></i><code>@aoristdual@mastodon.technology</code>
+</a>
+</div>
+<div>
+<a
+    class="icon"
     title="LinkedIn"
     aria-label="LinkedIn Profile"
     href="{{ site.links.linkedin }}">

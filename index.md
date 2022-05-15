@@ -38,6 +38,13 @@ Where you can find me:<br/>
 </a>
 <a
     class="icon"
+    title="Mastodon"
+    aria-label="Mastodon Profile"
+    href="{{ site.links.mastodon }}">
+<i class="fab fa-mastodon"></i>
+</a>
+<a
+    class="icon"
     title="LinkedIn"
     aria-label="LinkedIn Profile"
     href="{{ site.links.linkedin }}">
