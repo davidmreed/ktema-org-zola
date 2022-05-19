@@ -123,7 +123,8 @@ trigger AccountMergeTrigger on Account (after delete) {
 
     for (Account acc: Trigger.old) {
         if (acc.MasterRecordId != null && acc.NumberOfEmployees != null) {
-            Integer newNumberOfEmployees = winningAccounts.get(acc.MasterRecordId).NumberOfEmployees + acc.NumberOfEmployees;
+            Integer startingNumberOfEmployees = winningAccounts.get(acc.MasterRecordId).NumberOfEmployees;
+            Integer newNumberOfEmployees = (startingNumberOfEmployees ? startingNumberOfEmployees : 0) + acc.NumberOfEmployees;
             winningAccounts.put(
                 acc.MasterRecordId,
                 new Account(Id = acc.MasterRecordId, NumberOfEmployees = newNumberOfEmployees)
@@ -135,7 +136,7 @@ trigger AccountMergeTrigger on Account (after delete) {
 }
 ```
 
-There's common lineage with the example solution, to be sure, but we mostly had to write new code here. That's the takeaway from this example: if you're fundamentally not comfortable writing code, attempting to modify a third-party example does not help a great deal. And, again, it leaves you at significant risk of negatively impacting your org if you aren't fully comfortable constructing the logic yourself.
+There's common lineage with the example solution, to be sure, but we mostly had to write new code here. That's the takeaway from this example: if you're fundamentally not comfortable writing code, attempting to modify a third-party example does not help a great deal. And, again, it leaves you at significant risk of negatively impacting your org if you aren't fully comfortable constructing the logic yourself. (As one illustration of that risk: I had to quickly revise this code example after publishing, because I found a bug that would've thrown exceptions!)
 
 ### Writing Apex Tests
 
