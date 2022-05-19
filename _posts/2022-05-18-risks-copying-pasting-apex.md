@@ -5,7 +5,7 @@ layout: post
 
 It's a tricky position to be placed in: you're an admin, a declarative developer, or a junior developer, and your leadership comes to you with an ask that you know requires Apex that you haven't been trained to write.
 
-What do you? You're a problem-solver and you want to deliver value to the business, so you hit the Salesforce content sphere on your search engine of choice and turn up some blogs that seem like they hit the target, or at least are pretty close. And there's some Apex code ready for the copy-and-pasting. Jackpot!
+What do you do? You're a problem-solver and you want to deliver value to the business, so you hit the Salesforce content sphere on your search engine of choice and turn up some blogs that seem like they hit the target, or at least are pretty close. And there's some Apex code ready for the copy-and-pasting. Jackpot!
 
 This is my plea to _not_ do what you've got in mind to do. Let's explore a couple of the risks. To set context, I have worked as a Salesforce admin, developer, and architect, and I've reviewed a great deal of good and awful Apex code. I want to help you understand the risks of consuming Apex that you don't fully understand.
 
