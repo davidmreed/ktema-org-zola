@@ -243,7 +243,6 @@ Finally, we store the test results and code coverage artifacts using CircleCI's 
 
 ## Resources
 
-- The [sfdx-travisci](https://github.com/forcedotcom/sfdx-travisci) example repository from Salesforce.
 - ["Wire It All Together"](https://trailhead.salesforce.com/modules/sfdx_travis_ci/units/sfdx_travis_ci_wire_it) from the Continuous Integration with Salesforce DX Trailhead module.
 - [CircleCI 2.0 Docs](https://circleci.com/docs/2.0/)
 - The following sections from the [SFDX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm):
