@@ -5,7 +5,7 @@ title: Hello!
 
 <img style="float: right; height: 250px; margin-left: 2rem;" src="/public/DavidReed.png" alt="David Reed">
 
-I'm David Reed. I am a Lead Member of Technical Staff at Salesforce, where I work on the [CumulusCI](https://cumulusci.readthedocs.io) toolchain. Opinions expressed on this site are my own.
+I'm David Reed. I am a Principal Member of Technical Staff at Salesforce, where I work on the [CumulusCI](https://cumulusci.readthedocs.io) toolchain. Opinions expressed on this site are my own.
 
 I have expertise in high-scale managed packaging, automation and CI/CD for Salesforce, and Salesforce platform development and architecture. I work in Python, Apex, JavaScript, and Rust.
 
@@ -35,6 +35,13 @@ Where you can find me:<br/>
     aria-label="Twitter Profile"
     href="{{ site.links.twitter }}">
 <i class="fab fa-twitter"></i>
+</a>
+<a
+    class="icon"
+    title="Mastodon"
+    aria-label="Mastodon Profile"
+    href="{{ site.links.mastodon }}">
+<i class="fab fa-mastodon"></i>
 </a>
 <a
     class="icon"
