@@ -6,7 +6,7 @@ layout: post
 
 > **Important disclaimer**: I am not an attorney. This is not legal advice.
 
-One of the legal innovations I'm most fond of in my home state of Colorado is the [Equal Pay for Equal Work Act](https://cdle.colorado.gov/equalpaytransparency). This law has a number of provisions, but one of the most visible and broadly impactful is the requirement of _salary transparency_. 
+One of the legal features I'm most fond of in my home state of Colorado is the [Equal Pay for Equal Work Act](https://cdle.colorado.gov/equalpaytransparency). This law has a number of provisions, but one of the most broadly visible is the requirement of _salary transparency_. **Companies are required to include a good-faith salary range, along with descriptions of benefits and bonuses, in every job posting that can hire in Colorado, even if the company is not located in Colorado.** This is a really, really good thing for job-seekers, especially those who are entering the technology industry for the first time and/or come from underrepresented backgrounds. Transparency helps ensure that less-well-connected and less-experienced members of the community are valued appropriately for their work. It's also a simple, pragmatic step to ensure that job-seekers can locate open roles that are compatible with their expectations.
 
 The critical passages from the Rules established by Colorado's Department of Labor and Employment run like this:
 
@@ -37,7 +37,7 @@ Sometimes, companies decide to dodge out of following Colorado's laws by stating
 
 Here's my call to the Salesforce community at large:
 
-For individuals: know your rights on salary transparency and call out employers that do not comply with the laws in your jurisdiction.
+For individuals: know your rights on salary transparency and call out employers that do not comply with the laws in your jurisdiction. Even if you do not live in a salary-transparency state, companies that hire in both your state _and_ Colorado are still bound by Colorado's laws.
 
 For recruiters: insist that your clients follow the law. Remind them they're potentially liable for up to $10,000 in penalties in the state of Colorado. Other jurisdictions may have different requirements and liabilities.
 
