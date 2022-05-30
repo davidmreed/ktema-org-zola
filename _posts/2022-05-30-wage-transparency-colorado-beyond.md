@@ -12,10 +12,12 @@ The critical passages from the Rules established by Colorado's Department of Lab
 > Rule 4. Job Posting Requirements
 
 > 4.1 All job postings, including but not limited to promotions: An employer is required to “disclose in each posting for each job the hourly or salary compensation, or a range of hourly or the salary compensation, and a general description of all of the benefits and other compensation to be offered to the hired applicant.” C.R.S. § 8-5-201(2).
-> 4.1.1 Employers must include the following compensation and benefits information in each posting:
-> (A) the hourly rate or salary compensation (or a range thereof) that the employer is offering for the position;
-> (B) a general description of any bonuses, commissions, or other forms of compensation that are being offered for the job; and
+
+> 4.1.1 Employers must include the following compensation and benefits information in each posting:<br />
+> (A) the hourly rate or salary compensation (or a range thereof) that the employer is offering for the position;<br />
+> (B) a general description of any bonuses, commissions, or other forms of compensation that are being offered for the job; and<br />
 > (C) a general description of all employment benefits the employer is offering for the position, including health care benefits, retirement benefits, any benefits permitting paid days off (including sick leave, parental leave, and paid time off or vacation benefits), and any other benefits that must be reported for federal tax purposes, but not benefits in the form of minor perks.
+
 > 4.1.2 A posted compensation range may extend from the lowest to the highest pay the employer in good faith believes it might pay for the particular job, depending on the circumstances. An employer may ultimately pay more or less than the posted range, if the posted range was the employer’s good-faith and reasonable estimate of the range of possible compensation at the time of the posting.
 
 The penalty allowed by law for violations is a fine of no less than $500 and no more than $10,000 per violation. You can file [complaint forms](https://cdle.colorado.gov/sites/cdle/files/Equal%20Pay%20Complaint%20Form%20Dec%202020_Distributed.pdf) (PDF link) by email with the Colorado Department of Labor and Employment.
