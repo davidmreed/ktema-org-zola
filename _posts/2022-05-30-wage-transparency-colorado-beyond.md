@@ -1,4 +1,3 @@
-
 ---
 title: "Wage Transparency in Colorado and Beyond"
 layout: post
