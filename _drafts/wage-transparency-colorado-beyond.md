@@ -34,6 +34,8 @@ Sometimes, companies decide to dodge out of following Colorado's laws by stating
 
 > I would strongly encourage the company to include a salary range on this posting rather than choosing to exclude a state of nearly 6 million people with a thriving tech community. This information also helps support equitable outcomes for candidates who are underrepresented or historically disadvantaged.
 
+Please feel free to reuse and modify these words if you find them helpful in communicating salary transparency asks.
+
 ---
 
 Here's my call to the Salesforce community at large:
