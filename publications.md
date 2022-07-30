@@ -23,6 +23,7 @@ Learn about delivering Salesforce applications to customers with MetaDeploy in m
 
 ## Other Talks
 
+- [The Magic of APIs for Admins](https://vimeo.com/732817980/cc19af32dc) at the Charlotte, NC Nonprofit Users Group.
 - [Design Safe, Fast, Parallel Salesforce Integrations with Rust and Baris](https://www.cactusforce.com/2022-agenda/2022/1/20/xxpsyc8q8bljnfeq7ji0t0h14ckb9o-3zf4b-hetw7-55gst-8smrc-yel26-5c5px-htreb-yj5kn-nm96a-mpd9z-4exxa-3a8mj-4zhnw-6k2jt-tzamx-kpf3n-79xjl-p42tg)
 - [Do What You Can with What You Have](https://www.youtube.com/watch?v=YuImj0JaY-o) at All Things Open, with Mary Crozier and Cori O'Brien.
 - [Handle the Right Errors: Building Resilient and Reliable Apex](https://trailblazercommunitygroups.com/events/details/salesforce-new-york-city-ny-developers-group-presents-handle-the-right-errors-building-resilient-and-reliable-apex/#/) at the New York City Developers Group.
