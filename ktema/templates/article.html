@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>
+  {{ page.title }}
+</h1>
+<section>
+	<p>Published <time datetime="{{ page.date }}">{{ page.date }}</time></p>
+    <address><a href="mailto:david@ktema.org">David Reed</a></address>
+</section>
+{% if page.toc %}
+<section>
+<p>
+    <ul>
+    {% for h1 in page.toc %}
+        <li>
+            <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+            {% if h1.children %}
+                <ul>
+                    {% for h2 in h1.children %}
+                        <li>
+                            <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</p>
+</section>
+{% endif %}
+{{ page.content | safe }}
+{% endblock content %}
