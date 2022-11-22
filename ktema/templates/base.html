@@ -2,24 +2,30 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title> / David Reed</title>
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml", trailing_slash=false) }}">
-  <link rel="stylesheet" type="text/css" href="/simple.min.css">
+    <meta charset="utf-8" />
+    <title>{% block title %} {% endblock %} / David Reed</title>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path=" rss.xml", trailing_slash=false)
+        }}" />
+    <link rel="stylesheet" type="text/css" href="/simple.min.css" />
 </head>
 
 <body>
     <header>
-	<nav>
-	{% set root_section = get_section(path="_index.md") %}
-	{% for each_page in root_section.pages %}
-	<a href="{{ each_page.path }}">{{ each_page.title }}</a>
-	{% endfor %}
-	</nav>
+        <nav>
+            {% set root_section = get_section(path="_index.md") %}
+            {% for each_page in root_section.pages %}
+            <a href="{{ each_page.path }}">{{ each_page.title }}</a>
+            {% endfor %}
+            {% set section = get_section(path="content/_index.md", metadata_only=true) %}
+            <a href="{{ section.permalink }}">{{ section.title }}</a>
+            <!-- taxonomy pages -->
+            {% set categories = get_taxonomy(kind="categories") %}
+            {% for each_category in categories.items %}
+            <a href="{{ each_category.permalink }}">{{ each_category.name }}</a>
+            {% endfor %}
+        </nav>
     </header>
-    <div class="container">
-      {% block content %} {% endblock %}
-    </div>
+    <div>{% block content %} {% endblock %}</div>
 </body>
 
 </html>
