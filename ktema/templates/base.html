@@ -16,8 +16,8 @@
             {% for each_page in root_section.pages %}
             <a href="{{ each_page.path }}">{{ each_page.title }}</a>
             {% endfor %}
-            {% set section = get_section(path="content/_index.md", metadata_only=true) %}
-            <a href="{{ section.permalink }}">{{ section.title }}</a>
+            {% set root_content_section = get_section(path="content/_index.md", metadata_only=true) %}
+            <a href="{{ root_content_section.permalink }}">{{ root_content_section.title }}</a>
             <!-- taxonomy pages -->
             {% set categories = get_taxonomy(kind="categories") %}
             {% for each_category in categories.items %}
