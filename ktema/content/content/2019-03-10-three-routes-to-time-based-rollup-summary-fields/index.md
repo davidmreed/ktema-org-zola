@@ -44,15 +44,14 @@ We can't create a native Rollup Summary Field, as we've seen, based on a formula
 
 Here's how it works:
 
- 1. We create two Date formula fields on the child object (here, Opportunity). One defines the *date when the record enters rollup scope* and the other the *date when it exits rollup scope*.<br/>
-  ![First Day in Rollup Scope]({{ "/public/time-based-rollups/First Day in Rollup Scope.png" | absolute_url }})
-  ![Last Day in Rollup Scope]({{ "/public/time-based-rollups/Last Day in Rollup Scope.png" | absolute_url }})
+ 1. We create two Date formula fields on the child object (here, Opportunity). One defines the *date when the record enters rollup scope* and the other the *date when it exits rollup scope*. ![First Day in Rollup Scope](First-Day-in-Rollup-Scope.png)
+  ![Last Day in Rollup Scope](Last-Day-in-Rollup-Scope.png)
  1. We create a Checkbox field on the child object. This is what our Time-Based Workflow Actions will set and unset, giving us a triggerable event for the Rollup Summary Field.
  1. We create a Rollup Summary Field on the parent object (here, Account). We use the criterion that our Checkbox field is set to True.<br/>
-![Rollup Summary Field]({{ "/public/time-based-rollups/Rollup Summary Field.png" | absolute_url }})
+![Rollup Summary Field](Rollup-Summary-Field.png)
 
  1. We create a Workflow Rule with two Time-Based Actions attached to it.<br/>
-![Workflow Rule]({{ "/public/time-based-rollups/Workflow Rule.png" | absolute_url }})
+![Workflow Rule](Workflow-Rule.png)
 
 This approach works well for most sorts of time-based rollup requirements. Because it uses formula fields to define when a record enters and exits the rolled-up period, it's not limited to "this month", "this year", and other simple definitions. The time period doesn't even need to be the same for each record!
 
@@ -83,7 +82,7 @@ Instead of using a native Rollup Summary Field, we start by defining a DLRS Roll
 
 Here's how we might configure our putative Opportunity rollup in DLRS:
 
-![DLRS]({{ "/public/time-based-rollups/DLRS.png" | absolute_url }})
+![DLRS](DLRS.png)
 
 To start with, this Rollup Summary will only work partially. It'll yield correct results if we run a full calculate job by clicking `Calculate`. If we configure it to run in `Realtime` mode and deploy DLRS's triggers, we'll see our rollup update as we add and delete Opportunities. 
 
@@ -91,7 +90,7 @@ What won't work, though, is the shift from one time period to the next. On the f
 
 With DLRS, rather than using time-based workflow actions to create a trigger event by updating a field, we recalculate the rollup value across every parent record when each time period rolls over. Here, we've scheduled a full recalculation of the rollup for the first day of each month.
 
-![DLRS Scheduler]({{ "/public/time-based-rollups/DLRS Scheduler.png" | absolute_url }})
+![DLRS Scheduler](DLRS-Scheduler.png)
 
 Because DLRS also deploys triggers dynamically to react to record changes in real time, we get in some sense the best of both worlds: instant updates when we add and change records on a day-to-day basis, with recalculation taking place at time-period boundaries.
 
@@ -113,21 +112,24 @@ The Batch Apex class we use is very simple: all it does it query for records who
 
 Continuing the example developed above, where we're rolling up Opportunities for the current month only, our batch class's `start()` method would run a query like this:
 
-    SELECT Id, This_Month_Batch__c
-    FROM Opportunity
-    WHERE (CloseDate = THIS_MONTH AND This_Month_Batch__c = false) 
-          OR (CloseDate != THIS_MONTH AND This_Month_Batch__c = true)
+```sql
+SELECT Id, This_Month_Batch__c
+FROM Opportunity
+WHERE (CloseDate = THIS_MONTH AND This_Month_Batch__c = false) 
+      OR (CloseDate != THIS_MONTH AND This_Month_Batch__c = true)
+```
 
 Here we just locate those Opportunities that are *not* marked as in-scope but should be (where `CloseDate = THIS_MONTH` - note that we have the freedom to use date literals here), or which *are* marked as in scope but should not be.
 
 Then, the work of our `execute()` method is extremely simple: all it does is reverse the value of the Checkbox field `This_Month_Batch__c` on each record:
-
-    public void execute(Database.BatchableContext bc, List<Opportunity> scope) {
-        for (Opportunity o : scope) {
-            o.This_Month_Batch__c = !o.This_Month_Batch__c;
-        }
-        update scope;
+```java
+public void execute(Database.BatchableContext bc, List<Opportunity> scope) {
+    for (Opportunity o : scope) {
+        o.This_Month_Batch__c = !o.This_Month_Batch__c;
     }
+    update scope;
+}
+```
 
 We'd schedule this batch class to run every night after midnight. When executed, it'll update any records moving into or out of rollup scope that day, allowing the native Rollup Summary Field machinery to do the work of recalculating the Account-level totals.
 
