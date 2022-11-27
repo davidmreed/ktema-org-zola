@@ -4,10 +4,24 @@
 <h1>
     {{ page.title }}
 </h1>
+{% if page.taxonomies.categories[0] == 'Articles' %}
 <section>
     <p>Published <time datetime="{{ page.date }}">{{ page.date }}</time></p>
     <address><a href="mailto:david@ktema.org">David Reed</a></address>
 </section>
+{% endif %}
+{% if page.taxonomies.categories[0] == 'Presentations' %}
+<section>
+	<p>Presented <time datetime="{{ page.date }}">{{ page.date }}</time> at {{ page.extra.venue }}.</p>
+    <address><a href="mailto:david@ktema.org">David Reed</a></address>
+{% if page.extra.video_link %}
+<a href="{{ page.extra.video_link }}">Watch the video</a>
+{% endif %}
+{% if page.extra.slides_filename %} 
+<a href="{{ page.permalink }}{{ page.extra.slides_filename }}">View slides</a>
+{% endif %}
+</section>
+{% endif %}
 {% if page.toc %}
 <section>
     <p>
@@ -32,3 +46,7 @@
 {% endif %}
 {{ page.content | safe }}
 {% endblock content %}
+
+{% block footer %}
+This site does not offer commenting. If you have a question or would like to start a conversation, please share on your social or discussion platform of choice.
+{% endblock %}

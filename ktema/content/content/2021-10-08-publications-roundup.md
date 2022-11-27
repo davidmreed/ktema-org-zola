@@ -2,6 +2,8 @@
 title="Publications Round-Up"
 [taxonomies]
 categories=["Presentations"]
+[extra]
+venue="Various"
 +++
 
 I've been part of a number of articles and presentations over the last few months that have not so far appeared here. Want to catch up with the latest in free and open source Salesforce DevOps? Here's some pieces I'd love to share.

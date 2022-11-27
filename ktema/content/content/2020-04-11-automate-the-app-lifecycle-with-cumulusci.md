@@ -3,6 +3,7 @@ title="Automate the App Lifecycle with CumulusCI"
 [taxonomies]
 categories=["Presentations"]
 [extra]
+venue="Kitchener Salesforce Developers Group"
 youtube_id="Guc8ZX1Dg6A"
 +++
 

@@ -1,0 +1,13 @@
+a.icon {
+	text-decoration: none;
+}
+
+span.metadata {
+	text-transform: uppercase;
+	font-variant: small-caps;
+	font-size: 0.8rem;
+}
+
+article > h1, h2, h3, h4, h5 {
+	margin: 0;
+}

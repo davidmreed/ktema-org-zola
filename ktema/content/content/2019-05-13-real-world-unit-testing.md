@@ -3,6 +3,7 @@ title="Real-World Unit Testing: Get to 100% Coverage, the Right Way"
 [taxonomies]
 categories=["Presentations"]
 [extra]
+venue="Phillyforce '19"
 youtube_id="JkjTDxbYPgY"
 +++
 

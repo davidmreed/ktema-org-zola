@@ -1,14 +1,11 @@
 +++
-title="Talk on Continuous Integration Now on YouTube"
+title="Continuout Integration with Salesforce DX: Practices and Principles for All"
 [taxonomies]
 categories=["Presentations"]
 [extra]
 youtube_id="VLl1uUPF97g"
+venue="Phillyforce '18"
 +++
-
-My presentation from PhillyForce '18, "Continuous Integration with Salesforce DX: Practices and Principles for All", is now [available on YouTube](https://www.youtube.com/watch?v=VLl1uUPF97g).
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VLl1uUPF97g" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
 
 This talk draws on several past articles published here:
 

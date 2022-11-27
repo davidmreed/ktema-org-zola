@@ -7,18 +7,21 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path=" rss.xml", trailing_slash=false)
         }}" />
     <link rel="stylesheet" type="text/css" href="/simple.min.css" />
+    <link rel="stylesheet" type="text/css" href="/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="/theme.css" />
 </head>
 
 <body>
     <header>
         <nav>
             {% set root_section = get_section(path="_index.md") %}
-            {% for each_page in root_section.pages %}
+            <a href="{{ root_section.permalink }}">Home</a>
+	    {% for each_page in root_section.pages %}
             <a href="{{ each_page.path }}">{{ each_page.title }}</a>
             {% endfor %}
             {% set root_content_section = get_section(path="content/_index.md", metadata_only=true) %}
             <a href="{{ root_content_section.permalink }}">{{ root_content_section.title }}</a>
-            <!-- taxonomy pages -->
+	    <!-- taxonomy pages -->
             {% set categories = get_taxonomy(kind="categories") %}
             {% for each_category in categories.items %}
             <a href="{{ each_category.permalink }}">{{ each_category.name }}</a>
@@ -26,6 +29,10 @@
         </nav>
     </header>
     <div>{% block content %} {% endblock %}</div>
+    <footer>
+	    {% block footer %} {% endblock %}
+	    <p>Copyright &copy; 2022 David Reed</p>
+    </footer>
 </body>
 
 </html>
