@@ -51,7 +51,7 @@ Our column entry will end up looking like this:
 
 Then, the result's just what you might think:
 
-![Lightning Data Table]({{ "/public/lightning-datatable-urls/datatable.png" | absolute_url }})
+![Lightning Data Table](datatable.png)
 
 The Case Number column is hyperlinked to open the related Case record.
 

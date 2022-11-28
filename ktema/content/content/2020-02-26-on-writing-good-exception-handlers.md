@@ -101,7 +101,7 @@ In Lightning (Aura) controllers, we'd re-throw an `AuraHandledException` instead
 
 This:
 
-```
+```java
 try {
     // do stuff
 } catch (Exception e) {

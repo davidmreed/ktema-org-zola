@@ -12,7 +12,7 @@ Suppose your organization builds a critical report that many users will need to 
 
 A naive solution would create one subscription to this report, say for Frank Q. Exec, and add all of the users who need to receive it as recipients:
 
-![Lightning Subscription]({{ "/public/schedule-reports-as-user/lightning-subscribe.png" | absolute_url }})
+![Lightning Subscription](lightning-subscribe.png)
 
 But this runs afoul of the principle mentioned above: the report's context user is Frank, and the recipients of the report will see data *as if they were Frank*. From [Salesforce](https://help.salesforce.com/articleView?id=reports_subscribe_lex.htm&type=5):
 
@@ -32,7 +32,7 @@ There are two report subscription functionalities on Salesforce, and they work r
 
 On Classic, one can "Subscribe" to a report, and one can "Schedule Future Runs". The nomenclature here is confusing: a Classic "Subscribe" asks Salesforce to notify us if the report's results meet certain thresholds, but it's *not* for regularly receiving copies of the report. We're not going to look at this feature. "Schedule Future Runs" is equivalent to a report subscription in Lightning and is the feature corresponding to the business problem discussed above.
 
-![Classic Subscription]({{ "/public/schedule-reports-as-user/classic-schedule-future-runs.png" | absolute_url }})
+![Classic Subscription](classic-schedule-future-runs.png)
 
 On Lightning, we simply have an option to Subscribe, as we saw above. There's no Lightning equivalent to the Classic "Subscribe" feature.
 
@@ -176,7 +176,7 @@ python add-subscription.py $REPORTID
 
 where `$REPORTID` is the Salesforce Id of the report you wish to subscribe the user for, and then if we log in as that user in the UI, we'll find a shiny new Lightning report subscription established for them. 
 
-![Lightning Final Subscription]({{ "/public/schedule-reports-as-user/final-lightning-subscription.png" | absolute_url }})
+![Lightning Final Subscription](final-lightning-subscription.png)
 
 Note that it's set for daily at 0300, as specified in the example JSON.
 

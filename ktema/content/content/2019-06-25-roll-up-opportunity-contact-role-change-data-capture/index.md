@@ -44,9 +44,9 @@ We can't roll up Opportunity Contact Roles to the Opportunity, but we easily can
 
 Here's the schema we'll use: a custom object plus a native Rollup Summary Field on Opportunity.
 
-  ![Shadow Object]({{ "/public/cdc-contactroles/shadow-table.png" | absolute_url }})
+  ![Shadow Object](shadow-table.png)
 
-  ![Rollup Field]({{ "/public/cdc-contactroles/rollup.png" | absolute_url }})
+  ![Rollup Field](rollup.png)
 
 Note the External Id field we've created to hold the Id of the corresponding Opportunity Contact Role. That's the linchpin of our synchronization effort, and we'll use it below to build an efficient sync trigger.
 
@@ -54,7 +54,7 @@ Note the External Id field we've created to hold the Id of the corresponding Opp
 
 To synchronize data from `OpportunityContactRole` into our shadow table, we'll use an Async Apex trigger processing the `OpportunityContactRoleChangeEvent` entity. First, we'll select the needed object in Setup under Change Data Capture:
 
-  ![Change Data Capture Setup]({{ "/public/cdc-contactroles/selected-entities.png" | absolute_url }})
+  ![Change Data Capture Setup](selected-entities.png)
 
 Then, we build a trigger. The code is [here](https://github.com/davidmreed/cdc-opportunitycontactrole-rollups/blob/master/force-app/main/default/triggers/OpportunityContactRoleChangeEventTrigger.trigger).
 
@@ -64,12 +64,14 @@ We also store a `Set<Id>` of the Ids of deleted `OpportunityContactRole` records
 
 When we finish iterating through events - remember that this is an *ordered time stream* - these two data structures contain the union of all of the changes we need to apply to our shadow table. At that point, it's two simple DML statements to persist the changes:
 
-    upsert createUpdateMap.values() Opportunity_Contact_Role_Id__c;
-    delete [
-        SELECT Id
-        FROM Shadow_Opportunity_Contact_Role__c
-        WHERE Opportunity_Contact_Role_Id__c IN :deleteIds
-    ];
+```java
+upsert createUpdateMap.values() Opportunity_Contact_Role_Id__c;
+delete [
+    SELECT Id
+    FROM Shadow_Opportunity_Contact_Role__c
+    WHERE Opportunity_Contact_Role_Id__c IN :deleteIds
+];
+```
 
 The index on `Opportunity_Contact_Role_Id__c` should keep these operations performant, and once they complete, the system updates our native Rollup Summary Field on the parent Opportunities.
 
@@ -77,7 +79,9 @@ The index on `Opportunity_Contact_Role_Id__c` should keep these operations perfo
 
 There's just a couple of extra wrinkles to testing Async Apex Triggers. We have a new method in the system `Test` class to enable the Change Data Capture feature, and it overrides system CDC settings to ensure that the code under test executes regardless of org settings:
 
-    Test.enableChangeDataCapture();
+```java
+Test.enableChangeDataCapture();
+```
 
 Then, we require that CDC events are delivered and processed synchronously, using the tried-and-true `Test.startTest()` and `Test.stopTest()` calls, or by calling `Test.getEventBus().deliver()`.
 

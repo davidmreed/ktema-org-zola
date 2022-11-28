@@ -51,7 +51,7 @@ public class ContactHandler {
 
 This code is presented as an off-the-shelf solution to your business problem. What do you think? As an admin or declarative developer, have you spotted the _two catastrophic problems in this code that will break your production org_? (There are quite a few other problems, but these two are catastrophic!)
 
-+++
+---
 
 Here are the catastrophic problems. Fully code-reviewing the other issues with this trigger handler is left as an exercise for the reader.
 
@@ -67,7 +67,7 @@ The code does not actually implement the stated objective. To see how, suppose w
 
 The Account in fact gets updated eleven times (one per Contact returned by that SOQL query). The Phone value from whichever Contact happens to come last in the query result "wins". That's not necessarily the Contact that kicked off the trigger invocation; it might be some Contact last updated five years ago! If this code ends up producing the right result, it does so by accident. The ordering of a SOQL query without an explicit `ORDER BY` clause is [undefined](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_orderby.htm).
 
-+++
+---
 
 This code is egregiously broken. I use it as an example because it's _real_, originating from an actual Salesforce blog. You may have been able to spot at least one of the catastrophic errors above. Perhaps you also spotted less-critical or subtler errors, like the fact that the class queries data it already has and doesn't need, or that it uses a poorly-designed trigger framework. If you're a declarative developer, you probably spotted a better solution using Flow. If you're a business analyst or architect, you probably have a response to redirect the user who wanted this feature to a better solution.
 

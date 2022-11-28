@@ -16,7 +16,7 @@ Under the hood, all Anonymous Apex tools make a Tooling API call to the [run Ano
 
 The API enforces CRUD, FLS, and record-level sharing against the code you're running - it runs in user mode, not the system mode you're used to for triggers and other Apex automation. But further, CRUD and FLS is actually enforced _at compile time_.
 
-If you attempt to Execute Anonmyous code that references a field or object to which you do not have FLS or CRUD, you obtain an error that can be very confusing:
+If you attempt to Execute Anonymous code that references a field or object to which you do not have FLS or CRUD, you obtain an error that can be very confusing:
 
 ```java
 for (Account a: [SELECT Id, Star_Helix_Liaison__c FROM Account]) {
@@ -123,7 +123,7 @@ Using JSON doesn't mean you can log arbitrary amounts of data: the system will s
 
 ## Better Approaches and Conclusions
 
-It's not at all my intention to say "One should never use the Developer Console", or tools like `sfdx force:apex:execute` that run Anonymous Apex". My takeaways, rather, are these:
+It's not at all my intention to say "One should never use the Developer Console", or "...tools like `sfdx force:apex:execute` that run Anonymous Apex". My takeaways, rather, are these:
 
 It's a good idea to be suspicious of the apparent ease and low barrier to entry of the Developer Console and Anonymous Apex tooling. You're still interacting with a complex software system and need to fully understand the context of the actions that you take, which can be highly unintuitive with these specific tools. In particular, if you're an Apex learner or early-career Salesforce developer, these tools may confuse you more than they help you learn. Pathologies that you observe in Anonymous Apex may not occur in real use, and vice versa; code that works fine in production may not even compile in Anonymous Apex!
 

@@ -6,11 +6,11 @@ categories=["Articles"]
 
 The Lightning Experience's record pages come with a very nice Activity timeline and publisher.
 
-![Lightning Activity Timeline]({{ "/public/lightning-activities-view/lightning-activities-view.png" | absolute_url }})
+![Lightning Activity Timeline](lightning-activities-view.png)
 
 One of the features of this timeline is highlighting different types of activities with topical icons, and permitting the user to apply filters on the fly to isolate activities of interest - like just Emails, or just Calls, or all Tasks owned by the user.
 
-![Filters for Activity Timeline]({{ "/public/lightning-activities-view/lightning-activities-filter.png" | absolute_url }})
+![Filters for Activity Timeline](lightning-activities-filter.png)
 
 How, though, does Lightning distinguish between these different activities to populate the various filters? And further, can we control that filtration to place activities we generate under specific filter headings?
 
@@ -36,7 +36,7 @@ Because the `TaskSubtype` field is createable, but not updateable, we cannot mov
 
 The one route we have is to override the category at the time of creation of the `Task`, and there are some unique behaviors to this approach. When inserting records via the publisher, if the `TaskSubtype` is ultimately going to be `'Task'` (i.e., it is not an Email, List Email, or Call), we can, in a `before insert` trigger on `Task`, set the `TaskSubtype` to one of the other three values. A putative Task can be transmogrified into an Email, Call, or List Email:
 
-![Task converted to Call]({{ "/public/lightning-activities-view/task-converted-to-call.png" | absolute_url }})
+![Task converted to Call](task-converted-to-call.png)
 
 However, this does not work in the other direction. Records that are being created from the publisher as Emails, List Emails, or Calls can't have their `TaskSubtype` overridden to `'Task'`, or to any of the other available values. Attempting to do so has no effect on the created `Task`, although it doesn't cause an error. The `TaskSubtype` field is `null` upon publisher creation; it's set behind the scenes at some point between the before and after trigger invocations, but by the time we reach `after insert`, the field's inherent non-updateability takes over.
 
@@ -44,7 +44,7 @@ None of this applies to `Tasks` inserted via Apex. If the publisher isn't the so
 
 There's still one more caveat of applying this technique, though: if the Task-to-be-converted is added via the publisher, Chatter records the original type of the task in its feed:
 
-![Chatter post]({{ "/public/lightning-activities-view/converted-task-record-chatter.png" | absolute_url }})
+![Chatter post](converted-task-record-chatter.png)
 
 This mismatch does not occur when the `Task` is inserted via code, which doesn’t produce a Chatter post and hence preserves the illusion of being (say) a Call the entire time.
 

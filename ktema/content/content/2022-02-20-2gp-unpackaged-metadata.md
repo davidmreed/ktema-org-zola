@@ -71,7 +71,7 @@ The sequence of events is
 
 Because the dependency only comes into play in step (5), `unpackagedMetadata` supports this use case.
 
-+++
+---
 
 If we use the `does-not-work` package, we can demonstrate that the `unpackagedMetadata` feature does _not_ allow us to satisfy a compile-time dependency. Here's the Apex test from that package:
 
@@ -97,7 +97,7 @@ $ sfdx force:package:version:create --package UnpackagedTestDoesNotWork --instal
 
 The unpackaged metadata is deployed too late to satisfy this compile-time dependency.
 
-+++
+---
 
 Packaging certain metadata types often creates references to components that cannot themselves be packaged. Picklist values are a very common source of this challenge: a package might include a Record Type and Business Process on a standard object, where the Business Process includes static references to picklist values added to a Standard Value Set. 
 
