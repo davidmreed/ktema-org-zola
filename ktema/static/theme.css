@@ -8,6 +8,21 @@ span.metadata {
 	font-size: 0.8rem;
 }
 
-article > h1, h2, h3, h4, h5 {
+article>h1,
+h2,
+h3,
+h4,
+h5 {
 	margin: 0;
+}
+
+a[href*="github.com"]:before {
+	content: "\f09b"
+}
+
+a[href$=".pdf"]:after {
+	content: " PDF";
+	text-transform: uppercase;
+	font-variant: small-caps;
+	font-size: 0.8rem;
 }

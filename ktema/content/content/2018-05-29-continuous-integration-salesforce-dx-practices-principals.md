@@ -1,5 +1,5 @@
 +++
-title="Continuout Integration with Salesforce DX: Practices and Principles for All"
+title="Continuous Integration with Salesforce DX: Practices and Principles for All"
 [taxonomies]
 categories=["Presentations"]
 [extra]

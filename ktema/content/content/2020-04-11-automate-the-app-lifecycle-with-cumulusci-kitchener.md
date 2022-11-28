@@ -5,13 +5,12 @@ categories=["Presentations"]
 [extra]
 venue="Kitchener Salesforce Developers Group"
 youtube_id="Guc8ZX1Dg6A"
+event_link="https://www.sudipta-deb.in/2020/04/kitchener-canada-developer-group-event.html"
 +++
 
 Recently, I've been delighted to visit the Salesforce Developer Groups in Denver, Colorado, where I live, and in Kitchener, Ontario, to talk about Salesforce.org's Portable Automation toolchain for continuous integration and automation throughout the application lifecycle.
 
 Thanks to Sudipta Deb, leader of the Kitchener group, I'm able to share video from "Automate the App Lifecycle with CumulusCI" on April 9.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Guc8ZX1Dg6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 I'm so excited about the tools I get to work on, apply to nonprofit solutions, and share with the community. CumulusCI, MetaCI, Metecho, and MetaDeploy can transform the way development teams work on the Salesforce platform, and they're all free and open source software! If your Salesforce community group is interested in learning about practicing continuous integration, application lifecycle management, automated testing, and more using the Portable Automation toolchain, please get in touch with me.
 
