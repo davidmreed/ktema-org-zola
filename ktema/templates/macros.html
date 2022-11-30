@@ -1,24 +1,33 @@
 {% macro youtube(id, autoplay=false) %}
 <div>
-    <iframe src="https://www.youtube-nocookie.com/embed/{{id}}{% if playlist %}?list={{playlist}}{% endif %}{% if autoplay %}?autoplay=1{% endif %}" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe width="560" height="315"
+        src="https://www.youtube-nocookie.com/embed/{{id}}{% if playlist %}?list={{playlist}}{% endif %}{% if autoplay %}?autoplay=1{% endif %}"
+        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </div>
 {% endmacro youtube %}
 
 {% macro article(item, show_category) %}
 <article>
     <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
-    <span class="metadata">{% if show_category %}Article |{% endif %} {{ item.word_count }} words | {{ item.date }}</span>
+    <span class="metadata">{% if show_category %}Article |{% endif %} {{ item.word_count }} words | {{ item.date
+        }}</span>
 </article>
 {% endmacro article %}
 
 {% macro presentation(item, show_category) %}
 <article>
     <span style="float: right;">
-    {% if item.extra.video_link %}<a href="{{ item.extra.video_link }}">Video</a> {% endif %}
-    {% if item.extra.slides_filename %}<a href="{{ item.permalink}}{{ item.extra.slides_filename }}">Slides</a>{% endif %}
+        {% if item.extra.video_link %}
+        <a href="{{ item.extra.video_link }}">Video</a>
+        {% elif item.extra.youtube_id %}
+        <a href="https://www.youtube.com/watch?v={{ item.extra.youtube_id }}">Video</a>
+        {% endif %}
+        {% if item.extra.slides_filename %}<a href="{{ item.permalink}}{{ item.extra.slides_filename }}">Slides</a>{%
+        endif %}
     </span>
     <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
-    <span class="metadata">{% if show_category %}Presentation |{% endif %} {{ item.extra.venue }} | {{ item.date }}</span>
+    <span class="metadata">{% if show_category %}Presentation |{% endif %} {{ item.extra.venue }} | {{ item.date
+        }}</span>
 </article>
 {% endmacro presentation %}
 

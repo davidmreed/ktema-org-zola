@@ -4,7 +4,7 @@ title="Salesforce Lifecycle and Tooling: Testing on Multiple Org Types with Sale
 categories=["Articles"]
 +++
 
-Let's suppose you're running a successful continuous integration program, using [Salesforce DX and CircleCI]({{ site.baseurl }}{% post_url 2018-02-02-salesforce-dx-circleci %}) or another continuous integration provider. Your automated testing is in place, and working well. But the code you're building has to work in a number of different environments. You might be an ISV, an open-source project, or an organization with multiple Salesforce instances and a shared codebase, and you need to make sure your tests pass in both a standard Enterprise edition and a Person Accounts instance, or in Multi-Currency, or a Professional edition, or any number of other combinations of Salesforce editions and features.
+Let's suppose you're running a successful continuous integration program, using [Salesforce DX and CircleCI](@/content/2018-02-02-salesforce-dx-circleci.md) or another continuous integration provider. Your automated testing is in place, and working well. But the code you're building has to work in a number of different environments. You might be an ISV, an open-source project, or an organization with multiple Salesforce instances and a shared codebase, and you need to make sure your tests pass in both a standard Enterprise edition and a Person Accounts instance, or in Multi-Currency, or a Professional edition, or any number of other combinations of Salesforce editions and features.
 
 Salesforce DX and CircleCI make it very easy to automate running tests against these different Salesforce environments, and to do so in efficient, parallel, isolated testing streams. The process is built in three steps:
 
@@ -13,7 +13,7 @@ Salesforce DX and CircleCI make it very easy to automate running tests against t
  1. Define jobs in CircleCI configuration file, either by scripting each environment's unique setup individually or by referencing a common build sequence in the context of each org type.
  1. Define a workflow in CircleCI configuration file that runs these jobs in parallel.
  
-This article assumes that you've followed [Salesforce Lifecycle and Tooling: CircleCI and Salesforce DX]({{ site.baseurl }}{% post_url 2018-02-02-salesforce-dx-circleci %}) and are using a fairly similar `config.yml`. However, the principles are transferable to other continuous integration environments and build sequences.
+This article assumes that you've followed [Salesforce Lifecycle and Tooling: CircleCI and Salesforce DX](@/content/2018-02-02-salesforce-dx-circleci.md) and are using a fairly similar `config.yml`. However, the principles are transferable to other continuous integration environments and build sequences.
  
 ## Defining Organization Types and Features
  
@@ -50,7 +50,7 @@ jobs:
 
 We can define an arbitrary number of these jobs. 
 
-If we define jobs by copying and pasting the [core SFDX build job]({{ site.baseurl }}{% post_url 2018-02-02-salesforce-dx-circleci %}), our `config.yml` can become unwieldy and difficult to maintain. If there's a lot of setup work that significantly differs between the org definitions, it might be necessary nonetheless. 
+If we define jobs by copying and pasting the [core SFDX build job](@/content/2018-02-02-salesforce-dx-circleci.md), our `config.yml` can become unwieldy and difficult to maintain. If there's a lot of setup work that significantly differs between the org definitions, it might be necessary nonetheless. 
 
 However, if the job definitions vary by little more than the name of the scratch org definition file, we can take advantage of YAML's aliasing feature to template our core build instructions into each job, while using environment variables to define the differences between them.
 
@@ -114,7 +114,7 @@ workflows:
         - static-analysis
 ```
    
-Here, we define a three-job workflow - one each for the two org definitions against which we want to test, and a third job for our PMD static analysis (see [Integrating Static Analysis with PMD in the Salesforce Development Lifecycle]({{ site.baseurl }}{% post_url 2018-02-08-static-analysis-pmd-salesforce %})). When we push to Git, CircleCI will initiate these three jobs in parallel. Each will succeed or fail individually, and you'll get status indicators in GitHub for each job.
+Here, we define a three-job workflow - one each for the two org definitions against which we want to test, and a third job for our PMD static analysis (see [Integrating Static Analysis with PMD in the Salesforce Development Lifecycle](@/content/2018-02-08-static-analysis-pmd-salesforce.md)). When we push to Git, CircleCI will initiate these three jobs in parallel. Each will succeed or fail individually, and you'll get status indicators in GitHub for each job.
 
 ![GitHub Results]({{ "/public/multi-org-shape/github-results.png" | absolute_url }})
 

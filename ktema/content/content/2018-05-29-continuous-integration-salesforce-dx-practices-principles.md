@@ -9,10 +9,10 @@ venue="Phillyforce '18"
 
 This talk draws on several past articles published here:
 
- - [Salesforce Lifecycle and Tooling: CircleCI and SFDX]({{ site.baseurl }}{% post_url 2018-02-02-salesforce-dx-circleci %})
- - [Integrating Static Analysis with PMD in the Salesforce Development Lifecycle]({{ site.baseurl }}{% post_url 2018-02-08-static-analysis-pmd-salesforce %})
- - [Salesforce Lifecycle and Tooling: Testing on Multiple Org Types with Salesforce DX and CircleCI Workflows]({{ site.baseurl }}{% post_url 2018-03-17-circleci-sfdx-multiple-org-shapes %})
- - [Integration Testing Off-Platform Code with Salesforce DX and `simple_salesforce`]({{ site.baseurl }}{% post_url 2018-03-27-integration-testing-salesforce-dx-simple-salesforce %})
+ - [Salesforce Lifecycle and Tooling: CircleCI and SFDX](@/content/2018-02-02-salesforce-dx-circleci.md)
+ - [Integrating Static Analysis with PMD in the Salesforce Development Lifecycle](@/content/2018-02-08-static-analysis-pmd-salesforce.md)
+ - [Salesforce Lifecycle and Tooling: Testing on Multiple Org Types with Salesforce DX and CircleCI Workflows](@/content/2018-03-17-circleci-sfdx-multiple-org-shapes.md)
+ - [Integration Testing Off-Platform Code with Salesforce DX and `simple_salesforce`](@/content/2018-03-27-integration-testing-salesforce-dx-simple-salesforce.md)
 
 Some additional resources and examples are available on my GitHub:
 

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 {% block title %}{{ page.title }}{% endblock %}
 {% block content %}
 <h1>
@@ -12,14 +13,14 @@
 {% endif %}
 {% if page.taxonomies.categories[0] == 'Presentations' %}
 <section>
-	<p>Presented <time datetime="{{ page.date }}">{{ page.date }}</time> at {{ page.extra.venue }}.</p>
+    <p>Presented <time datetime="{{ page.date }}">{{ page.date }}</time> at {{ page.extra.venue }}.</p>
     <address><a href="mailto:david@ktema.org">David Reed</a></address>
-{% if page.extra.video_link %}
-<a href="{{ page.extra.video_link }}">Watch the video</a>
-{% endif %}
-{% if page.extra.slides_filename %} 
-<a href="{{ page.permalink }}{{ page.extra.slides_filename }}">View slides</a>
-{% endif %}
+    {% if page.extra.video_link %}
+    <a href="{{ page.extra.video_link }}">Watch the video</a>
+    {% endif %}
+    {% if page.extra.slides_filename %}
+    <a href="{{ page.permalink }}{{ page.extra.slides_filename }}">View slides</a>
+    {% endif %}
 </section>
 {% endif %}
 {% if page.toc %}
@@ -44,9 +45,13 @@
     </p>
 </section>
 {% endif %}
+{% if page.extra.youtube_id %}
+{{ macros::youtube(id=page.extra.youtube_id )}}
+{% endif %}
 {{ page.content | safe }}
 {% endblock content %}
 
 {% block footer %}
-This site does not offer commenting. If you have a question or would like to start a conversation, please share on your social or discussion platform of choice.
+This site does not offer commenting. If you have a question or would like to start a conversation, please share on your
+social or discussion platform of choice.
 {% endblock %}

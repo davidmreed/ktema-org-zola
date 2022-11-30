@@ -6,7 +6,7 @@ categories=["Articles"]
 
 > This post is adapted from an [answer](https://salesforce.stackexchange.com/a/295713/46017) I wrote on [Salesforce Stack Exchange](https://salesforce.stackexchange.com/).
 
-This post follows a previous [discussion](https://www.ktema.org/2020/01/05/on-not-writing-bad-exception-handlers/) about what makes a *bad* exception handler. I'd like to talk a little bit about what good exception handling patterns look like and where in an application one ought to use them.
+This post follows a previous [discussion](@/content/2020-01-05-on-not-writing-bad-exception-handlers.md) about what makes a *bad* exception handler. I'd like to talk a little bit about what good exception handling patterns look like and where in an application one ought to use them.
 
 What it means to handle an exception is to take an *exception*al situation - something bad and out of the ordinary happened - and allow the application to safely move back into an anticipated pathway of operation, preserving
 
@@ -109,7 +109,7 @@ try {
 }
 ```
 
-I've written [previously](https://www.ktema.org/2020/01/05/on-not-writing-bad-exception-handlers/) about what a dangerous and bad practice this is. To put it in the context of this discussion, let's consider how we'd have to answer the questions above to make this pattern a good response. 
+I've written [previously](@/content/2020-01-05-on-not-writing-bad-exception-handlers.md) about what a dangerous and bad practice this is. To put it in the context of this discussion, let's consider how we'd have to answer the questions above to make this pattern a good response. 
 
 You'd want to swallow an exception like this when:
 

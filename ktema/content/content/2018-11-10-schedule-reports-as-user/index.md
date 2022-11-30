@@ -91,7 +91,7 @@ While an admin can Login As a user to create a one-off subscription, we're more 
 
 Setting up the JWT flow involves building a Connected App in Salesforce, under which our scripts will authenticate. JWT is secured using a certificate and associated public key/private key pair - Salesforce holds the public key, our script holds the private key. 
 
-This is the same mechanism used for authentication in many Continuous Integration solutions. I'm not going to rehash all of the details here, because they're well-covered elsewhere. You can follow Salesforce's steps in [using SFDX for continuous integration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_jwt_flow.htm#!), or read through my own article about [setting up CircleCI with Salesforce DX](https://www.ktema.org/2018/02/02/salesforce-dx-circleci/). 
+This is the same mechanism used for authentication in many Continuous Integration solutions. I'm not going to rehash all of the details here, because they're well-covered elsewhere. You can follow Salesforce's steps in [using SFDX for continuous integration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_auth_jwt_flow.htm#!), or read through my own article about [setting up CircleCI with Salesforce DX](@/content/2018-02-02-salesforce-dx-circleci.md). 
 
 When you're finished building the Connected App, add the Profiles of each of the users who are to be subscribed to reports to the Connected App as a pre-approved Profile, or assign all of those users a Permission Set and assign that Permission Set as pre-approved on the Connected App. This ensures that we can authenticate to the API as those users without any intervention.
 
