@@ -1,0 +1,12 @@
+{% import "macros.html" as macros %}
+
+{% set_global content_items = [] %}
+{% set root_section = get_section(path="_index.md") %}
+{% for each_section in root_section.subsections %}
+{% set subsection = get_section(path=each_section) %}
+{% set_global content_items = content_items | concat(with=subsection.pages) %}
+{% endfor %}
+
+{% for page in content_items | sort(attribute="date") | reverse | slice(end=5) %}
+{{ macros::content_item(item=page, show_category=true) }}
+{% endfor %}

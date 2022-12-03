@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 {% import "macros.html" as macros %}
-{% block title %} {{ section.title }} {% endblock %}
+
+{% block title %}
+{{ section.title }}
+{% endblock %}
+
 {% block content %}
 
 <h1 class="title">
   {{ section.title }}
 </h1>
-{% for page in section.pages %}
-{{ macros::content_item(item=page) }}
+
+{{ section.content | safe }}
+
+{% for each_page in section.pages %}
+{{ macros::content_item(item=each_page) }}
 {% endfor %}
 
 {% endblock %}

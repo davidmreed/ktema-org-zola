@@ -14,24 +14,22 @@
 <body>
     <header>
         <nav>
+
             {% set root_section = get_section(path="_index.md") %}
-            <a href="{{ root_section.permalink }}">Home</a>
-	    {% for each_page in root_section.pages %}
-            <a href="{{ each_page.path }}">{{ each_page.title }}</a>
-            {% endfor %}
-            {% set root_content_section = get_section(path="content/_index.md", metadata_only=true) %}
-            <a href="{{ root_content_section.permalink }}">{{ root_content_section.title }}</a>
-	    <!-- taxonomy pages -->
-            {% set categories = get_taxonomy(kind="categories") %}
-            {% for each_category in categories.items %}
-            <a href="{{ each_category.permalink }}">{{ each_category.name }}</a>
+            <a href="{{ root_section.permalink }}">{{root_section.title}}</a>
+            <span style="padding-left: 1rem; padding-right: 2rem; border-left:1px solid white"></span>
+            {% for each_section in root_section.subsections %}
+            {% set subsection = get_section(path=each_section) %}
+            <a href="{{ subsection.path }}">{{ subsection.title }}</a>
             {% endfor %}
         </nav>
     </header>
-    <div>{% block content %} {% endblock %}</div>
+    <main>
+        <div>{% block content %} {% endblock %}</div>
+    </main>
     <footer>
-	    {% block footer %} {% endblock %}
-	    <p>Copyright &copy; 2022 David Reed</p>
+        {% block footer %} {% endblock %}
+        <p>Copyright &copy; 2022 David Reed</p>
     </footer>
 </body>
 

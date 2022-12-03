@@ -1,22 +1,61 @@
 # The URL the site will be built for
 base_url = "https://ktema.org"
-
-# Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
-
-# Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
-
 generate_feed = true
 
 taxonomies = [
-    { name = "categories", feed = true }
+    { name = "categories", feed = true },
+    { name = "tags", feed = false }
 ]
 
 [markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
+highlight_theme = "css"
+highlight_themes_css = [
+  { theme = "OneHalfDark", filename = "syntax-theme-dark.css" },
+  { theme = "OneHalfLight", filename = "syntax-theme-light.css" },
+]
 
 [extra]
-# Put all your custom variables here
+
+use_icons = true
+use_tocs = true
+
+[extra.contact]
+order = ["email", "github", "mastodon", "twitter", "linkedin", "sfse", "tbc"]
+
+[extra.contact.email]
+link = "mailto:david@ktema.org"
+name = "Email"
+icon = "solid/envelope"
+
+[extra.contact.github]
+link = "https://github.com/davidmreed"
+name = "GitHub"
+icon = "brands/github"
+
+[extra.contact.twitter]
+link = "https://twitter.com/aoristdual"
+name = "Twitter"
+icon = "brands/twitter"
+
+[extra.contact.linkedin]
+link = "https://www.linkedin.com/in/davidreed-salesforce/"
+name = "LinkedIn"
+icon = "brands/linkedin"
+
+[extra.contact.tbc]
+link = "https://trailblazer.me/id/davidmreed"
+name = "Trailblazer Community"
+icon = "brands/salesforce"
+
+[extra.contact.sfse]
+link = "https://salesforce.stackexchange.com/users/46017/david-reed"
+name = "Salesforce Stack Exchange"
+icon = "brands/stack-exchange"
+
+[extra.contact.mastodon]
+link = "https://fosstodon.org/web/@aoristdual"
+name = "Mastodon"
+icon = "brands/mastodon"

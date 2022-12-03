@@ -1,3 +1,8 @@
+/* Syntax highlighting */
+
+@import url("syntax-theme-dark.css") (prefers-color-scheme: dark);
+@import url("syntax-theme-light.css") (prefers-color-scheme: light);
+
 a.icon {
 	text-decoration: none;
 }
@@ -5,7 +10,7 @@ a.icon {
 span.metadata {
 	text-transform: uppercase;
 	font-variant: small-caps;
-	font-size: 0.8rem;
+	font-size: 75%;
 }
 
 article>h1,
@@ -16,13 +21,71 @@ h5 {
 	margin: 0;
 }
 
-a[href*="github.com"]:before {
-	content: "\f09b"
+a {
+	font-weight: bold;
 }
 
-a[href$=".pdf"]:after {
-	content: " PDF";
-	text-transform: uppercase;
-	font-variant: small-caps;
-	font-size: 0.8rem;
+
+/* Colors:
+
+  --bg: #fff;
+  --accent-bg: #f5f7ff;
+  --text: #212121;
+  --text-light: #585858;
+  --border: #898EA4;
+  --accent: #0d47a1;
+  --code: #d81b60;
+  --preformatted: #444;
+  --marked: #ffdd33;
+  --disabled: #efefef;
+*/
+
+img.icon {
+	height: 1.5rem;
+	vertical-align: text-top;
+}
+
+/* SVG filters generated via https://codepen.io/sosuke/pen/Pjoqqp to match accent color */
+
+@media(prefers-color-scheme: light) {
+	:root {
+		--accent-bg: #ac4142;
+		--accent: #ac4142;
+		--bg: #eee;
+	}
+
+	img.icon {
+		/* This is #990000 */
+		filter: invert(10%) sepia(97%) saturate(4841%) hue-rotate(0deg) brightness(76%) contrast(113%);
+	}
+
+	nav {
+		color: #585858;
+	}
+}
+
+@media(prefers-color-scheme: dark) {
+	:root {
+		--accent: #C69749;
+		--accent-bg: #282A3A;
+	}
+
+	img.icon {
+		filter: invert(62%) sepia(25%) saturate(869%) hue-rotate(359deg) brightness(95%) contrast(91%);
+	}
+}
+
+.tags {
+	margin-left: 1.5rem;
+}
+
+.tag:before {
+	content: '#';
+}
+
+.tag {
+	padding: 0 .5rem 0rem .5rem;
+	border: 1px solid var(--border);
+	border-radius: 5px;
+	font-size: .8rem;
 }

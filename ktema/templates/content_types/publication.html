@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}
+{{ page.title }}
+{% endblock %}
+
+{% block content %}
+<h1>
+    {{ page.title }}
+</h1>
+<section>
+    <p>Published <time datetime="{{ page.date }}">{{ page.date }}</time> at {{ page.extra.venue }}.</p>
+    <address><a href="mailto:david@ktema.org">David Reed</a></address>
+</section>
+
+{{ page.content | safe }}
+
+{% endblock content %}
+
+{% block footer %}
+This site does not offer commenting. If you have a question or would like to start a conversation, please share on your
+social or discussion platform of choice.
+{% endblock %}

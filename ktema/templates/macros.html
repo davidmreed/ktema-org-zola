@@ -2,48 +2,81 @@
 <div>
     <iframe width="560" height="315"
         src="https://www.youtube-nocookie.com/embed/{{id}}{% if playlist %}?list={{playlist}}{% endif %}{% if autoplay %}?autoplay=1{% endif %}"
-        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
 </div>
 {% endmacro youtube %}
 
 {% macro article(item, show_category) %}
-<article>
-    <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
-    <span class="metadata">{% if show_category %}Article |{% endif %} {{ item.word_count }} words | {{ item.date
-        }}</span>
-</article>
+<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<span class="metadata">
+    {% if show_category %}Article |{% endif %} {{ item.word_count }} words | {{ item.date }}
+</span>
 {% endmacro article %}
 
+{% macro publication(item, show_category) %}
+<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<span class="metadata">
+    {% if show_category %}Publication |{% endif %} {{ item.date }}</span>
+{% endmacro publication %}
+
 {% macro presentation(item, show_category) %}
-<article>
-    <span style="float: right;">
-        {% if item.extra.video_link %}
-        <a href="{{ item.extra.video_link }}">Video</a>
-        {% elif item.extra.youtube_id %}
-        <a href="https://www.youtube.com/watch?v={{ item.extra.youtube_id }}">Video</a>
-        {% endif %}
-        {% if item.extra.slides_filename %}<a href="{{ item.permalink}}{{ item.extra.slides_filename }}">Slides</a>{%
-        endif %}
-    </span>
-    <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
-    <span class="metadata">{% if show_category %}Presentation |{% endif %} {{ item.extra.venue }} | {{ item.date
-        }}</span>
-</article>
+<span style="float: right;">
+    {% if item.extra.video_link %}
+    <a href="{{ item.extra.video_link }}">Video</a>
+    {% elif item.extra.youtube_id %}
+    <a href="https://www.youtube.com/watch?v={{ item.extra.youtube_id }}">
+        {{ self::svg(item="brands/youtube", alt="YouTube Logo") }} Video</a>
+    {% endif %}
+    {% if item.extra.slides_filename %}
+    <a href="{{ item.permalink}}{{ item.extra.slides_filename }}">Slides</a>
+    {% endif %}
+</span>
+<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<span class="metadata">
+    {% if show_category %}Presentation |{% endif %} {{ item.extra.venue }} | {{ item.date}}
+</span>
 {% endmacro presentation %}
 
 {% macro project(item, show_category) %}
-<article>
-    <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
-    <span class="metadata">{% if show_category %} Project |{% endif %} Launched {{ item.date }}</span>
-</article>
+<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<span class="metadata">{% if show_category %} Project |{% endif %} Launched {{ item.date }}</span>
 {% endmacro project %}
 
-{% macro content_item(item, show_category=true) %}
-{% if item.taxonomies.categories[0] == 'Articles' %}
-{{ self::article(item=item, show_category=show_category) }}
-{% elif item.taxonomies.categories[0] == 'Presentations' %}
-{{ self::presentation(item=item, show_category=show_category) }}
-{% elif item.taxonomies.categories[0] == 'Projects' %}
-{{ self::project(item=item, show_category=show_category) }}
-{% endif %}
+{% macro content_item(item, show_category=false) %}
+<article>
+    {% set item_section_name = item.ancestors | last %}
+    {% set item_section = get_section(path=item_section_name) %}
+    {% if item_section.title == 'Articles' %}
+    {{ self::article(item=item, show_category=show_category) }}
+    {% elif item_section.title == 'Presentations' %}
+    {{ self::presentation(item=item, show_category=show_category) }}
+    {% elif item_section.title == 'Projects' %}
+    {{ self::project(item=item, show_category=show_category) }}
+    {% elif item_section.title == 'Talks' %}
+    {{ self::publication(item=item, show_category=show_category) }}
+    {% endif %}
+    {% if item.taxonomies.tags %}
+    <span class="tags">
+        {% for each_tag in item.taxonomies.tags %}
+        <span class="tag">{{ each_tag }}</span>
+        {% endfor %}
+    </span>
+    {% endif %}
+</article>
 {% endmacro content_item %}
+
+{% macro svg(item, alt) %}
+<img class="icon" src="/svgs/{{item}}.svg" alt="{{alt}}" />
+{% endmacro svg %}
+
+{% macro contact(type) %}
+<a class="icon" title="{{ type }}" aria-label="{{ config.extra.contact[type].name }}"
+    href="{{ config.extra.contact[type].link }}">
+    {% if config.extra.use_icons %}
+    {{ self::svg(item=config.extra.contact[type].icon, alt=config.extra.contact[type].name) }}
+    {% else %}
+    {{ config.extra.contact[type].name }}
+    {% endif %}
+</a>
+{% endmacro contact %}

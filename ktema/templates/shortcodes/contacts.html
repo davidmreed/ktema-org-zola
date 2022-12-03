@@ -1,0 +1,5 @@
+{% import "macros.html" as macros %}
+
+{% for contact_type in config.extra.contact.order %}
+{{ macros::contact(type=contact_type) }}
+{% endfor %}
