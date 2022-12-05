@@ -16,6 +16,7 @@
         <nav>
             {% set root_section = get_section(path="_index.md") %}
             <a href="{{ root_section.path }}">{{ config.extra.site_owner_name }}</a>
+            <span class="wrapper"></span>
             {% for each_page in root_section.pages %}
             <a href="{{ each_page.path }}">{{ each_page.title }}</a>
             {% endfor %}

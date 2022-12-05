@@ -69,8 +69,12 @@ header>nav a:visited {
 	header>nav a {
 		text-decoration: none;
 	}
-}
 
+	header>nav span.wrapper {
+		display: block;
+	}
+
+}
 
 header>nav a:hover {
 	border-bottom: 2px solid var(--text);
