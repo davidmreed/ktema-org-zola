@@ -1,5 +1,6 @@
 +++
 title="Private Email Lists using MailChimp and Salesforce"
+aliases=["2016/08/15/private-email-lists-using-mailchimp-and-salesforce.html"]
 +++
 
 One of the biggest challenges I've encountered in working with MailChimp and its MailChimp for Salesforce application is 'private email lists'. I mean by this email lists that are designed for communication with, for example, major donors, board members, or other small groups of contacts that are defined by established relationships and specific CRM criteria. These groups may change composition regularly as new members are added or as old members drop out of the matching criteria, and no public user interface is required other than the standard opt-out.

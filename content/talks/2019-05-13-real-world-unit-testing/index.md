@@ -1,5 +1,6 @@
 +++
 title="Real-World Unit Testing: Get to 100% Coverage, the Right Way"
+aliases=["2019/05/13/real-world-unit-testing.html"]
 [extra]
 venue="Phillyforce '19"
 [extra.resources.video]

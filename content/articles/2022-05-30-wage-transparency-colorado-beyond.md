@@ -1,5 +1,6 @@
 +++
 title="Wage Transparency in Colorado and Beyond"
+aliases=["2022/05/30/wage-transparency-colorado-beyond.html"]
 +++
 
 > **Important disclaimer**: I am not an attorney. This is not legal advice.

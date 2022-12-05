@@ -1,5 +1,6 @@
 +++
 title="Filtering in Lightning's Activity Timeline"
+aliases=["2018/07/11/lightning-activities-view.html"]
 +++
 
 The Lightning Experience's record pages come with a very nice Activity timeline and publisher.

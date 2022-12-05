@@ -1,5 +1,6 @@
 +++
 title="The Bridge Package Pattern"
+aliases=["2022/02/11/bridge-package-pattern.html"]
 +++
 
 

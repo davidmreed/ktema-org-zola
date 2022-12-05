@@ -1,5 +1,6 @@
 +++
 title="Handling URLs in Lightning Data Tables"
+aliases=["2018/10/22/lightning-data-table-record-link.html"]
 +++
 
 The [`<lightning:dataTable>`](https://developer.salesforce.com/docs/component-library/bundle/lightning:datatable) component has built-in support for displaying links in table columns. The syntax looks something like this:

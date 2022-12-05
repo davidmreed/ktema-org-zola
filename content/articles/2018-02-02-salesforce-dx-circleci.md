@@ -1,5 +1,6 @@
 +++
 title="Salesforce Lifecycle and Tooling: CircleCI and Salesforce DX"
+aliases=["2018/02/02/salesforce-dx-circleci.html"]
 +++
 
 This is the first in a series looking at setting up a Salesforce project with a full suite of modern software engineering tools and services.

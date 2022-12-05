@@ -1,5 +1,6 @@
 +++
 title="Integration Testing Off-Platform Code with Salesforce DX and `simple_salesforce`"
+aliases=["2018/03/27/integration-testing-salesforce-dx-simple-salesforce.html"]
 +++
 
 I am a huge fan of the lightweight, easy-to-use [`simple_salesforce`](https://github.com/simple-salesforce/simple-salesforce) module for Python. I use `simple_salesforce` constantly, for everything from one-off data analysis scripts to sandbox setup automation to full-scale ETL solutions. As some of those solutions grow more complex or durable, I start to feel the need to built serious tests for them.

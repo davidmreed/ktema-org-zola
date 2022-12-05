@@ -1,5 +1,6 @@
 +++
 title="Visualforce Traps for Experienced Programmers"
+aliases=["2017/06/17/visualforce-traps.html"]
 +++
 
 Visualforce has a way of punishing those who make assumptions about its behavior based on other development environments (including Apex and even HTML). I've been accumulating a list of Visualforce behaviors and features that seem inexplicable to me at first blush, or that I've tripped up on multiple times. Whenever I'm debugging, I check this list of mistakes first. Suggested additions are welcome!

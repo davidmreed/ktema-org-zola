@@ -1,5 +1,6 @@
 +++
 title="Locating Salesforce Compound and Component Fields in Apex and Python"
+aliases=["2019/01/01/locating-compound-component-fields-apex-python.html"]
 +++
 
 One of the odder corners of the Salesforce data model is the compound fields. Coming in three main varieties (Name fields, Address fields, and Geolocation fields), these fields are accessible *both* under their own API names and in the forms of their component fields, which have their own API names. The compound field itself is always read-only, but the components may be writeable.

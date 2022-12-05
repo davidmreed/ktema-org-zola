@@ -1,5 +1,6 @@
 +++
 title="Free Events in Click & Pledge"
+aliases=["2017/01/09/free-events-click-and-pledge.html"]
 +++
 
 Click & Pledge nicely supports online registration for both free and paid/ticketed events. However, one point of confusion for

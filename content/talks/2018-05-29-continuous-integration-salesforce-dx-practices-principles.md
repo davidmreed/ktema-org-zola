@@ -1,9 +1,12 @@
 +++
 title="Continuous Integration with Salesforce DX: Practices and Principles for All"
+aliases=["2018/05/29/phillyforce-continuous-integration-talk.html", "2018/05/06/phillyforce-talk.html", "2018/03/07/phillyforce-ci-talk.html"]
 [extra]
 venue="Phillyforce '18"
 [extra.resources.video]
 youtube_id="VLl1uUPF97g"
+[extra.resources.repo]
+link="https://github.com/davidmreed/circleci-sfdx-examples"
 +++
 
 This talk draws on several past articles published here:

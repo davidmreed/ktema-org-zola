@@ -1,5 +1,6 @@
 +++
 title="On Writing Good Exception Handlers"
+aliases=["2020/02/26/on-writing-good-exception-handlers.html"]
 +++
 
 > This post is adapted from an [answer](https://salesforce.stackexchange.com/a/295713/46017) I wrote on [Salesforce Stack Exchange](https://salesforce.stackexchange.com/).

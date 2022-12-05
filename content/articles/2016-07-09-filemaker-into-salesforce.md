@@ -1,5 +1,6 @@
-+++
+ +++
 title="FileMaker into Salesforce"
+aliases=["2016/07/09/filemaker-into-salesforce.html"]
 +++
 
 I've been working on a project to integrate a very important legacy database built in FileMaker ('AM') into Salesforce. 

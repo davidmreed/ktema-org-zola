@@ -1,5 +1,6 @@
 +++
 title="Automate the App Lifecycle with CumulusCI"
+aliases=["2020/04/11/automate-the-app-lifecycle-with-cumulusci.html"]
 [extra]
 venue="Kitchener Salesforce Developers Group"
 [extra.resources.video]

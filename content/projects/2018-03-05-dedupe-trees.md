@@ -1,5 +1,6 @@
 +++
 title="Deduplicating File Trees with Python"
+aliases=["2018/03/05/dedupe-trees.html"]
 [extra]
 project_type="CLI Tool"
 [extra.resources.repo]

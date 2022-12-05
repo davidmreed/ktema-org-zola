@@ -1,5 +1,6 @@
 +++
 title="DML-ish Operations in the Visualforce Controller Constructor"
+aliases=["2018/05/17/visualforce-constructor-dml-ish.html"]
 +++
 
 DML is not allowed in a Visualforce page controller's constructor. This isn't news.

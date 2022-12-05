@@ -1,5 +1,6 @@
 +++
 title="Bibliothekai: \"What's the best translation of...?\""
+aliases=["2021/06/13/bibliothekai.html"]
 [extra]
 project_type="Website"
 [extra.resources.home]

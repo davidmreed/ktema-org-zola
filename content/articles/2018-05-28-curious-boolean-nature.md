@@ -1,5 +1,6 @@
 +++
 title="The Curious Nature of the Salesforce Boolean"
+aliases=["2018/05/28/curious-boolean-nature.html"]
 +++
 
 The Boolean can be among the simplest data types: it is either true or false, full stop, no complications.

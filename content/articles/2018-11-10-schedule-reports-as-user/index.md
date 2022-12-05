@@ -1,5 +1,6 @@
 +++
 title="Running Reports as Selected Users with JWT OAuth and the Reports and Dashboards API"
+aliases=["2018/11/10/schedule-reports-as-user.html"]
 +++
 
 Salesforce reporting introduces some fascinating complexities to data visibility and exposure, particularly for organizations using Private Organization-Wide Defaults. 

@@ -1,5 +1,6 @@
 +++
 title="The Magic of APIs for Admins"
+aliases=["2022/07/23/magic-of-apis-for-admins.html"]
 [extra]
 venue="Charlotte, NC Nonprofit Users Group"
 [extra.resources.video]

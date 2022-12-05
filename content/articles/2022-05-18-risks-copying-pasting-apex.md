@@ -1,5 +1,6 @@
 +++
 title="The Risks of Copying and Pasting Apex"
+aliases=["2022/05/18/risks-copying-pasting-apex.html"]
 +++
 
 It's a tricky position to be placed in: you're an admin, a declarative developer, or a junior developer, and your leadership comes to you with an ask that you know requires Apex that you haven't been trained to write.

@@ -1,5 +1,6 @@
 +++
 title="Everyday Salesforce Patterns: Child-Parent SOQL on Task and Event"
+aliases=["2018/03/13/parent-child-soql-task-event.html"]
 +++
 
 Performing child-parent SOQL is more complex than usual when the `Task` and `Event` objects are involved. That's because these objects include *polymorphic lookup fields*, `WhoId` and `WhatId`, which can point to any one of a number of different objects.

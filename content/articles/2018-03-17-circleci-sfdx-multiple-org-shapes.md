@@ -1,5 +1,6 @@
 +++
 title="Salesforce Lifecycle and Tooling: Testing on Multiple Org Types with Salesforce DX and CircleCI Workflows"
+aliases=["2018/03/17/circleci-sfdx-multiple-org-shapes.html"]
 +++
 
 Let's suppose you're running a successful continuous integration program, using [Salesforce DX and CircleCI](@/articles/2018-02-02-salesforce-dx-circleci.md) or another continuous integration provider. Your automated testing is in place, and working well. But the code you're building has to work in a number of different environments. You might be an ISV, an open-source project, or an organization with multiple Salesforce instances and a shared codebase, and you need to make sure your tests pass in both a standard Enterprise edition and a Person Accounts instance, or in Multi-Currency, or a Professional edition, or any number of other combinations of Salesforce editions and features.

@@ -1,5 +1,6 @@
 +++
 title="On Not Writing Bad Exception Handlers"
+aliases=["2020/01/05/on-not-writing-bad-exception-handlers.html"]
 +++
 
 Unlike some languages (such as Python) where exceptions have a greater role in flow control, in Apex, exceptions generally are *exceptional*: they connote some relatively uncommon bad state in the application that prevents the normal path of execution from continuing without some special handling. An exception is a message from the application to you, and one that you ignore at your, and your users', peril! 

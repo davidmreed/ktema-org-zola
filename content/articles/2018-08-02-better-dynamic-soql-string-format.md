@@ -1,5 +1,6 @@
 +++
 title="Templating with `String.format()` and `String.join()` for Better Dynamic SOQL"
+aliases=["2018/08/02/better-dynamic-soql-string-format.html"]
 +++
 
 Dynamic SOQL with complex queries and filters can easily become an unreadable mess. Consider a query like this one: 
