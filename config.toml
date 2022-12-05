@@ -20,8 +20,10 @@ highlight_themes_css = [
 [extra]
 
 site_owner_name = "David Reed"
+site_title = "David Reed"
 use_icons = true
 use_tocs = false
+timeline_length = 5
 
 [extra.contact]
 order = ["email", "github", "mastodon", "twitter", "linkedin", "sfse", "tbc"]

@@ -7,6 +7,6 @@
 {% set_global content_items = content_items | concat(with=subsection.pages) %}
 {% endfor %}
 
-{% for page in content_items | sort(attribute="date") | reverse | slice(end=5) %}
+{% for page in content_items | sort(attribute="date") | reverse | slice(end=config.extra.timeline_length) %}
 {{ macros::content_item(item=page, show_category=true) }}
 {% endfor %}

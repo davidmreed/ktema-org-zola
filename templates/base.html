@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %} {% endblock %} / David Reed</title>
-    <link rel="alternate" 
-          type="application/rss+xml" 
-          title="RSS" 
-          href="{{ get_url(path="feed.xml", trailing_slash=false) }}" />
+    <title>{% block title %} {% endblock %} / {{ config.extra.site_title }}</title>
+    {% block rss %}
+    {% set rss_url = get_url(path="feed.xml", trailing_slash=false) %}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ rss_url }}" />
+    {% endblock rss %}
     <link rel="stylesheet" type="text/css" href="/simple.min.css" />
     <link rel="stylesheet" type="text/css" href="/theme.css" />
 </head>
@@ -17,7 +17,7 @@
     <header>
         <nav>
             {% set root_section = get_section(path="_index.md") %}
-            <a href="{{ root_section.path }}">{{ config.extra.site_owner_name }}</a>
+            <a href="{{ root_section.path }}">{{ config.extra.site_title }}</a>
             <span class="wrapper"></span>
             {% for each_page in root_section.pages %}
             <a href="{{ each_page.path }}">{{ each_page.title }}</a>
@@ -33,7 +33,9 @@
     </main>
     <footer>
         {% block footer %} {% endblock %}
-        <p>Copyright &copy; 2022 David Reed</p>
+        {% block copyright %}
+        <p>Copyright &copy; {{ now() | date(format="%Y") }} {{ config.extra.site_owner_name }}</p>
+        {% endblock copyright %}
     </footer>
 </body>
 
