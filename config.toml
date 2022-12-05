@@ -80,3 +80,7 @@ icon="regular/file-pdf"
 
 [extra.resources.event]
 show_on_card = false
+
+[extra.resources.home]
+show_on_card = true
+icon="solid/link"

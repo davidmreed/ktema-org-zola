@@ -16,7 +16,7 @@
     <a href="{{ item.extra.external_link }}">
         {{ item.title }}
         {% if config.extra.use_icons %}
-        {{ self::svg(item="solid/arrow-right-from-bracket", alt="") }}
+        {{ self::svg(item="solid/link", alt="") }}
         {% endif %}
     </a>
     {% else %}
@@ -114,7 +114,7 @@
 {{ throw(message="Resources must have a link, filename, or YouTube id") }}
 {{ throw(message="Resources must have a link or filename") }}
 {% endif %}
-<a href="{{ link }}">
+<a class="resource" href="{{ link }}">
     {% if config.extra.resources[resource_type].link_text %}
     {{ config.extra.resources[resource_type].link_text }}
     {% else %}
@@ -138,7 +138,7 @@
 {{ throw(message="Resources must have a link, filename, or YouTube id") }}
 {% endif %}
 {% if config.extra.resources[resource_type].show_on_card %}
-<a class="{% if config.extra.use_icons %}icon{%endif%}" href="{{ link }}">
+<a class="{% if config.extra.use_icons %}icon{% endif %}" href="{{ link }}">
     {% if config.extra.use_icons and config.extra.resources[resource_type].icon %}
     {{ self::svg(item=config.extra.resources[resource_type].icon, alt=resource_type | title ) }}
     {% elif config.extra.resources[resource_type].link_text %}

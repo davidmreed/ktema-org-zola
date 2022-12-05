@@ -1,8 +1,9 @@
 +++
 title="Deduplicating File Trees with Python"
 [extra]
-repo_link="https://github.com/davidmreed/dedupe_trees.py"
 project_type="CLI Tool"
+[extra.resources.repo]
+link="https://github.com/davidmreed/dedupe_trees.py"
 +++
 
 I have three computers and two phones, and I use Dropbox to sync photos between all of my devices. But from time to time I've broken the Dropbox sync for some reason, or changed my partition table, or set up a machine not to sync, or I'd start (and perhaps not finish) an organization project. The end result was a solid half-dozen different versions of my photo archive, which had diverged from one another not only in content and in editing status but in organization too.

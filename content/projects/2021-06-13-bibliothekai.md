@@ -2,6 +2,10 @@
 title="Bibliothekai: \"What's the best translation of...?\""
 [extra]
 project_type="Website"
+[extra.resources.home]
+link="https://bibliothekai.ktema.org"
+[extra.resources.repo]
+link="github.com/davidmreed/bibliothekai"
 +++
 
 I've launched a new app, [Bibliothekai](https://bibliothekai.ktema.org/), to help answer this question.

@@ -7,6 +7,10 @@ a.icon {
 	text-decoration: none;
 }
 
+a.resource {
+	margin-right: 1.5rem;
+}
+
 span.metadata {
 	text-transform: uppercase;
 	font-variant: small-caps;
