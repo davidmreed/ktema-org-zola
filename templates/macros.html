@@ -20,7 +20,7 @@
         {% endif %}
     </a>
     {% else %}
-    <a href="{{ item.permalink }}">{{ item.title }}</a>
+    <a href="{{ item.path }}">{{ item.title }}</a>
     {% endif %}
 </h5>
 <span class="metadata">
@@ -39,7 +39,7 @@
 <span style="float: right;">
     {{ self::card_resources(item=item) }}
 </span>
-<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<h5><a href="{{ item.path }}">{{ item.title }}</a></h5>
 <span class="metadata">
     {% if show_category %}Publication |{% endif %} {{ item.date }}</span>
 {% endmacro publication %}
@@ -48,7 +48,7 @@
 <span style="float: right;">
     {{ self::card_resources(item=item) }}
 </span>
-<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<h5><a href="{{ item.path }}">{{ item.title }}</a></h5>
 <span class="metadata">
     {% if show_category %}Presentation |{% endif %} {{ item.extra.venue }} | {{ item.date}}
 </span>
@@ -58,7 +58,7 @@
 <span style="float: right;">
     {{ self::card_resources(item=item) }}
 </span>
-<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<h5><a href="{{ item.path }}">{{ item.title }}</a></h5>
 <span class="metadata">
     {% if show_category %} Project |{% endif %}
     {% if item.extra.project_type %}
@@ -105,7 +105,7 @@
 {% if item.extra.resources %}
 {% for resource_type, resource in item.extra.resources %}
 {% if resource.filename %}
-{% set link = item.permalink ~ resource.filename %}
+{% set link = item.path ~ resource.filename %}
 {% elif resource.link %}
 {% set link = resource.link %}
 {% elif resource.youtube_id %}
@@ -129,7 +129,7 @@
 {% if item.extra.resources %}
 {% for resource_type, resource in item.extra.resources %}
 {% if resource.filename %}
-{% set link = item.permalink ~ resource.filename %}
+{% set link = item.path ~ resource.filename %}
 {% elif resource.link %}
 {% set link = resource.link %}
 {% elif resource.youtube_id %}

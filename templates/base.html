@@ -14,9 +14,9 @@
     <header>
         <nav>
             {% set root_section = get_section(path="_index.md") %}
-            <a href="{{ root_section.permalink }}">{{ config.extra.site_owner_name }}</a>
+            <a href="{{ root_section.path }}">{{ config.extra.site_owner_name }}</a>
             {% for each_page in root_section.pages %}
-            <a href="{{ each_page.permalink }}">{{ each_page.title }}</a>
+            <a href="{{ each_page.path }}">{{ each_page.title }}</a>
             {% endfor %}
             {% for each_section in root_section.subsections %}
             {% set subsection = get_section(path=each_section) %}
