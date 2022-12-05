@@ -2,6 +2,7 @@
 title="Continuous Integration with Salesforce DX: Concepts and Connections"
 [extra]
 venue="Dreamforce '18"
+[extra.resources.video]
 youtube_id="8obwIwvzmMw"
 +++
 

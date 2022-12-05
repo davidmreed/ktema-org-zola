@@ -14,6 +14,10 @@
     <address><a href="mailto:david@ktema.org">David Reed</a></address>
 </section>
 
+{% if page.extra.resources.video.youtube_id %}
+{{ macros::youtube(id=page.extra.resources.video.youtube_id) }}
+{% endif %}
+
 {{ page.content | safe }}
 
 {% endblock content %}

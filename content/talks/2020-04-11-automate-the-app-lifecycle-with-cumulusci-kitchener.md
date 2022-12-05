@@ -2,8 +2,10 @@
 title="Automate the App Lifecycle with CumulusCI"
 [extra]
 venue="Kitchener Salesforce Developers Group"
+[extra.resources.video]
 youtube_id="Guc8ZX1Dg6A"
-event_link="https://www.sudipta-deb.in/2020/04/kitchener-canada-developer-group-event.html"
+[extra.resources.event]
+link="https://www.sudipta-deb.in/2020/04/kitchener-canada-developer-group-event.html"
 +++
 
 Recently, I've been delighted to visit the Salesforce Developer Groups in Denver, Colorado, where I live, and in Kitchener, Ontario, to talk about Salesforce.org's Portable Automation toolchain for continuous integration and automation throughout the application lifecycle.

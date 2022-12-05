@@ -8,9 +8,17 @@
 {% endmacro youtube %}
 
 {% macro article(item, show_category) %}
+<span style="float: right;">
+    {{ self::card_resources(item=item) }}
+</span>
 <h5>
     {% if item.extra.external_link %}
-    <a href="{{ item.extra.external_link }}">{{ item.title }}</a>
+    <a href="{{ item.extra.external_link }}">
+        {{ item.title }}
+        {% if config.extra.use_icons %}
+        {{ self::svg(item="solid/arrow-right-from-bracket", alt="") }}
+        {% endif %}
+    </a>
     {% else %}
     <a href="{{ item.permalink }}">{{ item.title }}</a>
     {% endif %}
@@ -28,6 +36,9 @@
 {% endmacro article %}
 
 {% macro publication(item, show_category) %}
+<span style="float: right;">
+    {{ self::card_resources(item=item) }}
+</span>
 <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
 <span class="metadata">
     {% if show_category %}Publication |{% endif %} {{ item.date }}</span>
@@ -35,24 +46,7 @@
 
 {% macro presentation(item, show_category) %}
 <span style="float: right;">
-    {% if item.extra.video_link %}
-    <a href="{{ item.extra.video_link }}">Video</a>
-    {% elif item.extra.youtube_id %}
-    <a href="https://www.youtube.com/watch?v={{ item.extra.youtube_id }}">Video</a>
-    {% elif item.extra.audio_link %}
-    <a href="{{ item.extra.audio_link }}">Audio</a>
-    {% endif %}
-    {% if item.extra.slides_filename %}
-    <a href="{{ item.permalink}}{{ item.extra.slides_filename }}">Slides</a>
-    {% elif item.extra.slides_link %}
-    <a href="{{ item.permalink}}{{ item.extra.slides_link }}">Slides</a>
-    {% endif %}
-    {% if item.extra.repo_link %}
-    <a href="{{ item.permalink}}{{ item.extra.repo_link }}">Repo</a>
-    {% endif %}
-    {% if item.extra.event_link %}
-    <a href="{{ item.permalink}}{{ item.extra.event_link }}">Event</a>
-    {% endif %}
+    {{ self::card_resources(item=item) }}
 </span>
 <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
 <span class="metadata">
@@ -61,6 +55,9 @@
 {% endmacro presentation %}
 
 {% macro project(item, show_category) %}
+<span style="float: right;">
+    {{ self::card_resources(item=item) }}
+</span>
 <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
 <span class="metadata">
     {% if show_category %} Project |{% endif %}
@@ -102,3 +99,55 @@
     {% endif %}
 </a>
 {% endmacro contact %}
+
+
+{% macro resources(item) %}
+{% if item.extra.resources %}
+{% for resource_type, resource in item.extra.resources %}
+{% if resource.filename %}
+{% set link = item.permalink ~ resource.filename %}
+{% elif resource.link %}
+{% set link = resource.link %}
+{% elif resource.youtube_id %}
+{% set link = "https://www.youtube.com/watch?v=" ~ resource.youtube_id %}
+{% else %}
+{{ throw(message="Resources must have a link, filename, or YouTube id") }}
+{{ throw(message="Resources must have a link or filename") }}
+{% endif %}
+<a href="{{ link }}">
+    {% if config.extra.resources[resource_type].link_text %}
+    {{ config.extra.resources[resource_type].link_text }}
+    {% else %}
+    {{ resource_type | title }}
+    {% endif %}
+</a>
+{% endfor %}
+{% endif %}
+{% endmacro resources %}
+
+{% macro card_resources(item) %}
+{% if item.extra.resources %}
+{% for resource_type, resource in item.extra.resources %}
+{% if resource.filename %}
+{% set link = item.permalink ~ resource.filename %}
+{% elif resource.link %}
+{% set link = resource.link %}
+{% elif resource.youtube_id %}
+{% set link = "https://www.youtube.com/watch?v=" ~ resource.youtube_id %}
+{% else %}
+{{ throw(message="Resources must have a link, filename, or YouTube id") }}
+{% endif %}
+{% if config.extra.resources[resource_type].show_on_card %}
+<a class="{% if config.extra.use_icons %}icon{%endif%}" href="{{ link }}">
+    {% if config.extra.use_icons and config.extra.resources[resource_type].icon %}
+    {{ self::svg(item=config.extra.resources[resource_type].icon, alt=resource_type | title ) }}
+    {% elif config.extra.resources[resource_type].link_text %}
+    {{ config.extra.resources[resource_type].link_text }}
+    {% else %}
+    {{ resource_type | title }}
+    {% endif %}
+</a>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endmacro resources %}

@@ -21,16 +21,11 @@
     </dl>
 </section>
 
+{{ macros::resources(item=page) }}
+
 {% if page.extra.youtube_id %}
 {{ macros::youtube(id=page.extra.youtube_id )}}
 {% endif %}
-{% if page.extra.video_link %}
-<a href="{{ page.extra.video_link }}">Watch the video</a>
-{% endif %}
-{% if page.extra.slides_filename %}
-<a href="{{ page.permalink }}{{ page.extra.slides_filename }}">View slides</a>
-{% endif %}
-
 
 {{ page.content | safe }}
 

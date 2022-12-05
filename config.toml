@@ -59,3 +59,24 @@ icon = "brands/stack-exchange"
 link = "https://fosstodon.org/web/@aoristdual"
 name = "Mastodon"
 icon = "brands/mastodon"
+
+[extra.resources.repo]
+show_on_card = true
+icon = "brands/git-alt"
+
+[extra.resources.video]
+show_on_card = true
+icon = "brands/youtube"
+link_text = "Watch"
+
+[extra.resources.audio]
+show_on_card = true
+link_text = "Listen"
+icon="solid/podcast"
+
+[extra.resources.slides]
+show_on_card = true
+icon="regular/file-pdf"
+
+[extra.resources.event]
+show_on_card = false

@@ -3,7 +3,8 @@ title="Real-World Unit Testing: Get to 100% Coverage, the Right Way"
 [extra]
 venue="Phillyforce '19"
 youtube_id="JkjTDxbYPgY"
-slides_filename="Real-World-Unit-Testing-David-Reed.pdf"
+[extra.resources.slides]
+filename="Real-World-Unit-Testing-David-Reed.pdf"
 +++
 
 My presentation from PhillyForce '19, "Real-World Unit Testing: Get to 100% Coverage, the Right Way", is now [available on YouTube](https://www.youtube.com/watch?v=JkjTDxbYPgY). It was a great experience to return to PhillyForce as a speaker and organizing committee member to talk about one of the subjects I'm most passionate about - automated testing - and make the case that writing good unit tests is actually a moral, not just a technical, imperative.

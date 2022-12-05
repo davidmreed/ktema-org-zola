@@ -1,8 +1,9 @@
 +++
 title="Continuous Integration with Salesforce DX: Practices and Principles for All"
 [extra]
-youtube_id="VLl1uUPF97g"
 venue="Phillyforce '18"
+[extra.resources.video]
+youtube_id="VLl1uUPF97g"
 +++
 
 This talk draws on several past articles published here:
