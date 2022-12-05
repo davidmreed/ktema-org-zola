@@ -1,7 +1,5 @@
 +++
 title="Testing Chatter in Apex without `seeAllData=true`"
-[taxonomies]
-categories=["Articles"]
 +++
 
 One of the key limitations of the Connect API, which provides interaction with Chatter inside Apex, is that unit tests of Connect API code typically [require the use of `seeAllData=true`](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/connectAPI_TestingApex.htm):

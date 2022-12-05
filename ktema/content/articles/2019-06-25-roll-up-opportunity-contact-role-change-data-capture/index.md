@@ -1,7 +1,5 @@
 +++
 title="Rolling Up Opportunity Contact Roles with Change Data Capture and Async Apex Triggers"
-[taxonomies]
-categories=["Articles"]
 +++
 
 Salesforce admins, and perhaps especially nonprofit admins, have been wishing for a long time for the ability to build more functionality around Opportunity Contact Roles - like roll-up summary fields, validation rules, and triggers.

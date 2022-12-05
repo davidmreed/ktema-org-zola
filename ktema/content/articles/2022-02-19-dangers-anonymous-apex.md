@@ -1,7 +1,5 @@
 +++
 title="The Dangers of Anonymous Apex and the Developer Console"
-[taxonomies]
-categories=["Articles"]
 +++
 
 The Developer Console and Anonymous Apex seem like appealing ways to learn, to do ad-hoc exploration of the system, to perform quick fixes, and to prototype ideas in Apex. Unfortunately, the low barrier to entry with these tools masks some very subtle complications that can turn into traps, especially for learners and early-career Salesforce developers for whom that low barrier to entry may carry the most value. Here's why, and some thoughts on achieving the same objectives in a safer way.

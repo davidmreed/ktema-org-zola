@@ -1,7 +1,5 @@
 +++
 title="Wage Transparency in Colorado and Beyond"
-[taxonomies]
-categories=["Articles"]
 +++
 
 > **Important disclaimer**: I am not an attorney. This is not legal advice.

@@ -8,9 +8,22 @@
 {% endmacro youtube %}
 
 {% macro article(item, show_category) %}
-<h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
+<h5>
+    {% if item.extra.external_link %}
+    <a href="{{ item.extra.external_link }}">{{ item.title }}</a>
+    {% else %}
+    <a href="{{ item.permalink }}">{{ item.title }}</a>
+    {% endif %}
+</h5>
 <span class="metadata">
-    {% if show_category %}Article |{% endif %} {{ item.word_count }} words | {{ item.date }}
+    {% if show_category %}Article |{% endif %}
+    {% if item.extra.venue %}
+    At {{ item.extra.venue }} |
+    {% endif %}
+    {% if item.word_count != 0 %}
+    {{ item.word_count }} words |
+    {% endif %}
+    {{ item.date }}
 </span>
 {% endmacro article %}
 
@@ -25,11 +38,20 @@
     {% if item.extra.video_link %}
     <a href="{{ item.extra.video_link }}">Video</a>
     {% elif item.extra.youtube_id %}
-    <a href="https://www.youtube.com/watch?v={{ item.extra.youtube_id }}">
-        {{ self::svg(item="brands/youtube", alt="YouTube Logo") }} Video</a>
+    <a href="https://www.youtube.com/watch?v={{ item.extra.youtube_id }}">Video</a>
+    {% elif item.extra.audio_link %}
+    <a href="{{ item.extra.audio_link }}">Audio</a>
     {% endif %}
     {% if item.extra.slides_filename %}
     <a href="{{ item.permalink}}{{ item.extra.slides_filename }}">Slides</a>
+    {% elif item.extra.slides_link %}
+    <a href="{{ item.permalink}}{{ item.extra.slides_link }}">Slides</a>
+    {% endif %}
+    {% if item.extra.repo_link %}
+    <a href="{{ item.permalink}}{{ item.extra.repo_link }}">Repo</a>
+    {% endif %}
+    {% if item.extra.event_link %}
+    <a href="{{ item.permalink}}{{ item.extra.event_link }}">Event</a>
     {% endif %}
 </span>
 <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
@@ -40,7 +62,13 @@
 
 {% macro project(item, show_category) %}
 <h5><a href="{{ item.permalink }}">{{ item.title }}</a></h5>
-<span class="metadata">{% if show_category %} Project |{% endif %} Launched {{ item.date }}</span>
+<span class="metadata">
+    {% if show_category %} Project |{% endif %}
+    {% if item.extra.project_type %}
+    {{ item.extra.project_type }} |
+    {% endif %}
+    Launched {{ item.date }}
+</span>
 {% endmacro project %}
 
 {% macro content_item(item, show_category=false) %}
@@ -49,19 +77,12 @@
     {% set item_section = get_section(path=item_section_name) %}
     {% if item_section.title == 'Articles' %}
     {{ self::article(item=item, show_category=show_category) }}
-    {% elif item_section.title == 'Presentations' %}
+    {% elif item_section.title == 'Talks' %}
     {{ self::presentation(item=item, show_category=show_category) }}
     {% elif item_section.title == 'Projects' %}
     {{ self::project(item=item, show_category=show_category) }}
-    {% elif item_section.title == 'Talks' %}
+    {% elif item_section.title == 'Publications' %}
     {{ self::publication(item=item, show_category=show_category) }}
-    {% endif %}
-    {% if item.taxonomies.tags %}
-    <span class="tags">
-        {% for each_tag in item.taxonomies.tags %}
-        <span class="tag">{{ each_tag }}</span>
-        {% endfor %}
-    </span>
     {% endif %}
 </article>
 {% endmacro content_item %}
@@ -71,10 +92,11 @@
 {% endmacro svg %}
 
 {% macro contact(type) %}
-<a class="icon" title="{{ type }}" aria-label="{{ config.extra.contact[type].name }}"
+<a class="icon" title="{{ config.extra.contact[type].name }}" aria-label="{{ config.extra.contact[type].name }}"
     href="{{ config.extra.contact[type].link }}">
     {% if config.extra.use_icons %}
     {{ self::svg(item=config.extra.contact[type].icon, alt=config.extra.contact[type].name) }}
+    {{ config.extra.contact[type].name }}
     {% else %}
     {{ config.extra.contact[type].name }}
     {% endif %}

@@ -1,7 +1,6 @@
 +++
 title="Why Does `git rebase` Merge Conflict?"
-[taxonomies]
-categories=["Articles"]
+aliases=["2022/06/25/why-does-git-rebase-merge-conflict.html"]
 +++
 
 I've got a really ugly branch (`daves-feature`) going. I started my branch from `main`, but later realized it was better suited to be based on `parent`. My commit history looks like this:

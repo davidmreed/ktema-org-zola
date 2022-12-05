@@ -1,7 +1,5 @@
 +++
 title="Continuous Integration with Salesforce DX: Practices and Principles for All"
-[taxonomies]
-categories=["Presentations"]
 [extra]
 youtube_id="VLl1uUPF97g"
 venue="Phillyforce '18"

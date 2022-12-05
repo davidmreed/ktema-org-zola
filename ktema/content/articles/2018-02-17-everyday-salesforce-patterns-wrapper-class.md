@@ -1,7 +1,5 @@
 +++
 title="Everyday Salesforce Patterns: The Wrapper Class"
-[taxonomies]
-categories=["Articles"]
 +++
 
 The Salesforce platform has great reference documentation, great intro training through Trailhead, and some excellent books and resources on enterprise design patterns. What's less-canonically covered, in the resources I'm familiar with, are everyday patterns: the idiomatic implementation tools that are used and adapted every day by experienced developers. I want to make a contribution to filling this void with this series, starting with some discussion of wrapper classes.

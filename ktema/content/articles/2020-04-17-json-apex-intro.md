@@ -1,7 +1,5 @@
 +++
 title="Working with JSON in Apex: A Primer"
-[taxonomies]
-categories=["Articles"]
 +++
 
 > This post is adapted from a [community wiki](https://salesforce.stackexchange.com/questions/302034/how-do-i-get-started-working-with-json-in-apex) I created for [Salesforce Stack Exchange](https://salesforce.stackexchange.com).

@@ -1,7 +1,5 @@
 +++
 title="Building Unit Test Learning Resources on Salesforce Stack Exchange"
-[taxonomies]
-categories=["Articles"]
 +++
 
 Unit testing and code coverage are perennial topics on [Salesforce Stack Exchange](https://salesforce.stackexchange.com). It's not hard to see why: unit testing can be profoundly unintuitive for new developers (on any platform), and involves mastering techniques and concepts that are quite different from those needed to be productive in building applications.

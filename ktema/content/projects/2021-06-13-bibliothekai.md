@@ -1,7 +1,7 @@
 +++
 title="Bibliothekai: \"What's the best translation of...?\""
-[taxonomies]
-categories=["Projects"]
+[extra]
+project_type="Website"
 +++
 
 I've launched a new app, [Bibliothekai](https://bibliothekai.ktema.org/), to help answer this question.

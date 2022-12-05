@@ -1,7 +1,5 @@
 +++
 title="Distinguishing Custom Settings in Apex"
-[taxonomies]
-categories=["Articles"]
 +++
 
 In many respects, the Salesforce API treats Hierarchy and List Custom Settings the same way: their schemata are the same, and most, though not all, static methods apply to both types of settings. This works well in the typical use case of calling `MyCustomSetting__c.getInstance()`. But suppose you'd like to build generic code that operates on settings. How can you tell list from hierarchy settings to handle them appropriately?

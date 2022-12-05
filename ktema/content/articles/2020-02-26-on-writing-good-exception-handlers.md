@@ -1,8 +1,5 @@
 +++
 title="On Writing Good Exception Handlers"
-[taxonomies]
-categories=["Articles"]
-tags=["salesforce", "apex"]
 +++
 
 > This post is adapted from an [answer](https://salesforce.stackexchange.com/a/295713/46017) I wrote on [Salesforce Stack Exchange](https://salesforce.stackexchange.com/).

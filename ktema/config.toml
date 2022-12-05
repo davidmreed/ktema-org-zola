@@ -6,21 +6,21 @@ generate_feed = true
 
 taxonomies = [
     { name = "categories", feed = true },
-    { name = "tags", feed = false }
 ]
 
 [markdown]
 highlight_code = true
 highlight_theme = "css"
 highlight_themes_css = [
-  { theme = "OneHalfDark", filename = "syntax-theme-dark.css" },
-  { theme = "OneHalfLight", filename = "syntax-theme-light.css" },
+  { theme = "gruvbox-dark", filename = "syntax-theme-dark.css" },
+  { theme = "inspired-github", filename = "syntax-theme-light.css" },
 ]
 
 [extra]
 
+site_owner_name = "David Reed"
 use_icons = true
-use_tocs = true
+use_tocs = false
 
 [extra.contact]
 order = ["email", "github", "mastodon", "twitter", "linkedin", "sfse", "tbc"]

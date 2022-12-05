@@ -1,7 +1,5 @@
 +++
 title="The Magic of APIs for Admins"
-[taxonomies]
-categories=["Presentations"]
 [extra]
 venue="Charlotte, NC Nonprofit Users Group"
 video_link="https://vimeo.com/732817980/cc19af32dc"

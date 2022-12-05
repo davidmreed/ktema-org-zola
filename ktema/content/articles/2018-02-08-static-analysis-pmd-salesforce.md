@@ -1,7 +1,5 @@
 +++
 title="Integrating Static Analysis with PMD in the Salesforce Development Lifecycle"
-[taxonomies]
-categories=["Articles"]
 +++
 
 This is the second in a series looking at setting up a Salesforce project with a full suite of modern software engineering tools and services. (See the first for more on [setting up CI with Salesforce DX](@/articles/2018-02-02-salesforce-dx-circleci.md))

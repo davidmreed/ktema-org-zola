@@ -1,7 +1,5 @@
 +++
 title="Handling URLs in Lightning Data Tables"
-[taxonomies]
-categories=["Articles"]
 +++
 
 The [`<lightning:dataTable>`](https://developer.salesforce.com/docs/component-library/bundle/lightning:datatable) component has built-in support for displaying links in table columns. The syntax looks something like this:

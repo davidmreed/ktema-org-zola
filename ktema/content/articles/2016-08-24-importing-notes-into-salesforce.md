@@ -1,7 +1,5 @@
 +++
 title="Importing Notes in Salesforce"
-[taxonomies]
-categories=["Articles"]
 +++
 
 Building Note records in Salesforce, using the new notes introduced in Winter '16, is challenging for a number of reasons. They come with unusual data-preparation requirements and are [tricky to import](https://help.salesforce.com/apex/HTViewSolution?id=000230867&language=en_US) using the Data Loader. Notes are tricky to create in Apex for largely the same reasons. Failing to follow the requirements for encoding incoming data typically produces notes with all of the line breaks omitted and/or unpredictable and difficult-to-debug exceptions.

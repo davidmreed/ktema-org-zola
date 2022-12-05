@@ -1,7 +1,5 @@
 +++
 title="Everyday Salesforce Patterns: Filtering Parent Objects By Child Objects"
-[taxonomies]
-categories=["Articles"]
 +++
 
 Sometimes, we need to filter an `Account` query by its `Contacts`, or some custom object `Project__c` by its associated `Subject_Area__c` records. There might not be rollup summary fields in place, or the criteria might go beyond what rollups can do, or we might be dealing with a lookup relationship, forcing us to express this filtration directly in SOQL or in Apex. 

@@ -1,7 +1,5 @@
 +++
 title="Bridging Click & Pledge and Salesforce Campaigns with Process and Flow"
-[taxonomies]
-categories=["Articles"]
 +++
 
 *This post has been extensively revised to broaden the applicability of the solution, covering anonymous and named Click & Pledge events.*

@@ -1,7 +1,5 @@
 +++
 title="The Curious Nature of the Salesforce Boolean"
-[taxonomies]
-categories=["Articles"]
 +++
 
 The Boolean can be among the simplest data types: it is either true or false, full stop, no complications.

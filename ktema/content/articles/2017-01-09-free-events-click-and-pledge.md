@@ -1,7 +1,5 @@
 +++
 title="Free Events in Click & Pledge"
-[taxonomies]
-categories=["Articles"]
 +++
 
 Click & Pledge nicely supports online registration for both free and paid/ticketed events. However, one point of confusion for

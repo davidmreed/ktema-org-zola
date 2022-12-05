@@ -1,7 +1,5 @@
 +++
 title="The Bridge Package Pattern"
-[taxonomies]
-categories=["Articles"]
 +++
 
 

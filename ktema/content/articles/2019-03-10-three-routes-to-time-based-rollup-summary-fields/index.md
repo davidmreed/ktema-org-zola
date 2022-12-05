@@ -1,7 +1,5 @@
 +++
 title="Three Routes to Time-Based Rollup Summary Fields"
-[taxonomies]
-categories=["Articles"]
 +++
 
 Rollup Summary Fields are *great*. Users love them because they offer at-a-glance insight at the top level of the data hierarchy, without needing to run a report or drill down in the user interface to child records. Unfortunately, native Rollup Summary Fields come with a variety of limitations on what data you can roll up, where, and applying which criteria. In particular, *time-based rollup summary fields* are a common need that's tricky to meet with this native functionality.

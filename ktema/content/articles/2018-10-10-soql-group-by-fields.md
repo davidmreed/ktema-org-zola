@@ -1,7 +1,5 @@
 +++
 title="What Can You `GROUP BY`?"
-[taxonomies]
-categories=["Articles"]
 +++
 
 The Salesforce documentation is notably terse in describing [Considerations When Using `GROUP BY`](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_group_by_considerations.htm). The guidance provided for determining which fields can be grouped is simply:

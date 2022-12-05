@@ -7,10 +7,15 @@
     {{ page.title }}
 </h1>
 
-<section>
-    <p>Published <time datetime="{{ page.date }}">{{ page.date }}</time> - {{ page.word_count }} words
-    <address><a href="mailto:david@ktema.org">David Reed</a></address>
-    </p>
+<section class="header">
+    <dl>
+        <dd>Author</dd>
+        <dt>{{ config.extra.site_owner_name }}</dt>
+        <dd>Published</dd>
+        <dt><time datetime="{{ page.date }}">{{ page.date }}</time></dt>
+        <dd>Words</dd>
+        <dt>{{ page.word_count }}</dt>
+    </dl>
 </section>
 
 {% if page.toc and config.extra.use_tocs %}

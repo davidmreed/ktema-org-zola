@@ -1,7 +1,5 @@
 +++
 title="DML-ish Operations in the Visualforce Controller Constructor"
-[taxonomies]
-categories=["Articles"]
 +++
 
 DML is not allowed in a Visualforce page controller's constructor. This isn't news.

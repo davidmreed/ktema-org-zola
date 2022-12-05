@@ -1,7 +1,5 @@
 +++
 title="Templating with `String.format()` and `String.join()` for Better Dynamic SOQL"
-[taxonomies]
-categories=["Articles"]
 +++
 
 Dynamic SOQL with complex queries and filters can easily become an unreadable mess. Consider a query like this one: 

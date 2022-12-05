@@ -1,7 +1,5 @@
 +++
 title="Filtering in Lightning's Activity Timeline"
-[taxonomies]
-categories=["Articles"]
 +++
 
 The Lightning Experience's record pages come with a very nice Activity timeline and publisher.
