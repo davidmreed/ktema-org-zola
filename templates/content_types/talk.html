@@ -23,8 +23,8 @@
 
 {{ macros::resources(item=page) }}
 
-{% if page.extra.youtube_id %}
-{{ macros::youtube(id=page.extra.youtube_id )}}
+{% if page.extra.resources.video.youtube_id %}
+{{ macros::youtube(id=page.extra.resources.video.youtube_id) }}
 {% endif %}
 
 {{ page.content | safe }}

@@ -2,6 +2,7 @@
 title="Real-World Unit Testing: Get to 100% Coverage, the Right Way"
 [extra]
 venue="Phillyforce '19"
+[extra.resources.video]
 youtube_id="JkjTDxbYPgY"
 [extra.resources.slides]
 filename="Real-World-Unit-Testing-David-Reed.pdf"
@@ -15,5 +16,3 @@ The talk covers four big headings:
 - Writing good unit tests in Apex.
 - Writing testable code, thinking about tests as API consumers, and using tests to guide refactoring.
 - Advanced testing strategies with mocking and dependency injection for working with complex asynchronous Apex.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JkjTDxbYPgY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
