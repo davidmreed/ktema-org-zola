@@ -1,13 +1,9 @@
-# The URL the site will be built for
 base_url = "https://ktema.org"
 compile_sass = false
 build_search_index = false
 generate_feed = true
 feed_filename = "feed.xml"
-
-taxonomies = [
-    { name = "categories", feed = true },
-]
+theme = "datum"
 
 [markdown]
 highlight_code = true
@@ -30,23 +26,15 @@ order = ["email", "github", "mastodon", "twitter", "linkedin", "sfse", "tbc"]
 
 [extra.contact.email]
 link = "mailto:david@ktema.org"
-name = "Email"
-icon = "solid/envelope"
 
 [extra.contact.github]
 link = "https://github.com/davidmreed"
-name = "GitHub"
-icon = "brands/github"
 
 [extra.contact.twitter]
 link = "https://twitter.com/aoristdual"
-name = "Twitter"
-icon = "brands/twitter"
 
 [extra.contact.linkedin]
 link = "https://www.linkedin.com/in/davidreed-salesforce/"
-name = "LinkedIn"
-icon = "brands/linkedin"
 
 [extra.contact.tbc]
 link = "https://trailblazer.me/id/davidmreed"
@@ -60,30 +48,3 @@ icon = "brands/stack-exchange"
 
 [extra.contact.mastodon]
 link = "https://fosstodon.org/web/@aoristdual"
-name = "Mastodon"
-icon = "brands/mastodon"
-
-[extra.resources.repo]
-show_on_card = true
-icon = "brands/git-alt"
-
-[extra.resources.video]
-show_on_card = true
-icon = "brands/youtube"
-link_text = "Watch"
-
-[extra.resources.audio]
-show_on_card = true
-link_text = "Listen"
-icon="solid/podcast"
-
-[extra.resources.slides]
-show_on_card = true
-icon="regular/file-pdf"
-
-[extra.resources.event]
-show_on_card = false
-
-[extra.resources.home]
-show_on_card = true
-icon="solid/link"

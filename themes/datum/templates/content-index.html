@@ -13,8 +13,20 @@
 
 {{ section.content | safe }}
 
+{% if paginator %}
+{% include "pagination.html" %}
+
+{% for each_page in paginator.pages %}
+{{ macros::content_item(item=each_page) }}
+{% endfor %}
+
+{% include "pagination.html" %}
+
+{% else %}
+
 {% for each_page in section.pages %}
 {{ macros::content_item(item=each_page) }}
 {% endfor %}
 
+{% endif %}
 {% endblock %}

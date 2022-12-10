@@ -7,7 +7,7 @@
 </div>
 {% endmacro youtube %}
 
-{% macro article(item, show_category) %}
+{% macro article(item, show_category, content_type_display_name) %}
 <span style="float: right;">
     {{ self::card_resources(item=item) }}
 </span>
@@ -24,7 +24,7 @@
     {% endif %}
 </h5>
 <span class="metadata">
-    {% if show_category %}Article |{% endif %}
+    {% if show_category %}{{ content_type_display_name }} |{% endif %}
     {% if item.extra.venue %}
     At {{ item.extra.venue }} |
     {% endif %}
@@ -35,32 +35,23 @@
 </span>
 {% endmacro article %}
 
-{% macro publication(item, show_category) %}
+{% macro presentation(item, show_category, content_type_display_name) %}
 <span style="float: right;">
     {{ self::card_resources(item=item) }}
 </span>
 <h5><a href="{{ item.path }}">{{ item.title }}</a></h5>
 <span class="metadata">
-    {% if show_category %}Publication |{% endif %} {{ item.date }}</span>
-{% endmacro publication %}
-
-{% macro presentation(item, show_category) %}
-<span style="float: right;">
-    {{ self::card_resources(item=item) }}
-</span>
-<h5><a href="{{ item.path }}">{{ item.title }}</a></h5>
-<span class="metadata">
-    {% if show_category %}Presentation |{% endif %} {{ item.extra.venue }} | {{ item.date}}
+    {% if show_category %}{{ content_type_display_name }} |{% endif %} {{ item.extra.venue }} | {{ item.date }}
 </span>
 {% endmacro presentation %}
 
-{% macro project(item, show_category) %}
+{% macro project(item, show_category, content_type_display_name) %}
 <span style="float: right;">
     {{ self::card_resources(item=item) }}
 </span>
 <h5><a href="{{ item.path }}">{{ item.title }}</a></h5>
 <span class="metadata">
-    {% if show_category %} Project |{% endif %}
+    {% if show_category %} {{ content_type_display_name }} |{% endif %}
     {% if item.extra.project_type %}
     {{ item.extra.project_type }} |
     {% endif %}
@@ -72,14 +63,25 @@
 <article>
     {% set item_section_name = item.ancestors | last %}
     {% set item_section = get_section(path=item_section_name) %}
-    {% if item_section.title == 'Articles' %}
-    {{ self::article(item=item, show_category=show_category) }}
-    {% elif item_section.title == 'Talks' %}
-    {{ self::presentation(item=item, show_category=show_category) }}
-    {% elif item_section.title == 'Projects' %}
-    {{ self::project(item=item, show_category=show_category) }}
-    {% elif item_section.title == 'Publications' %}
-    {{ self::publication(item=item, show_category=show_category) }}
+    {% if not item_section.extra.content_type %}
+    {{ throw(message="Unable to show content card for " ~ item.path ~
+    " because its section does not have a content_type") }}
+    {% endif %}
+    {% if item_section.extra.content_type not in config.extra.content_types %}
+    {{ throw(message="Configuration for content_type " ~ item_content_type ~ " is missing") }}
+    {% endif %}
+    {% set content_type = config.extra.content_types[item_section.extra.content_type] %}
+
+    {% if content_type.card_type == 'article' %}
+    {{ self::article(item=item, show_category=show_category, content_type_display_name=content_type.display_name) }}
+    {% elif content_type.card_type == 'presentation' %}
+    {{ self::presentation(item=item, show_category=show_category, content_type_display_name=content_type.display_name)
+    }}
+    {% elif content_type.card_type == 'project' %}
+    {{ self::project(item=item, show_category=show_category, content_type_display_name=content_type.display_name) }}
+    {% else %}
+    {{ throw(message="The content_type " ~ item_section.extra.content_type ~ " has an invalid card_type " ~
+    content_type.card_type) }}
     {% endif %}
 </article>
 {% endmacro content_item %}
@@ -103,25 +105,29 @@
 
 {% macro resources(item) %}
 {% if item.extra.resources %}
-{% for resource_type, resource in item.extra.resources %}
-{% if resource.filename %}
-{% set link = item.path ~ resource.filename %}
-{% elif resource.link %}
-{% set link = resource.link %}
-{% elif resource.youtube_id %}
-{% set link = "https://www.youtube.com/watch?v=" ~ resource.youtube_id %}
-{% else %}
-{{ throw(message="Resources must have a link, filename, or YouTube id") }}
-{{ throw(message="Resources must have a link or filename") }}
-{% endif %}
-<a class="resource" href="{{ link }}">
-    {% if config.extra.resources[resource_type].link_text %}
-    {{ config.extra.resources[resource_type].link_text }}
+<nav>
+    {% for resource_type, resource in item.extra.resources %}
+    {% if resource.filename %}
+    {% set link = item.path ~ resource.filename %}
+    {% elif resource.link %}
+    {% set link = resource.link %}
+    {% elif resource.youtube_id %}
+    {% set link = "https://www.youtube.com/watch?v=" ~ resource.youtube_id %}
     {% else %}
-    {{ resource_type | title }}
+    {{ throw(message="Resources must have a link, filename, or YouTube id") }}
     {% endif %}
-</a>
-{% endfor %}
+    <a class="resource {% if config.extra.use_icons %}icon{% endif %}" href="{{ link }}">
+        {% if config.extra.use_icons and config.extra.resources[resource_type].icon %}
+        {{ self::svg(item=config.extra.resources[resource_type].icon, alt=resource_type | title ) }}
+        {% endif %}
+        {% if config.extra.resources[resource_type].link_text %}
+        {{ config.extra.resources[resource_type].link_text }}
+        {% else %}
+        {{ resource_type | title }}
+        {% endif %}
+    </a>
+    {% endfor %}
+</nav>
 {% endif %}
 {% endmacro resources %}
 

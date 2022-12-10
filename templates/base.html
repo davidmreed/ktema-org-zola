@@ -1,42 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "datum/templates/base.html" %}
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %} {% endblock %} / {{ config.extra.site_title }}</title>
-    {% block rss %}
-    {% set rss_url = get_url(path="feed.xml", trailing_slash=false) %}
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ rss_url }}" />
-    {% endblock rss %}
-    <link rel="stylesheet" type="text/css" href="/simple.min.css" />
-    <link rel="stylesheet" type="text/css" href="/theme.css" />
-</head>
-
-<body>
-    <header>
-        <nav>
-            {% set root_section = get_section(path="_index.md") %}
-            <a href="{{ root_section.path }}">{{ config.extra.site_title }}</a>
-            <span class="wrapper"></span>
-            {% for each_page in root_section.pages %}
-            <a href="{{ each_page.path }}">{{ each_page.title }}</a>
-            {% endfor %}
-            {% for each_section in root_section.subsections %}
-            {% set subsection = get_section(path=each_section) %}
-            <a href="{{ subsection.path }}">{{ subsection.title }}</a>
-            {% endfor %}
-        </nav>
-    </header>
-    <main>
-        <div>{% block content %} {% endblock %}</div>
-    </main>
-    <footer>
-        {% block footer %} {% endblock %}
-        {% block copyright %}
-        <p>Copyright &copy; {{ now() | date(format="%Y") }} {{ config.extra.site_owner_name }}</p>
-        {% endblock copyright %}
-    </footer>
-</body>
-
-</html>
+{% block rss %}
+{% set rss_url = get_url(path="feed.xml", trailing_slash=false) %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ rss_url }}" />
+{% endblock rss %}

@@ -1,0 +1,15 @@
+<nav class="pagination">
+    {% if paginator.first and paginator.current_index != 1 %}
+    <a href="{{ paginator.first }}">First</a>
+    {% endif %}
+    {% if paginator.previous %}
+    <a href="{{ paginator.previous }}">Previous</a>
+    {% endif %}
+    <span>Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
+    {% if paginator.next %}
+    <a href="{{ paginator.next }}">Next</a>
+    {% endif %}
+    {% if paginator.last and paginator.current_index != paginator.number_pagers %}
+    <a href="{{ paginator.last }}">Last</a>
+    {% endif %}
+</nav>
