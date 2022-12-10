@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %} {% endblock %} / {{ config.extra.site_title }}</title>
     {% block rss %}
-    {% set rss_url = get_url(path="rss.xml", trailing_slash=false) %}
+    {% set rss_url = get_url(path=config.feed_filename, trailing_slash=false) %}
+    {% if config.feed_filename == "rss.xml" %}
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ rss_url }}" />
+    {% else %}
+    <link rel="alternate" type="application/atom+xml" title="Feed" href="{{ rss_url }}" />
+    {% endif %}
     {% endblock rss %}
     <link rel="stylesheet" type="text/css" href="/simple.min.css" />
     <link rel="stylesheet" type="text/css" href="/theme.css" />
-    {% if config.markdown.highlight_code and config.markdown.highlight_theme == "css" %}
-    <link rel="stylesheet" type="text/css" href="/syntax-theme-dark.css" media="(prefers-color-scheme: dark)" />
-    <link rel="stylesheet" type="text/css" href="/syntax-theme-light.css" media="(prefers-color-scheme: light)" />
-    {% endif %}
+    {# TODO: When Zola exposes the `config.markdown` key, move highlighting CSS here #}
+    {% block css %}
+    {% endblock %}
 </head>
 
 <body>

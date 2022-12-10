@@ -10,4 +10,3 @@ I have expertise in high-scale managed packaging, automation and CI/CD for Sales
 
 My passions include teaching and technical evangelism, open source, science fiction, classical languages, and gardening.
 
-## Latest Content

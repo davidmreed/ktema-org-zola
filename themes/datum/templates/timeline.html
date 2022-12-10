@@ -7,6 +7,20 @@
 {% set_global content_items = content_items | concat(with=subsection.pages) %}
 {% endfor %}
 
+<h2>
+    Latest Content
+    {% if config.generate_feed %}
+    {% set rss_url = get_url(path=config.feed_filename, trailing_slash=false) %}
+    <a href="{{ rss_url }}">
+        {% if config.extra.use_icons %}
+        {{ macros::svg(item="solid/rss", alt="RSS Feed") }}
+        {% else %}
+        Feed
+        {% endif %}
+    </a>
+    {% endif %}
+</h2>
+
 {% for page in content_items | sort(attribute="date") | reverse | slice(end=config.extra.timeline_length) %}
 {{ macros::content_item(item=page, show_category=true) }}
 {% endfor %}
