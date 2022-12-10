@@ -86,7 +86,7 @@ header>nav a:first-child {
 	margin-right: 1.5rem;
 }
 
-nav.pagination {
+main nav {
 	text-transform: uppercase;
 	font-variant: small-caps;
 	font-size: 75%;
@@ -95,7 +95,7 @@ nav.pagination {
 	margin-bottom: 1.5rem;
 }
 
-nav.pagination span {
+main nav.pagination span {
 	margin-left: 1.5rem;
 	margin-right: 1.5rem;
 }
@@ -123,7 +123,7 @@ p code {
 
 img.icon {
 	height: 1.5rem;
-	vertical-align: text-top;
+	vertical-align: middle;
 }
 
 /* SVG filters generated via https://codepen.io/sosuke/pen/Pjoqqp to match accent color */
