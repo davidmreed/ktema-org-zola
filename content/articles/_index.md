@@ -7,4 +7,5 @@ weight=2
 aliases=["/blog"]
 [extra]
 include_in_timeline = true
+content_type = "article"
 +++

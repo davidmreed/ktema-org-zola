@@ -4,6 +4,11 @@ license = "MIT"
 homepage = "https://github.com/davidmreed/datum"
 min_version = "0.16.1"
 
+[author]
+name = "David Reed"
+homepage = "https://ktema.org"
+
+
 [extra]
 
 site_owner_name = "Joey Bloggs"
@@ -11,29 +16,6 @@ site_title = "My Great Site"
 use_icons = true
 use_tocs = false
 timeline_length = 5
-
-[extra.contact]
-order = ["email", "github", "mastodon", "twitter", "linkedin"]
-
-[extra.contact.email]
-name = "Email"
-icon = "solid/envelope"
-
-[extra.contact.github]
-name = "GitHub"
-icon = "brands/github"
-
-[extra.contact.twitter]
-name = "Twitter"
-icon = "brands/twitter"
-
-[extra.contact.linkedin]
-name = "LinkedIn"
-icon = "brands/linkedin"
-
-[extra.contact.mastodon]
-name = "Mastodon"
-icon = "brands/mastodon"
 
 [extra.resources.repo]
 show_on_card = true
@@ -59,3 +41,38 @@ show_on_card = false
 [extra.resources.home]
 show_on_card = true
 icon="solid/link"
+
+[extra.contact]
+order = ["email", "github", "mastodon", "twitter", "linkedin"]
+
+[extra.contact.email]
+name = "Email"
+icon = "solid/envelope"
+
+[extra.contact.github]
+name = "GitHub"
+icon = "brands/github"
+
+[extra.contact.twitter]
+name = "Twitter"
+icon = "brands/twitter"
+
+[extra.contact.linkedin]
+name = "LinkedIn"
+icon = "brands/linkedin"
+
+[extra.contact.mastodon]
+name = "Mastodon"
+icon = "brands/mastodon"
+
+[extra.content_types.article]
+display_name = "Article"
+card_type = "article"
+
+[extra.content_types.presentation]
+display_name = "Presentation"
+card_type = "presentation"
+
+[extra.content_types.project]
+display_name = "Project"
+card_type = "project"

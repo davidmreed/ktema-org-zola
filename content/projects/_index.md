@@ -7,6 +7,7 @@ weight=4
 aliases=["/code", "/code.html"]
 [extra]
 include_in_timeline = true
+content_type = "project"
 +++
 
 My full-time position is in developing and applying the [Salesforce.org toolchain](https://github.com/SFDO-Tooling), particularly [CumulusCI](https://github.com/SFDO-Tooling/CumulusCI). I'm proud to work on nonprofit- and education-focused products and open source at Salesforce, as well as with the Open Source Commons program. I work on the Salesforce platform and in Python, Rust, and JavaScript.
