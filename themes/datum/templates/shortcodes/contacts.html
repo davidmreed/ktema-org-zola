@@ -1,8 +1,0 @@
-{% import "macros.html" as macros %}
-
-<ul style="list-style-type: none; padding-left: 0.5rem; margin-left: 0;">
-    {% for contact_type in config.extra.contact.order %}
-    <li>{{ macros::contact(type=contact_type) }}
-    </li>
-    {% endfor %}
-</ul>
