@@ -104,8 +104,9 @@
 
 
 {% macro resources(item) %}
-{% if item.extra.resources %}
+{% if item.extra.resources or config.extra.use_social_sharing %}
 <nav>
+    {% if item.extra.resources %}
     {% for resource_type, resource in item.extra.resources %}
     {% if resource.filename %}
     {% set link = item.path ~ resource.filename %}
@@ -127,6 +128,36 @@
         {% endif %}
     </a>
     {% endfor %}
+    {% endif %}
+    {% if config.extra.use_social_sharing %}
+    <a class="icon" aria-label="Share on Twitter"
+        href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.permalink }}&via={{ config.extra.contact.twitter.username }}&related={{ config.extra.contact.twitter.username }}"
+        rel="nofollow" target="_blank" title="Share on Twitter">
+        {% if config.extra.use_icons %}
+        {{ self::svg(item="brands/twitter", alt="Twitter") }}
+        {% else %}
+        Twitter
+        {% endif %}
+    </a>
+    <a class="icon" aria-label="Share on LinkedIn"
+        href="http://www.linkedin.com/shareArticle?mini=true&url={{ page.permalink }}&title={{ page.title }}&summary={{ page.title }}&source={{ page.permalink }}"
+        target="_blank" title="Share on LinkedIn">
+        {% if config.extra.use_icons %}
+        {{ self::svg(item="brands/linkedin", alt="LinkedIn") }}
+        {% else %}
+        LinkedIn
+        {% endif %}
+    </a>
+    <a id="email-link" class="icon" aria-label="Send Email"
+        href="mailto:?subject={{ page.title }}&body={{ page.title }} - {{ page.permalink }}" target="_blank"
+        title="Send Email">
+        {% if config.extra.use_icons %}
+        {{ self::svg(item="solid/envelope", alt="Email") }}
+        {% else %}
+        Twitter
+        {% endif %}
+    </a>
+    {% endif %}
 </nav>
 {% endif %}
 {% endmacro resources %}

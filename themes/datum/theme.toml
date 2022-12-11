@@ -15,6 +15,7 @@ site_owner_name = "Joey Bloggs"
 site_title = "My Great Site"
 use_icons = true
 use_tocs = false
+use_social_sharing = true
 timeline_length = 5
 
 [extra.resources.repo]

@@ -19,6 +19,7 @@ site_owner_name = "David Reed"
 site_title = "David Reed"
 use_icons = true
 use_tocs = false
+use_social_sharing = true
 timeline_length = 5
 
 [extra.contact]
@@ -32,6 +33,7 @@ link = "https://github.com/davidmreed"
 
 [extra.contact.twitter]
 link = "https://twitter.com/aoristdual"
+username = "aoristdual"
 
 [extra.contact.linkedin]
 link = "https://www.linkedin.com/in/davidreed-salesforce/"
