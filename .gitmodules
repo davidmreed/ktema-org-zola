@@ -1,0 +1,3 @@
+[submodule "themes/datum"]
+	path = themes/datum
+	url = https://github.com/davidmreed/datum.git
