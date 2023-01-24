@@ -98,6 +98,7 @@ The `ContentNote` sObject doesn't exist at all unless the Enhanced Notes feature
 It's not just Apex that can create these dependencies. We see a different manifestation of the same underlying problem via this customization-based example, a Page Layout referencing Quick Actions that are exposed only when Chatter is turned on.
 
 Adding
+
 ```json
     "enhancedNotesSettings": {
       "enableEnhancedNotes": true
@@ -107,12 +108,12 @@ Adding
 to the `settings` section of our build org definition results in a successful outcome:
 
 ```
-sfdx force:package:version:create -d content-notes -x -f config/with-content-notes.json -w 100
+sfdx force:package:version:create -d settings -x -f config/with-settings.json -w 100
 Successfully created the package version [08c1R000000XZxEQAW]. Subscriber Package Version Id: 04t1R000000kZKlQAM
 Package Installation URL: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1R000000kZKlQAM
 As an alternative, you can use the "sfdx force:package:install" command.
 ```
-> Check out the complete example in the `content-notes` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
+> Check out the complete example in the `settings` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
 
 ### Schema Dependencies: Record Types and Sharing Models
 
@@ -178,11 +179,13 @@ Package Installation URL: https://login.salesforce.com/packaging/installPackage.
 As an alternative, you can use the "sfdx force:package:install" command.
 ```
 
+We'll dig deeper into how this works - acknowledging that an Account Record Type _really isn't a Setting_ - in Part 2 of this series.
+
 > Check out the complete example in the `record-types` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
 
 ### Solving Very Thorny Problems with Org Shapes and Org Snapshots
 
-The [Org Shape](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_shape_intro.htm) feature allows you to create a scratch org whos basic shape (features, settings, edition, limits, and licenses) matches a production org. While this capability is more likely to be useful for end users building packages to install in their production orgs, it can also be used by ISVs to support building managed packages with org-shape dependencies that are difficult or impossible to reproduce using other tools, such as licenses and limit increases that aren't exposed using the scratch org feature framework.
+The [Org Shape](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_shape_intro.htm) feature allows you to create a scratch org whose basic shape (features, settings, edition, limits, and licenses) matches a production org. While this capability is more likely to be useful for end users building packages to install in their production orgs, it can also be used by ISVs to support building managed packages with org-shape dependencies that are difficult or impossible to reproduce using other tools, such as licenses and limit increases that aren't exposed using the scratch org feature framework.
 
 An Org Snapshot goes even beyond Org Shape to include all of the customization in the org -- not just the basic shape elements like features and settings. Only Org Snapshots can address a handful of particularly thorny problems, like the one discussed below with required Record Types on sObjects owned by dependency packages. (Record Types aren't part of the Org Shape).
 
@@ -192,15 +195,71 @@ Org Shapes and Org Snapshots can help address environmental dependencies that ar
 
 There are a handful of environmental dependencies that are difficult or impossible to satisfy with a typical scratch org definition file. Licenses that aren't available in the feature framework, or configuration that isn't exposed to the Metadata API, can sometimes be addressed with Org Shape.
 
-Deploy-time dependencies in packaged metadata on configuration other than features, org settings, or sObject Record Types or Sharing Models, cannot be addressed other than by using an org snapshot. One way to create such a dependency is to package a Business Process/Record Type on a standard object that includes references to custom picklist values. Since `StandardValueSet` cannot be packaged, there's no way to satisfy that reference without using an org snapshot as the basis of the build org -- and as of this writing, Org Snapshots are not GA!
+Deploy-time dependencies in packaged metadata on configuration other than features, org settings, or sObject Record Types or Sharing Models, cannot be addressed other than by using an org snapshot. One way to create such a dependency is to package a Business Process/Record Type on a standard object that includes references to custom picklist values. Including, for example, this Business Process metadata in your package:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer Support Case</fullName>
+    <isActive>true</isActive>
+    <values>
+        <fullName>Closed</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Escalated</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Evaluating</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>New</fullName>
+        <default>true</default>
+    </values>
+    <values>
+        <fullName>Working</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>
+```
+
+causes an error:
+
+```
+$ sfdx force:package:create -n Standard-Value-Sets -t Unlocked -r standard-value-sets
+$ sfdx force:package:version:create -d standard-value-sets -x -f config/basic-org.json -w 100
+
+ERROR running force:package:version:create:  Case.Customer Support Case: Picklist value: Evaluating not found
+```
+
+The `Evaluating` picklist value is (in this example) part of the application, not one of the standard picklist values supplied by the platform. But since `StandardValueSet`, the metadata type representing the state of standard picklists like Case Status, cannot be packaged, and individual picklist values are not components that can be retrieved or deployed, we cannot include that customization in the package at all. There's no way to satisfy the reference without using an org snapshot as the basis of the build org. (Note that as of this writing, Org Snapshots are not GA).
+
+If we do go down that road, we do so by creating a scratch org (_not_ a build org) that otherwise meets the needs of the package. Then, we add the picklist value `Evaluating` to Case Status in that org, and take its snapshot:
+
+```
+```
+
+By adding that snapshot to the org definition file for our build org (in place of `edition`), we can get a successful package creation:
+
+```json
+{
+  "orgName": "Ktema Systems",
+  "snapshot": "DependencyTest"
+}
+```
+
+```
+```
+
+In this case, the package will still have an install-time dependency on the user providing that picklist value. 
 
 Another complex challenge is a package that has a dependency on the Record Type feature for an sObject that's owned by one of its package dependencies. As we'll see in Part 2, this challenge actually illuminates some of the interior functioning of the build org creation process, but comes with other quirks too.
 
 ## Using Build Orgs
 
 Creating a build org definition is the hard part. Actually putting it into use is comparatively a piece of cake!
-
-### With `sfdx`
 
 When you [create a package version](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_unlocked_pkg_create_pkg_ver.htm) with the SFDX CLI, you run a command like this:
 
@@ -209,8 +268,6 @@ $ sfdx force:package:version:create --definitionfile my-org.json ...
 ```
 
 (You can also set `definitionFile` in your package's entry in `sfdx-project.json` so that you don't have to remember which definition file you meant to use).
-
-### With CumulusCI
 
 CumulusCI users [upload a 2GP version](https://cumulusci.readthedocs.io/en/stable/managed-2gp.html) like this:
 
