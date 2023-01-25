@@ -113,3 +113,11 @@ So here's the final order of operations:
 ---
 
 Let's think through the implications of this knowledge.
+
+The rigid order of deployment in build org creation means that we have limited ability to 
+
+We cannot perform an unpackaged metadata deployment after dependency packages, but before package metadata deployment. This is what we'd need in order to serve the package-with-dependency-record-type issue.
+
+We can't perform arbitrary API-based operations on the org. We never get direct access with a session id. That means we still don't have a clear way to handle environmental dependencies on things like Standard Value Sets, which cannot be packaged.
+
+But ... there's a thread we can pull on here. In Step 3, the settings bundle is deployed into the org. We know that `settings.zip` is synthesize from `settings` and `objectSettings` into Metadata API-format source. What if we could put _something other than those elements_ into `settings.zip`? That would give us some interesting new tools, if not complete flexibility. Stay tuned for Part 3 of this series.
