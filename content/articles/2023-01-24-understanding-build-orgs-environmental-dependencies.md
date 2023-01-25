@@ -1,6 +1,5 @@
 +++
 title="Understanding Build Orgs, Part 1: Build Orgs and Environmental Dependencies"
-draft=true
 +++
 
 > This series discusses second-generation managed and unlocked packages. It does not apply to org-dependent unlocked packages or to managed packages built with the Skip Validation option. Portions of this discussion also apply to first-generation managed packages, but different techniques apply in that context.
@@ -48,7 +47,7 @@ There are a dizzying array of factors that go into determining the shape of the 
 
 > These tools are also used for building plain old scratch orgs! Here, we'll focus on how they apply to satisfying package dependency scenarios.
 
-### Features
+### License Dependencies: Features
 
 Broadly, scratch org features represent configuration that you cannot turn on in Salesforce Setup without purchasing a license. 
 
@@ -58,7 +57,46 @@ There's a key question implicit in this discussion: what features are actually e
 
 That leaves you in a position where you have to apply your knowledge of the platform, the intent you bring to your own development, and your experience building packages in many different types of org to suss out the minimum set of features your build orgs need.
 
-Feature dependencies can manifest in many different ways. Here's one example, of a dependency on the `Communities` feature.
+Feature dependencies can manifest in many different ways. Here's one example, of a dependency on the Action Plans feature. Suppose you want to package a Page Layout that includes the Action Plans Related List. You'll have metadata like this:
+
+```xml
+<relatedLists>
+    <fields>Name</fields>
+    <fields>ActionPlanState</fields>
+    <fields>Owner</fields>
+    <fields>StartDate</fields>
+    <relatedList>ActionPlan</relatedList>
+</relatedLists>
+```
+
+Build your package version:
+
+```
+$ sfdx force:package:create -n Action-Plans -t Unlocked -r action-plans -f config/basic-org.json
+$ sfdx force:package:version:create -d action-plans -x -w 100
+
+ERROR running force:package:version:create:  Contact-Contact Layout: Invalid field:Name in related list:ActionPlan
+```
+
+The reference in the `<relatedList>` tag is what's causing the error here: Action Plans isn't licensed in your build org, so you can't use the associated component. Add the relevant Feature in the build org definition:
+
+```json
+  "features": [
+    "IndustriesActionPlan"
+  ],
+```
+
+and all is well:
+
+```
+sfdx force:package:version:create -d action-plans -x -w 100 -f config/with-action-plans.json
+
+Successfully created the package version [08c4p00000008cIAAQ]. Subscriber Package Version Id: 04t4p000001XXXXAAA
+Package Installation URL: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4p000001XXXXAAA
+As an alternative, you can use the "sfdx force:package:install" command.
+```
+
+> Check out the complete example in the `action-plans` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
 
 ### Configuration Dependencies: Settings
 
@@ -95,8 +133,6 @@ ERROR running force:package:version:create:  ContentNoteAccess: Invalid type: Sc
 
 The `ContentNote` sObject doesn't exist at all unless the Enhanced Notes feature is turned on, which is not the case in this build org.
 
-It's not just Apex that can create these dependencies. We see a different manifestation of the same underlying problem via this customization-based example, a Page Layout referencing Quick Actions that are exposed only when Chatter is turned on.
-
 Adding
 
 ```json
@@ -113,7 +149,8 @@ Successfully created the package version [08c1R000000XZxEQAW]. Subscriber Packag
 Package Installation URL: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1R000000kZKlQAM
 As an alternative, you can use the "sfdx force:package:install" command.
 ```
-> Check out the complete example in the `settings` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
+
+> Check out the complete example in the `content-notes` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
 
 ### Schema Dependencies: Record Types and Sharing Models
 
@@ -137,9 +174,7 @@ public with sharing class RecordTypeAccess {
 
 Any static reference of this kind creates the dependency on the Record Type feature.
 
-Likewise, Apex code can establish an install-time dependency on a non-Public Sharing Model for an sObject. Such a dependency requires that the Sharing Model for that sObject be set to (for example) `Private` before the package is installed. The sObject may be standard or custom, but can't be part of the package itself.
-
-These dependencies are satisfied via the confusingly-named `orgSettings` key in the scratch org definition file. This key allows you to specify default Record Types and Sharing Models in the build org. (We'll see exactly how this works under the hood in Part 2).
+Likewise, Apex code can establish an install-time dependency on a non-Public Sharing Model for an sObject, whether standard or custom, from outside the package. Such a dependency requires that the Sharing Model for that sObject be set to (for example) `Private` before the package is installed. 
 
 If we start by building our package, containing the example above, with a non-suitable build org definition:
 
@@ -159,7 +194,7 @@ No such column 'RecordTypeId' on entity 'Account'. If you are attempting to use 
 
 As with most deployment errors, this message highlights a symptom (a field that your metadata references isn't available), but doesn't provide indicators of _why_ it is not present or how to address it. Experience, and internalizing patterns like those we're reviewing here, gives you the tools to interpret this error message as indicating a feature dependency on Account Record Types.
 
-By modifying the build org definition to include
+These dependencies are satisfied via the confusingly-named `orgSettings` key in the scratch org definition file. This key allows you to specify default Record Types and Sharing Models in the build org. By modifying the build org definition to include
 
 ```json
   "objectSettings": {
@@ -174,8 +209,8 @@ we obtain a successful outcome:
 ```
 $ sfdx force:package:version:create -d record-types -x -f config/with-account-record-types.json -w 100
 
-Successfully created the package version [08c5f000000PCZyAAO]. Subscriber Package Version Id: 04t5f000000Jn2AAAS
-Package Installation URL: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t5f000000Jn2AAAS
+Successfully created the package version [08c5f000000PXXXAAO]. Subscriber Package Version Id: 04t5f000000XXXAAAS
+Package Installation URL: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t5f000000XXXAAAS
 As an alternative, you can use the "sfdx force:package:install" command.
 ```
 
@@ -187,11 +222,9 @@ We'll dig deeper into how this works - acknowledging that an Account Record Type
 
 The [Org Shape](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_shape_intro.htm) feature allows you to create a scratch org whose basic shape (features, settings, edition, limits, and licenses) matches a production org. While this capability is more likely to be useful for end users building packages to install in their production orgs, it can also be used by ISVs to support building managed packages with org-shape dependencies that are difficult or impossible to reproduce using other tools, such as licenses and limit increases that aren't exposed using the scratch org feature framework.
 
-An Org Snapshot goes even beyond Org Shape to include all of the customization in the org -- not just the basic shape elements like features and settings. Only Org Snapshots can address a handful of particularly thorny problems, like the one discussed below with required Record Types on sObjects owned by dependency packages. (Record Types aren't part of the Org Shape).
+An Org Snapshot goes even beyond Org Shape to include all of the customization in the org &emdash; not just the basic shape elements like features and settings. Only Org Snapshots can address a handful of particularly thorny problems, like the ones discussed below.
 
-Org Shapes and Org Snapshots can help address environmental dependencies that are otherwise impossible to satisfy, making it possible to build 2GPs that couldn't exist without them. But both strategies also increase the extent to which the package pipeline depends on opaque artifacts -- the shape or snapshot -- which cannot be reviewed, diffed, or even inspected in source control. That facet exacerbates the difficulty of fully defining a package's dependencies, and for that reason I encourage using them for managed packaging only to solve specific problems.
-
----
+Org Shapes and Org Snapshots can help address environmental dependencies that are otherwise impossible to satisfy, making it possible to build 2GPs that couldn't exist without them. But both strategies also increase the extent to which the package pipeline depends on opaque artifacts &emdash; the shape or snapshot &emdash; which cannot be reviewed, diffed, or even inspected in source control. That facet exacerbates the difficulty of fully defining a package's dependencies, and for that reason I encourage using them for managed packaging only to solve specific problems.
 
 There are a handful of environmental dependencies that are difficult or impossible to satisfy with a typical scratch org definition file. Licenses that aren't available in the feature framework, or configuration that isn't exposed to the Metadata API, can sometimes be addressed with Org Shape.
 
@@ -239,6 +272,7 @@ The `Evaluating` picklist value is (in this example) part of the application, no
 If we do go down that road, we do so by creating a scratch org (_not_ a build org) that otherwise meets the needs of the package. Then, we add the picklist value `Evaluating` to Case Status in that org, and take its snapshot:
 
 ```
+$ sfdx force:org:snapshot:create -n DependencyTest --sourceorg snapshot-org
 ```
 
 By adding that snapshot to the org definition file for our build org (in place of `edition`), we can get a successful package creation:
@@ -251,9 +285,16 @@ By adding that snapshot to the org definition file for our build org (in place o
 ```
 
 ```
+$ sfdx force:package:version:create -d standard-value-sets -x -f config/with-snapshot.json -w 100
+
+Successfully created the package version [08c5f000000PXXXAAO]. Subscriber Package Version Id: 04t5f000000XXXAAAS
+Package Installation URL: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t5f000000XXXAAAS
+As an alternative, you can use the "sfdx force:package:install" command.
 ```
 
-In this case, the package will still have an install-time dependency on the user providing that picklist value. 
+In this case, the package will still have an install-time dependency on the user providing that picklist value (and, indeed, the other referenced values, which might have been removed by the user). CumulusCI uses a technique called [Metadata ETL](https://cumulusci.readthedocs.io/en/stable/metadata-etl.html) to address those dependencies safely at install time.
+
+> Check out the complete example in the `standard-value-sets` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
 
 Another complex challenge is a package that has a dependency on the Record Type feature for an sObject that's owned by one of its package dependencies. As we'll see in Part 2, this challenge actually illuminates some of the interior functioning of the build org creation process, but comes with other quirks too.
 
@@ -261,9 +302,9 @@ Another complex challenge is a package that has a dependency on the Record Type 
 
 Creating a build org definition is the hard part. Actually putting it into use is comparatively a piece of cake!
 
-When you [create a package version](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_unlocked_pkg_create_pkg_ver.htm) with the SFDX CLI, you run a command like this:
+When you [create a package version](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_unlocked_pkg_create_pkg_ver.htm) with the SFDX CLI, you run a command like many of the examples we've seen so far:
 
-```bash
+```
 $ sfdx force:package:version:create --definitionfile my-org.json ...
 ```
 
