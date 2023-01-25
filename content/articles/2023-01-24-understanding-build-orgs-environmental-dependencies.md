@@ -61,11 +61,11 @@ Feature dependencies can manifest in many different ways. Here's one example, of
 
 ```xml
 <relatedLists>
-    <fields>Name</fields>
-    <fields>ActionPlanState</fields>
-    <fields>Owner</fields>
-    <fields>StartDate</fields>
-    <relatedList>ActionPlan</relatedList>
+  <fields>Name</fields>
+  <fields>ActionPlanState</fields>
+  <fields>Owner</fields>
+  <fields>StartDate</fields>
+  <relatedList>ActionPlan</relatedList>
 </relatedLists>
 ```
 
@@ -81,9 +81,9 @@ ERROR running force:package:version:create:  Contact-Contact Layout: Invalid fie
 The reference in the `<relatedList>` tag is what's causing the error here: Action Plans isn't licensed in your build org, so you can't use the associated component. Add the relevant Feature in the build org definition:
 
 ```json
-  "features": [
-    "IndustriesActionPlan"
-  ],
+"features": [
+  "IndustriesActionPlan"
+],
 ```
 
 and all is well:
@@ -114,15 +114,15 @@ Creating a configuration dependency can be very easy. Here's an example in Apex:
 
 ```java
 public with sharing class ContentNoteAccess {
-    public static void accessContentNotes() {
-        System.debug(
-            [
-                SELECT Id
-                FROM ContentNote
-                LIMIT 1
-            ]
-        );
-    }
+  public static void accessContentNotes() {
+    System.debug(
+      [
+        SELECT Id
+        FROM ContentNote
+        LIMIT 1
+      ]
+    );
+  }
 }
 ```
 
@@ -141,7 +141,7 @@ Adding
 
 ```json
 "enhancedNotesSettings": {
-    "enableEnhancedNotes": true
+  "enableEnhancedNotes": true
 }
 ```
 
@@ -164,15 +164,15 @@ Apex code (and rarely other metadata) can reference the `RecordTypeId` field on 
 
 ```java
 public with sharing class RecordTypeAccess {
-    public static void accessAccountRecordTypes() {
-        System.debug(
-            [
-                SELECT RecordTypeId
-                FROM Account
-                LIMIT 1
-            ]
-        );
-    }
+  public static void accessAccountRecordTypes() {
+    System.debug(
+      [
+        SELECT RecordTypeId
+        FROM Account
+        LIMIT 1
+      ]
+    );
+  }
 }
 ```
 
@@ -202,9 +202,9 @@ These dependencies are satisfied via the confusingly-named `orgSettings` key in 
 
 ```json
 "objectSettings": {
-    "account": {
-        "defaultRecordType": "default"
-    }
+  "account": {
+    "defaultRecordType": "default"
+  }
 }
 ```
 
