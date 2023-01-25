@@ -33,7 +33,7 @@ private class AccountService {
 ```
 If you should try to install Package B, or deploy Package B's source metadata, in an org without Package A, that reference to the `CommonUtils` class will not be satisfied and the package installation will fail. Its metadata is not valid in the context of the target org. In fact, you might see a message that resembles the example above about `ContentNote`.
 
-Package-to-package dependencies are usually quite well-defined and understandable, because they're explicit and they're done by engineers on purpose. What we saw in the example failure above, which we said we needed to understand through the lens of a build org, is actually the same problem -- but it's harder to see, predict, and reason about. It's an _environmental_ dependency: a relationship between the functionality of the package and the configuration of the org itself (rather than another package). The `ContentNote` sObject exists only when the Enhanced Notes feature is turned on in the org, and it is _not_ turned on by default in the build org.
+Package-to-package dependencies are usually quite well-defined and understandable, because they're explicit and they're done by engineers on purpose. What we saw in the example failure above, which we said we needed to understand through the lens of a build org, is actually the same problem — but it's harder to see, predict, and reason about. It's an _environmental_ dependency: a relationship between the functionality of the package and the configuration of the org itself (rather than another package). The `ContentNote` sObject exists only when the Enhanced Notes feature is turned on in the org, and it is _not_ turned on in the Developer Edition templates that are used by default to create the build org.
 
 Packages can be more or less sensitive to the configuration of the org in which they're installed. You might think that a package has no such sensitivities, but you'd almost certainly be wrong. Even features commonly taken for granted (like Enhanced Notes, above, or Chatter) are in fact optional. When you scale your package to a customer base of any size, you'll rapidly find out where your assumptions about what a "normal" org looks like clash with the extraordinary variety of real-world orgs. I’ve even seen situations (although I believe they’ve mercifully been resolved) where a feature is on in all newly-created orgs, but may be off in existing customer orgs!
 
@@ -41,7 +41,7 @@ These environmental sensitivities come in uncountable forms. Many are related to
 
 ## Defining and Satisfying Environmental Dependencies
 
-As noted earlier, there's no way to directly access the build org. You can't log in to configure it, and even if you could, it'd be an anti-pattern -- you don't want to bring manual steps into your release processes! 
+As noted earlier, there's no way to directly access the build org. You can't log in to configure it, and even if you could, it'd be an anti-pattern — you don't want to bring manual steps into your release processes! 
 
 There are a dizzying array of factors that go into determining the shape of the org, and hence the elements upon which your package might find an environmental dependency. The edition, release, language, features, settings, and org settings all contribute to the final org shape. However, the platform gives you four primary tools to configure the build org as part of the scratch org definition file. Those are `features`, `settings`, `orgSettings`, and `sourceOrg`/`/snapshot`.
 
@@ -96,6 +96,10 @@ Package Installation URL: https://login.salesforce.com/packaging/installPackage.
 As an alternative, you can use the "sfdx force:package:install" command.
 ```
 
+How do you know which feature to add? In this example, it's pretty easy to reason out because of the component name. But it's often a process of intelligent trial and error, informed by your knowledge of the platform and the features you _intended_ to use. (Keeping in mind that it's quite possible to create an accidental feature dependency!) In situations where you had intention to create a feature dependency, you may even need to pursue a sort of binary search process: remove large portions of your metadata, see if a version upload succeeds, and continue to delete and deploy until you find a minimum deployable version. Then, add deleted elements back in piece by piece until you find the minimal change that causes the dependency.
+
+The list of available [features](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs_def_file_config_values.htm) is in the Salesforce DX Developer Guide.
+
 > Check out the complete example in the `action-plans` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
 
 ### Configuration Dependencies: Settings
@@ -136,9 +140,9 @@ The `ContentNote` sObject doesn't exist at all unless the Enhanced Notes feature
 Adding
 
 ```json
-    "enhancedNotesSettings": {
-      "enableEnhancedNotes": true
-    }
+"enhancedNotesSettings": {
+    "enableEnhancedNotes": true
+}
 ```
 
 to the `settings` section of our build org definition results in a successful outcome:
@@ -197,11 +201,11 @@ As with most deployment errors, this message highlights a symptom (a field that 
 These dependencies are satisfied via the confusingly-named `orgSettings` key in the scratch org definition file. This key allows you to specify default Record Types and Sharing Models in the build org. By modifying the build org definition to include
 
 ```json
-  "objectSettings": {
+"objectSettings": {
     "account": {
-      "defaultRecordType": "default"
+        "defaultRecordType": "default"
     }
-  }
+}
 ```
 
 we obtain a successful outcome:
@@ -214,7 +218,7 @@ Package Installation URL: https://login.salesforce.com/packaging/installPackage.
 As an alternative, you can use the "sfdx force:package:install" command.
 ```
 
-We'll dig deeper into how this works - acknowledging that an Account Record Type _really isn't a Setting_ - in Part 2 of this series.
+We'll dig deeper into how this works — acknowledging that an Account Record Type _really isn't a Setting_ — in Part 2 of this series.
 
 > Check out the complete example in the `record-types` subdirectory in the [repo](https://github.com/davidmreed/Build-Org-Examples/).
 
@@ -222,13 +226,13 @@ We'll dig deeper into how this works - acknowledging that an Account Record Type
 
 The [Org Shape](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_shape_intro.htm) feature allows you to create a scratch org whose basic shape (features, settings, edition, limits, and licenses) matches a production org. While this capability is more likely to be useful for end users building packages to install in their production orgs, it can also be used by ISVs to support building managed packages with org-shape dependencies that are difficult or impossible to reproduce using other tools, such as licenses and limit increases that aren't exposed using the scratch org feature framework.
 
-An Org Snapshot goes even beyond Org Shape to include all of the customization in the org &emdash; not just the basic shape elements like features and settings. Only Org Snapshots can address a handful of particularly thorny problems, like the ones discussed below.
+An Org Snapshot goes even beyond Org Shape to include all of the customization in the org — not just the basic shape elements like features and settings. Only Org Snapshots can address a handful of particularly thorny problems, like the ones discussed below.
 
-Org Shapes and Org Snapshots can help address environmental dependencies that are otherwise impossible to satisfy, making it possible to build 2GPs that couldn't exist without them. But both strategies also increase the extent to which the package pipeline depends on opaque artifacts &emdash; the shape or snapshot &emdash; which cannot be reviewed, diffed, or even inspected in source control. That facet exacerbates the difficulty of fully defining a package's dependencies, and for that reason I encourage using them for managed packaging only to solve specific problems.
+Org Shapes and Org Snapshots can help address environmental dependencies that are otherwise impossible to satisfy, making it possible to build 2GPs that couldn't exist without them. But both strategies also increase the extent to which the package pipeline depends on opaque artifacts — the shape or snapshot — which cannot be reviewed, diffed, or even inspected in source control. That facet exacerbates the difficulty of fully defining a package's dependencies, and for that reason I encourage using them for managed packaging only to solve specific problems.
 
 There are a handful of environmental dependencies that are difficult or impossible to satisfy with a typical scratch org definition file. Licenses that aren't available in the feature framework, or configuration that isn't exposed to the Metadata API, can sometimes be addressed with Org Shape.
 
-Deploy-time dependencies in packaged metadata on configuration other than features, org settings, or sObject Record Types or Sharing Models, cannot be addressed other than by using an org snapshot. One way to create such a dependency is to package a Business Process/Record Type on a standard object that includes references to custom picklist values. Including, for example, this Business Process metadata in your package:
+Deploy-time dependencies in packaged metadata on configuration other than features, org settings, or sObject Record Types or Sharing Models cannot be addressed other than by using an org snapshot. One way to create such a dependency is to package a Business Process/Record Type on a standard sObject, where your configuration includes references to custom picklist values. Including, for example, this Case Business Process metadata in your package:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
