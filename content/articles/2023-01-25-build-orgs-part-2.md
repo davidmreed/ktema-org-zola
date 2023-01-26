@@ -15,13 +15,13 @@ The first stop in digging deeper is the Tooling API. The Tooling sObject [`Packa
 
 There are two fields on this object that directly control the build org generation process:
 
-`SourceOrg`:
+`SourceOrg` is documented as:
 
 > The ID of the org whose shape (features, settings, limits, and licenses) information is used for creating scratch orgs used to validate metadata during creation of a second-generation managed package or unlocked package.
 
 We looked at the Org Shape feature briefly in Part 1. For unclear reasons, build orgs that use an Org Shape are set here rather than with the remaining parameters (discussed below).
 
-`VersionInfo`: 
+`VersionInfo` is documented as:
 
 > The blob that stores details about the package version.
 
@@ -35,7 +35,9 @@ The value of the `VersionInfo` field is a ZIP file encoded in base64, which shou
 
 ## The Package Descriptor
 
-`package2-descriptor.json` is a specification of both the version to be created and of the build org. It is _not_ a scratch org definition file. Rather, it's a fusion of information about the package itself (derived from `sfdx-project.json`) and information about the build org (derived from the scratch org definition file). This file's schema is nominally defined as a TypeScript interface [here](https://github.com/forcedotcom/packaging/blob/ce6036a5878a5675171467b62ccff17c0ff4f24d/src/interfaces/packagingInterfacesAndType.ts#L158). However, this interface confusingly melds data elements that are user input and the values into which they are digested, which are _actually_ sent to the server. Plus, it omits several legal parameters! The real schema for the descriptor, as far as I can tell, is this:
+`package2-descriptor.json` is a specification of both the version to be created and of the build org. It is _not_ a scratch org definition file. Rather, it's a fusion of information about the package itself (derived from `sfdx-project.json`) and information about the build org (derived from the scratch org definition file). This file's schema is nominally defined as a TypeScript interface [here](https://github.com/forcedotcom/packaging/blob/ce6036a5878a5675171467b62ccff17c0ff4f24d/src/interfaces/packagingInterfacesAndType.ts#L158). However, this interface confusingly melds data elements that are user input and the values into which they are digested, which are _actually_ sent to the server. Plus, it omits several legal parameters! 
+
+The actual schema for the descriptor, as far as I can tell, is this:
  
 ```typescript
 type PackageDescriptor = {
@@ -132,7 +134,7 @@ Feature application happens second. We know this happens before settings deploym
 
 All of the initial setup being complete, the package metadata is deployed next.
 
-Two elements of the build org are aimed at runtime dependencies: Permission Set and Permission Set License assignments, and unpackaged metadata (the confusingly-named member `unpackaged-metadata-package.zip`). We know that these items are deployed after the package metadata, because we cannot use unpackaged metadata to satisfy references in the 2GP package itself. (TODO: explicate)
+Two elements of the build org are aimed at runtime dependencies: Permission Set and Permission Set License assignments, and unpackaged metadata (the confusingly-named member `unpackaged-metadata-package.zip`). We know that these items are deployed after the package metadata, because we cannot use unpackaged metadata to satisfy references in the 2GP package itself. (We demonstrated this in Part 1.5).
 
 Apex tests are always run before a package is uploaded, unless an option such as Skip Validation is used. This takes place next.
 
@@ -140,12 +142,16 @@ Finally, the package artifact is created.
 
 So here's the final order of operations:
 
-1. The build org is created. If a source org is being used, the snapshot creates the org; otherwise, the relevant edition is used. 
-2. Features are applied to the org.
-3. The settings bundle (`settings.zip`) is deployed into the build org.
+1. The build org is created. 
+    - If a source org or snapshot is being used, that element defines the org.
+    - Otherwise, the specified edition is used. 
+2. Features are applied to the org. This is _not_ an API-based operation; it's part of the black box.
+3. The settings bundle (`settings.zip`) is deployed via the Metadata API.
 4. Dependency packages are installed.
-5. The package metadata is deployed into the build org.
-6. The unpackaged metadata bundle, if any, is deployed into the build org. Permission Sets and Permission Set Licenses are assigned (it is not clear to me in which order these steps take place).
+5. The package metadata is deployed via the Metadata API.
+6. Runtime dependency setup is performed, if present. It's unclear in which order these two steps are performed.
+    - The unpackaged metadata bundle is deployed via the Metadata API. 
+	- Permission Sets and Permission Set Licenses are assigned.
 7. Apex tests are run in the org.
 8. The package artifact is created.
 
