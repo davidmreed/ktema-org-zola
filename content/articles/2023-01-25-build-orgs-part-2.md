@@ -58,22 +58,18 @@ type PackageDescriptor = {
 	// Values derived from scratch org definition file 
 	features?: string[]; 
 	orgPreferences?: string[]; // converted to metadata?
-	snapshot?: string; 
+	snapshot?: string;
+	// Not clear that this does anything - converted to top-level field
+	sourceOrg?: string;
 	country?: string;
 	edition?: string;
 	release?: string;
-
 	// Not clear that this does anything - converted to top-level field
 	language?: string; 
 
 	permissionSetNames: string[]; 
 	permissionSetLicenseDeveloperNames: string[];
 
-	// I think this is a mistake
-	subscriberPackageVersionId: string;
-
-	// I think this is included in error (`id` governs)
-	packageId: string;
 	// It's not particularly clear to me what this does (we set it to "" in CumulusCI)
 	path: string;
 };
