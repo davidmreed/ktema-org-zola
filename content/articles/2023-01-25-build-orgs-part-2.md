@@ -81,16 +81,26 @@ type PackageDescriptor = {
 
 ## Settings Bundle
  
-`settings.zip` contains metadata, in Metadata API format, synthesized from the `settings` and `objectSettings` keys in the scratch org definition file. Entries under `settings` are converted one-for-one to Metadata API `Settings` entities. For example,
+`settings.zip` contains metadata, in Metadata API format, synthesized from the `settings` and `objectSettings` keys in the scratch org definition file. 
+
+Entries under `settings` are converted one-for-one to Metadata API `Settings` entities. For example,
 
 ```json
+"settings": {
+  "enhancedNotesSettings": {
+    "enableEnhancedNotes": true
+  }
+}
 ```
 
-would translate to XML metadata like this, in `settings/Foo.settings`:
+would translate to XML metadata like this, in `settings/EnhancedNotesSettings.settings`:
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<EnhancedNotesSettings xmlns="http://soap.sforce.com/2006/04/metadata">
+  <enableEnhancedNotes>true</enableEnhancedNotes>
+</EnhancedNotesSettings>
 ```
-
 
 `objectSettings` entries are translated into `CustomObject` metadata. For example, 
 
@@ -123,13 +133,13 @@ Notice that this is not a complete object definition. It only contains the custo
 ERROR running force:package:version:create:  Sample__c: Must specify a non-empty label for the CustomObject
 ```
 
-The error makes sense when we look at the actual, deployed metadata: the metadata doesn't have the required label specified, because it's intended to be deployed _over an object that already exists_. In this case, the object doesn't exist, so the Metadata API interprets our deployment as an attempt to create an object.
+The error makes sense when we look at the actual, deployed metadata: the metadata doesn't have the required label specified, because it's intended to be deployed _over an object that already exists_. In this case, the object doesn't exist, so the Metadata API interprets our deployment as an attempt to create an object. This behavior will become important below in teasing out the order of operations.
 
 The `settings.zip` member is optional.
 
 ## Unpackaged Metadata Bundle
  
-`unpackaged-metadata-package.zip` contains metadata that supports Apex test execution, but isn't included in the package itself. This bundle allows us to satisfy runtime dependencies of our Apex tests, without including test metadata in the package itself.
+`unpackaged-metadata-package.zip` contains arbitrary metadata that supports Apex test execution, but isn't included in the package itself. This bundle allows us to satisfy runtime dependencies of our Apex tests, without including test metadata in the package itself. Its content is completely user-specified.
 
 The `unpackaged-metadata-package.zip` member is optional.
 
@@ -139,9 +149,9 @@ When this multi-layered ZIP file is sent to the platform as part of a `Package2V
 
 Org creation, by nature, must take place first.
 
-Feature application happens second. We know this happens before settings deployment, because we can deploy settings that configure features, and we can do so if and only if the feature is actually enabled in the org. This experiment is tricky to run because of how many features are turned on by default in a Developer Edition scratch org, but I've tested it in both build orgs and regular scratch orgs.
+Feature application happens second. We know this happens before settings deployment, because we can deploy settings that configure features, and we can do so if and only if the feature is actually enabled in the org. The experiment to demonstrate this is tricky to run because of how many features are turned on by default in a Developer Edition scratch org, but I've tested it in both build orgs and regular scratch orgs.
 
-`settings.zip` is deployed next. We know this because we _cannot_ use `objectSettings`, which is converted into metadata in `settings.zip`, to create a default Record Type on an object that's owned by a dependency package. Attempting to do so results in an error, because the dependency package isn't installed yet. We can demonstrate this via the package in `dependency-record-types` in the repo. When we do
+`settings.zip` is deployed next. We know this happens before dependency package installation because we _cannot_ use `objectSettings`, which is converted into metadata in `settings.zip`, to create a default Record Type on an object that's owned by a dependency package. We can demonstrate this via the package in `dependency-record-types` in the repo. When we do
 
 ```
 sfdx force:package:version:create -d dependency-package-record-types -x -f config/with-dependency-record-type.json -w 100
@@ -158,6 +168,29 @@ Hence, `settings.zip` is deployed first, followed by dependency packages.
 All of the initial setup being complete, the package metadata is deployed next.
 
 Two elements of the build org are aimed at runtime dependencies: Permission Set and Permission Set License assignments, and unpackaged metadata (the confusingly-named member `unpackaged-metadata-package.zip`). We know that these items are deployed after the package metadata, because we cannot use unpackaged metadata to satisfy references in the 2GP package itself. (We demonstrated this in [our examination of runtime dependencies](@/articles/2022-02-20-2gp-unpackaged-metadata.md)).
+
+We don't know whether Permission Set (License) assignment happens first, or unmanaged metadata deployment. This does make a difference, because assigning a Permission Set License in some cases exposes metadata entities to the user that otherwise would not be visible even in the context of a Metadata API deployment. We can devise an experiment to figure out the order of operations.
+
+We set up an innocuous package containing only a single Apex unit test, which asserts that a specific custom field (`Test__c`) is present on the `Benefit` sObject, which is part of the Loyalty Management product. We do not include `Test__c` in the package. We add a directory of unpackaged metadata that includes `Test__c` as part of `Benefit.object`. In the package configuration in `sfdx-project.json`, we add the customization:
+
+```json
+{
+	"path": "loyalty-management",
+	"package": "Loyalty-Management",
+	"versionName": "ver 0.1",
+	"versionNumber": "0.1.0.NEXT",
+	"unpackagedMetadata": {
+		"path": "loyalty-management-unpackaged"
+	},
+	"apexTestAccess": {
+		"permissionSetLicenses": [
+			"Loyalty Management - Growth"
+		]
+	}
+}
+```
+
+With this setup, we can verify the order of operations: if the build succeeds with the `apexTestAccess` section as shown, and fails without it, we know that Permission Set License assignment comes before unpackaged metadata deployment.
 
 Apex tests are always run before a package is uploaded, unless an option such as Skip Validation is used. We also know Apex tests are run after unpackaged metadata deployment, because we can use unpackaged metadata to satisfy dynamic references in Apex tests.
 
