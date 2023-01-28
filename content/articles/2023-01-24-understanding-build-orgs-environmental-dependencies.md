@@ -1,5 +1,7 @@
 +++
 title="Understanding Build Orgs, Part 1: Build Orgs and Environmental Dependencies"
+[extra.resources.repo]
+link="https://github.com/davidmreed/Build-Org-Examples"
 +++
 
 > This series discusses second-generation managed and unlocked packages. It does not apply to org-dependent unlocked packages or to managed packages built with the Skip Validation option. Portions of this discussion also apply to first-generation managed packages, but different techniques apply in that context.
@@ -323,5 +325,7 @@ $ cci flow run release_2gp_beta --org dev
 CumulusCI automatically uses the scratch org definition file for the org `dev` (or whichever org you specify) as the build org definition. It also uses that org to look up the package version Ids for any 1GP packages that the 2GP package depends upon.
 
 ### Next Steps
+
+In a previous article, I discussed [satisfying runtime dependencies via build orgs](@/articles/2022-02-20-2gp-unpackaged-metadata.md)
 
 In Part 2 of this series, we'll examine how build orgs work under the hood: how the platform creates the org, and how your customizations to the build org definition are turned into deployments and other operations. We'll use this insight to focus on how the customizations we discussed above actually solve their related challenges, and why some of the challenges we discussed are so difficult to address within the build org framework.
