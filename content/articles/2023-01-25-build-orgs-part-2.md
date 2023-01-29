@@ -3,7 +3,7 @@ title="Understanding Build Orgs, Part 2: How a Build Org is Built"
 draft=true
 +++
 
-> This discussion is derived only from my experience building packages, writing packaging clients via the public API, and inspecting the public source code of the `sfdx` CLI. No internal or proprietary information about the Salesforce packaging system is included, nor do I know such information.
+> This discussion is derived from my experience building packages, writing packaging clients via the public API, and inspecting the public source code of the SFDX CLI. No internal or proprietary information about the Salesforce packaging system is included.
 
 In [Part 1](@/articles/2023-01-24-understanding-build-orgs-environmental-dependencies.md) and in a previous discussion of [build orgs and runtime dependencies](@/articles/2022-02-20-2gp-unpackaged-metadata.md), we looked at how the platform provides a number of different tools to handle environmental dependencies and runtime dependencies in second-generation packages by modifying the configuration of the _build org_. We also called out that, with regard to the build org,
 
@@ -171,7 +171,7 @@ Two elements of the build org are aimed at runtime dependencies: Permission Set 
 
 We don't know whether Permission Set (License) assignment happens first, or unmanaged metadata deployment. This does make a difference, because assigning a Permission Set License in some cases exposes metadata entities to the user that otherwise would not be visible even in the context of a Metadata API deployment. We can devise an experiment to figure out the order of operations.
 
-We set up an innocuous package containing only a single Apex unit test, which asserts that a specific custom field (`Test__c`) is present on the `Benefit` sObject, which is part of the Loyalty Management product. We do not include `Test__c` in the package. We add a directory of unpackaged metadata that includes `Test__c` as part of `Benefit.object`. In the package configuration in `sfdx-project.json`, we add the customization:
+We set up an innocuous package containing only inert metadata, such as a single Apex class that does nothing, plus a Permission Set that assigns access to that class. We add a directory of unpackaged metadata that includes a static reference to the `Benefit` sObject. `Benefit` is part of the Loyalty Management product, which uses a Permission Set License to expose its schema to the user. In the package configuration in `sfdx-project.json`, we add the customization:
 
 ```json
 {
@@ -190,7 +190,11 @@ We set up an innocuous package containing only a single Apex unit test, which as
 }
 ```
 
-With this setup, we can verify the order of operations: if the build succeeds with the `apexTestAccess` section as shown, and fails without it, we know that Permission Set License assignment comes before unpackaged metadata deployment.
+With this setup, we can verify the order of operations:
+
+- If the build succeeds with the `apexTestAccess` section as shown, and fails without it, we know that Permission Set License assignment comes before unpackaged metadata deployment.
+- If the build fails both with and without the `apexTestAccess` section as shown, and the error message indicates that the `Benefit` sObject doesn't exist, we know that unpackaged metadata deployment comes before Permission Set License assignment.
+- If we see a failure with a different error message, we know that something about our experiment setup or hypothesis is incorrect.
 
 Apex tests are always run before a package is uploaded, unless an option such as Skip Validation is used. We also know Apex tests are run after unpackaged metadata deployment, because we can use unpackaged metadata to satisfy dynamic references in Apex tests.
 
