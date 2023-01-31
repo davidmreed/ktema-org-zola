@@ -26,11 +26,11 @@ For example, Package A might expose an `@NamespaceAccessible` Apex class, `Commo
 
 ```java
 private class AccountService {
-	public void processChildAccounts(List<Account> accounts) {
-		if (CommonUtils.shouldProcessChildAccounts(accounts)) {
-			// Execute some business logic.
-		}
-	}
+  public void processChildAccounts(List<Account> accounts) {
+    if (CommonUtils.shouldProcessChildAccounts(accounts)) {
+      // Execute some business logic.
+    }
+  }
 }
 ```
 If you should try to install Package B, or deploy Package B's source metadata, in an org without Package A, that reference to the `CommonUtils` class will not be satisfied and the package installation will fail. Its metadata is not valid in the context of the target org. In fact, you might see a message that resembles the example above about `ContentNote`.
