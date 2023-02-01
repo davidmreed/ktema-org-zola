@@ -1,15 +1,16 @@
 +++
 title="Understanding Build Orgs, Part 2: How a Build Org is Built"
-draft=true
+[extra.resources.repo]
+link="https://github.com/davidmreed/Build-Org-Examples"
 +++
 
-> This discussion is derived only from my experience building packages, writing packaging clients via the public API, and inspecting the public source code of the `sfdx` CLI. No internal or proprietary information about the Salesforce packaging system is included, nor do I know such information.
+> This discussion is derived only from my experience building packages, writing packaging clients via the public API, and inspecting the public source code of the `sfdx` CLI. No internal or proprietary information about the Salesforce packaging system is included.
 
 In [Part 1](@/articles/2023-01-24-understanding-build-orgs-environmental-dependencies.md) and in a previous discussion of [build orgs and runtime dependencies](@/articles/2022-02-20-2gp-unpackaged-metadata.md), we looked at how the platform provides a number of different tools to handle environmental dependencies and runtime dependencies in second-generation packages by modifying the configuration of the _build org_. We also called out that, with regard to the build org,
 
 > you can't see it or interact with it. ... When you create a package version, your source is deployed to your build org, and your package artifact is uploaded from there. Then, the build org is disposed by the platform.
 
-What's in between those two poles — your configuration file in source control, and the uploaded package artifact? Why do we need to apply different strategies for different types of environmental dependency, as we saw in Part 1? And what's up with those dangling threads from before, about `objectSettings` that aren't really `Settings` and about the tricky case of a package with a dependency on another package's Record Type feature? We'll explore all of those questions by digging into the API used to upload 2GP versions, and open up some further avenues for experimentation along the way.
+What's in between those two endpoints — your configuration file in source control, and the uploaded package artifact? Why do we need to apply different strategies for different types of environmental dependency, as we saw in Part 1? And what's up with those dangling threads from before, about `objectSettings` that aren't really `Settings` and about the tricky case of a package with a dependency on another package's Record Type feature? We'll explore all of those questions by digging into the API used to upload 2GP versions, and open up some further avenues for experimentation along the way.
 
 The first stop in digging deeper is the Tooling API. The Tooling sObject [`Package2VersionCreateRequest`](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_package2versioncreaterequest.htm) mediates the process of creating a package version for tools like SFDX and CumulusCI. The tool creates a record in that sObject with input data about the package version desired, and then polls the created records for updates from the platform on the creation process.
 
@@ -25,21 +26,21 @@ We looked at the Org Shape feature briefly in Part 1. For unclear reasons, build
 
 > The blob that stores details about the package version.
 
-That's rather obscure - but there's nowhere else for the scratch org definition information to go, so it must be part of `VersionInfo`!  As far as I'm aware, the structure of the `VersionInfo` blob isn't documented formally and could change at any time.
-
-> This article is _not_ Salesforce documentation! Behaviors described here could change at any time. 
+That's rather obscure - but there's nowhere else for the scratch org definition information to go, so it must be part of `VersionInfo`!  As far as I'm aware, the structure of the `VersionInfo` blob isn't documented formally and could change at any time, but we can reverse-engineer quite a bit about how it works. 
 
 ## Unraveling `VersionInfo`
 
- Since [`sfdx` is open source](https://github.com/salesforcecli/sfdx-cli), we can pop the hood and find out there. What we want, specifically, is the [`@salesforce/packaging`](https://github.com/forcedotcom/packaging) NPM package, used by the [`plugin-packaging`](https://github.com/salesforcecli/plugin-packaging) SFDX plugin, which itself implements the `force:package:version:create` command. The relevant code's [here](https://github.com/forcedotcom/packaging/blob/main/src/package/packageVersionCreate.ts#L340). I'll save you parsing through some moderately abstract TypeScript and describe what happens, as of this writing.
+> This article is _not_ Salesforce documentation! Behaviors described here could change at any time. 
+
+Since [`sfdx` is open source](https://github.com/salesforcecli/sfdx-cli), we can pop the hood and find out quite a bit about how `VersionInfo` is created. What we want, specifically, is the [`@salesforce/packaging`](https://github.com/forcedotcom/packaging) NPM package, used by the [`plugin-packaging`](https://github.com/salesforcecli/plugin-packaging) SFDX plugin, which itself implements the `force:package:version:create` command. The relevant code's [here](https://github.com/forcedotcom/packaging/blob/main/src/package/packageVersionCreate.ts#L340). I'll save you parsing through some moderately abstract TypeScript and describe what happens, as of this writing.
 
 The value of the `VersionInfo` field is a ZIP file encoded in base64, which shouldn't be a surprise to anyone used to working with the Metadata API. Its contents are a bit surprising, however. The ZIP file contains four members, as follows.
 
 ### The Package Descriptor
 
-`package2-descriptor.json` is a specification of both the version to be created and of the build org. It is _not_ a scratch org definition file. Rather, it's a fusion of information about the package itself (derived from `sfdx-project.json`) and information about the build org (derived from the scratch org definition file). This file's schema is nominally defined as a TypeScript interface [here](https://github.com/forcedotcom/packaging/blob/ce6036a5878a5675171467b62ccff17c0ff4f24d/src/interfaces/packagingInterfacesAndType.ts#L158). However, this interface confusingly melds data elements that are user input and the values into which they are digested, which are _actually_ sent to the server. Plus, it omits several legal parameters! 
+`package2-descriptor.json` is a specification of both the version to be created and of the build org. It is _not_ a scratch org definition file. Rather, it's a fusion of information about the package itself (derived from `sfdx-project.json`) and information about the build org (derived from the scratch org definition file). 
 
-The actual schema for the descriptor, as far as I can tell, is this:
+The schema for the descriptor, as far as I can tell, is this:
  
 ```typescript
 type PackageDescriptor = {
@@ -97,7 +98,7 @@ The `orgPreferences` scratch org definition key is deprecated in favor of using 
 
 ### Settings Bundle
  
-`settings.zip` contains metadata, in Metadata API format, synthesized from the `settings` and `objectSettings` keys in the scratch org definition file. 
+`settings.zip` contains metadata, in Metadata API format, synthesized from the `settings` and `objectSettings` keys in the scratch org definition file. The SFDX CLI implements that synthesis [here](https://github.com/forcedotcom/sfdx-core/blob/b4c4e90898cf62083babfdd54cc33950f37d6e85/src/org/scratchOrgSettingsGenerator.ts), and CumulusCI implements it [here](https://github.com/SFDO-Tooling/CumulusCI/blob/3ff1aa8794e5c7ba5e330bbfc5a0d6f5af1f9021/cumulusci/tasks/salesforce/org_settings.py#L74).
 
 Entries under `settings` are converted one-for-one to Metadata API `Settings` entities. For example,
 
@@ -218,7 +219,7 @@ The 2GP build org system gives us tools to handle:
 - Package dependencies (dependencies)
 - Runtime dependencies (`unpackaged-metadata-package.zip`)
 
-While we've got a handful of outstanding edge cases, the vast majority of dependencies can be satisfied by applying these tools. However, the rigid order of deployment in build org creation means that we have limited ability to address edge cases or unforeseen circumstances. For example, we cannot perform an unpackaged metadata deployment after dependency packages, but before package metadata deployment. This is what we'd need in order to serve the package-with-dependency-record-type issue without using an org snapshot.
+While we've got a handful of outstanding edge cases, the vast majority of dependencies can be satisfied by applying these tools. However, the fixed order of deployment in build org creation means that we have limited ability to address edge cases or unforeseen circumstances. For example, we cannot perform an unpackaged metadata deployment after dependency packages, but before package metadata deployment. This is what we'd need in order to serve the package-with-dependency-record-type issue without using an org snapshot.
 
 We can't perform arbitrary API-based operations on the org. We never get direct access with a session id. That means we still don't have a clear way to handle environmental dependencies on things like Standard Value Sets, which cannot be packaged.
 
