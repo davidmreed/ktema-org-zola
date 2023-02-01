@@ -44,36 +44,36 @@ The schema for the descriptor, as far as I can tell, is this:
  
 ```typescript
 type PackageDescriptor = {
-	// Values derived from package definition in sfdx-project.json
-	// These values are post-processed, not copied literally -
-    // for example, dependencies are resolved to an 04t SubscriberPackageVersionId.
-	id: string; 
-	dependencies?: { subscriberPackageVersionId: string }[];
-	ancestorId?: string;
-	postInstallScript?: string;
-	postInstallUrl?: string;
-	releaseNotesUrl?: string;
-	uninstallScript?: string;
-	versionDescription?: string;
-	versionName?: string;
-	versionNumber?: string;
+  // Values derived from package definition in sfdx-project.json
+  // These values are post-processed, not copied literally -
+  // for example, dependencies are resolved to an 04t SubscriberPackageVersionId.
+  id: string;
+  dependencies?: { subscriberPackageVersionId: string }[];
+  ancestorId?: string;
+  postInstallScript?: string;
+  postInstallUrl?: string;
+  releaseNotesUrl?: string;
+  uninstallScript?: string;
+  versionDescription?: string;
+  versionName?: string;
+  versionNumber?: string;
 
-	// Values derived from scratch org definition file 
-	features?: string[]; 
-	// orgPreferences is deprecated; use `settings` instead.
-	orgPreferences?: string[];
-	snapshot?: string;
-	sourceOrg?: string;
-	country?: string;
-	edition?: string;
-	release?: string;
-	language?: string; 
+  // Values derived from scratch org definition file
+  features?: string[];
+  // orgPreferences is deprecated; use `settings` instead.
+  orgPreferences?: string[];
+  snapshot?: string;
+  sourceOrg?: string;
+  country?: string;
+  edition?: string;
+  release?: string;
+  language?: string; 
 
-	permissionSetNames: string[]; 
-	permissionSetLicenseDeveloperNames: string[];
+  permissionSetNames: string[];
+  permissionSetLicenseDeveloperNames: string[];
 
-	// It's not particularly clear to me what this does (we set it to "" in CumulusCI)
-	path: string;
+  // It's not particularly clear to me what this does (we set it to "" in CumulusCI)
+  path: string;
 };
 ```
 
