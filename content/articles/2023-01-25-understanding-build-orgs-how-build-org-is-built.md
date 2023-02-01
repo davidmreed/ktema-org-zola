@@ -125,7 +125,7 @@ would translate to XML metadata like this, in `settings/EnhancedNotesSettings.se
 "objectSettings": {
   "account": {
     "defaultRecordType": "default",
-	"sharingModel": "private"
+    "sharingModel": "private"
   }
 }
 ```
