@@ -47,7 +47,7 @@ type PackageDescriptor = {
   // Values derived from package definition in sfdx-project.json
   // These values are post-processed, not copied literally -
   // for example, dependencies are resolved to an 04t SubscriberPackageVersionId.
-  id: string;
+  package2Id: string;
   dependencies?: { subscriberPackageVersionId: string }[];
   ancestorId?: string;
   postInstallScript?: string;
