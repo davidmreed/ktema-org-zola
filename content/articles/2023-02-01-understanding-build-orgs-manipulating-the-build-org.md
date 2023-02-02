@@ -1,8 +1,8 @@
 +++
 title="Understanding Build Orgs, Part 3: Manipulating the Build Org"
+draft=true
 [extra.resources.repo]
 link="https://github.com/davidmreed/Build-Org-Examples"
-draft=true
 +++
 
 > This discussion is derived only from my experience building packages, writing packaging clients via the public API, and inspecting the public source code of the `sfdx` CLI. No internal or proprietary information about the Salesforce packaging system is included.
