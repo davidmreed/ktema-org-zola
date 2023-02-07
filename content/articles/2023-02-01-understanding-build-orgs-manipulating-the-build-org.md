@@ -22,7 +22,9 @@ Let's dig into that possibility and see if it helps address our complicated use 
 
 ---
 
-To do this experiment, I'm using CumulusCI, because it's easier for me to hack on. CumulusCI's package upload semantics are a little bit different than those of SFDX, but for our purposes, we don't need to worry much about the differences. We'll use the `create_package_version` task. That task already implements package upload by creating `Package2VersionRequest` records, and it already re-implements the strategy used by the SFDX CLI to turn `objectSettings` into `settings.zip`. Let's see what happens if we change that logic around a bit.
+To do this experiment, I'm using CumulusCI, because it's easier for me to hack on. We'll need to actually make some code changes to run experiments against the behavior of `settings.zip`. If you're not a Python engineer, that's fine! I'll walk through the contours of how we get this test ability. 
+
+CumulusCI's package upload semantics are a little bit different than those of SFDX, but for our purposes, we don't need to worry much about the differences. We'll use the `create_package_version` task. That task already implements package upload by creating `Package2VersionRequest` records, and it already re-implements the strategy used by the SFDX CLI to turn `objectSettings` into `settings.zip`. Let's see what happens if we change that logic around a bit.
 
 Working around line 400, in the logic that constructs a `Package2VersionRequest`, we drop a little extra code:
 
@@ -41,3 +43,15 @@ if "settings_metadata_path" in self.options:
 
 This code looks for a new option, `settings_metadata_path`. If there's a path given, it _ignores_ the `settings` and `objectSettings` keys in the build org definition, and instead reads metadata directly from disk into the `settings.zip` member of our `VersionInfo` blob.
 
+That gives us a route to pipe whatever metadata we wish into the API. Let's see what the API chooses to do with it.
+
+We'll go back to the `standard-value-sets` example. We add a new metadata directory, `standard-value-sets-unpackaged`. We include 
+
+```
+cci task run create_package_version --package-name "Standard-Value-Sets" --package-type Unlocked  --org dev
+```
+
+And hey, look what we find!
+
+```
+```
