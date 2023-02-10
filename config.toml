@@ -27,17 +27,13 @@ use_social_sharing = true
 timeline_length = 5
 
 [extra.contact]
-order = ["email", "github", "mastodon", "twitter", "linkedin", "sfse", "tbc"]
+order = ["email", "github", "mastodon", "linkedin", "sfse", "tbc"]
 
 [extra.contact.email]
 link = "mailto:david@ktema.org"
 
 [extra.contact.github]
 link = "https://github.com/davidmreed"
-
-[extra.contact.twitter]
-link = "https://twitter.com/aoristdual"
-username = "aoristdual"
 
 [extra.contact.linkedin]
 link = "https://www.linkedin.com/in/davidreed-salesforce/"
