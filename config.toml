@@ -5,6 +5,10 @@ generate_feed = true
 feed_filename = "feed.xml"
 theme = "datum"
 
+taxonomies = [
+    { name = "series", feed = false, render = false }
+]
+
 [markdown]
 highlight_code = true
 highlight_theme = "css"

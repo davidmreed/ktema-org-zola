@@ -1,6 +1,8 @@
 +++
 title="Understanding Build Orgs, Part 3: Manipulating the Build Org"
 draft=true
+[taxonomies]
+series=["Understanding Build Orgs"]
 [extra.resources.repo]
 link="https://github.com/davidmreed/Build-Org-Examples"
 +++

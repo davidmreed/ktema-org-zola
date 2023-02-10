@@ -1,5 +1,7 @@
 +++
 title="Understanding Build Orgs, Part 2: How a Build Org is Built"
+[taxonomies]
+series=["Understanding Build Orgs"]
 [extra.resources.repo]
 link="https://github.com/davidmreed/Build-Org-Examples"
 +++

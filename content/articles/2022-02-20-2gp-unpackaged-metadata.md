@@ -1,6 +1,8 @@
 +++
 title="What Does `unpackagedMetadata` Do for a Second-Generation Package?"
 aliases=["2022/02/20/2gp-unpackaged-metadata.html"]
+[taxonomies]
+series=["Understanding Build Orgs"]
 [extra.resources.repo]
 link="https://github.com/davidmreed/unpackaged-apex-2gp-test"
 +++

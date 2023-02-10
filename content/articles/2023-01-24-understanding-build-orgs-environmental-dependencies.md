@@ -1,5 +1,7 @@
 +++
 title="Understanding Build Orgs, Part 1: Build Orgs and Environmental Dependencies"
+[taxonomies]
+series=["Understanding Build Orgs"]
 [extra.resources.repo]
 link="https://github.com/davidmreed/Build-Org-Examples"
 +++
