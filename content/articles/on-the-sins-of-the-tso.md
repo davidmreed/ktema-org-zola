@@ -33,6 +33,8 @@ When your team works heavily with TSOs, the TSO itself _de facto_ becomes part o
 
 Does your team know which licenses, features, and settings your product requires? The TSO knows, but it cannot tell you.
 
+The discoverability issue
+
 ## TSO as Binary Blob
 
 A "binary blob", in software engineering, refers to a component that cannot be inspected. It's provided only as an opaque binary. You can execute that binary to do work, but you cannot look inside it to see what makes it tick and how it's implemented.
