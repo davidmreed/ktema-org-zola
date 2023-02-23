@@ -11,10 +11,7 @@ link="https://github.com/davidmreed/Build-Org-Examples"
 
 This third part of the series, which began with [Understanding Build Orgs: Environmental Dependencies](@/articles/2023-01-24-understanding-build-orgs-environmental-dependencies.md), [What does `unpackagedMetadata` do for a 2GP?](@/articles/2022-02-20-2gp-unpackaged-metadata.md), and [Understanding Build Orgs: How a Build Org is Built](@/articles/2023-01-31-understanding-build-orgs-how-build-org-is-built.md), brings us to a close by getting as deep into the guts of the second-generation package (2GP) build org as we can get. Specifically, we'll tease out a thread we found at the end of Part 2: the fact that there's a Metadata API ZIP payload deployed into the build org before our packaged source.
 
-Let's recall from Part 1 and 2 that there are a couple of thorny edge cases in terms of environmental dependencies that we haven't yet figured out how to serve, or serve well:
-
-- Packages that have dependencies on the Record Type feature for an sObject owned by another package.
-- Packages that have dependencies on Standard Value Set entries.
+Let's recall from Part 1 and 2 that there are a couple of thorny edge cases in terms of environmental dependencies that we haven't yet figured out how to serve, or serve well. In particular, we'll follow up on the challenge of packages that have dependencies on Standard Value Set entries.
 
 In Part 2, we observed
 
@@ -134,7 +131,7 @@ cci task run install_managed --version 04t4p0000020xxxAAA --org dev
 ```
 
 ```
-Installing Package 04t4p000002016hAAA                                                         
+Installing Package 04t4p0000020xxxAAA
 [02/22/23 21:41:59] In Progress
 [02/22/23 21:42:02] Success
 ```
@@ -147,4 +144,8 @@ Our picklist value reference _is_ in the package!
 
 Where does this leave us?
 
-Well, it's an interesting capability. It gives us another view into the 2GP build org, and reinforces a link between the 1GP and 2GP stories.
+Well, it's an interesting capability we've discovered: injecting any metadata we like into the 2GP build org. It gives us another view into the build process, and reinforces a link between the 1GP and 2GP stories. We could, of course, do this same thing with a 1GP packaging org!
+
+I wouldn't rely on it for a production 2GP managed package. This behavior is undocumented and not committed. It could certainly change tomorrow. But if's a technique I will keep in my back pocket when, as is often the case, [I'm experimenting with 2GPs as testing tools](https://medium.com/salesforce-architects/find-bugs-earlier-with-second-generation-packaging-f7c7a0b5300a).
+
+And it's just kind of neat.
