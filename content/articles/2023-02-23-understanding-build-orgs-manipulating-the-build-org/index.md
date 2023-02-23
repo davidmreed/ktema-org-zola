@@ -1,13 +1,12 @@
 +++
 title="Understanding Build Orgs, Part 3: Manipulating the Build Org"
-draft=true
 [taxonomies]
 series=["Understanding Build Orgs"]
 [extra.resources.repo]
 link="https://github.com/davidmreed/Build-Org-Examples"
 +++
 
-> This discussion is derived only from my experience building packages, writing packaging clients via the public API, and inspecting the public source code of the `sfdx` CLI. No internal or proprietary information about the Salesforce packaging system is included.
+> This discussion is derived from my experience building packages, writing packaging clients via the public API, and inspecting the public source code of the SFDX CLI. No internal or proprietary information about the Salesforce packaging system is included.
 
 This third part of the series, which began with [Understanding Build Orgs: Environmental Dependencies](@/articles/2023-01-24-understanding-build-orgs-environmental-dependencies.md), [What does `unpackagedMetadata` do for a 2GP?](@/articles/2022-02-20-2gp-unpackaged-metadata.md), and [Understanding Build Orgs: How a Build Org is Built](@/articles/2023-01-31-understanding-build-orgs-how-build-org-is-built.md), brings us to a close by getting as deep into the guts of the second-generation package (2GP) build org as we can get. Specifically, we'll tease out a thread we found at the end of Part 2: the fact that there's a Metadata API ZIP payload deployed into the build org before our packaged source.
 
