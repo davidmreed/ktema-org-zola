@@ -137,6 +137,8 @@ Installing Package 04t4p0000020xxxAAA
 
 Here's what we find under Support Processes in Setup:
 
+![Support Processes example with Evaluating entry shown](Support-Processes.png)
+
 Our picklist value reference _is_ in the package! 
 
 ---
