@@ -47,13 +47,104 @@ This code looks for a new option, `settings_metadata_path`. If there's a path gi
 
 That gives us a route to pipe whatever metadata we wish into the API. Let's see what the API chooses to do with it.
 
-We'll go back to the `standard-value-sets` example. We add a new metadata directory, `standard-value-sets-unpackaged`. We include 
+We'll go back to the `standard-value-sets` example. Recall that the original behavior we saw was this:
 
 ```
-cci task run create_package_version --package-name "Standard-Value-Sets" --package-type Unlocked  --org dev
+cci task run create_package_version \
+  --package-name "Standard-Value-Sets" \
+  --package-type Unlocked  \
+  --org dev
 ```
 
-And hey, look what we find!
+```
+[02/22/23 21:19:21] [Error]: Package creation failed with error: 
+  Error: Case.Customer Support Case: Picklist value: Evaluating not found
+```
+
+Let's see if we can get that package to create by stuffing some extra metadata in `settings.zip`.
+
+We add a new metadata directory, `standard-value-sets-unpackaged`. We include this metadata in that directory as `standardValueSets/CaseStatus.standardValueSet-meta.xml`, configuring the Case Status picklist to match expectations.
 
 ```
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sorted>false</sorted>
+    <standardValue>
+        <fullName>New</fullName>
+        <default>true</default>
+        <label>New</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Working</fullName>
+        <default>false</default>
+        <label>Working</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Escalated</fullName>
+        <default>false</default>
+        <label>Escalated</label>
+        <closed>false</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Closed</fullName>
+        <default>false</default>
+        <label>Closed</label>
+        <closed>true</closed>
+    </standardValue>
+    <standardValue>
+        <fullName>Evaluating</fullName>
+        <default>false</default>
+        <label>Evaluating</label>
+        <closed>true</closed>
+    </standardValue>
+</StandardValueSet>
 ```
+
+Now, if I use my new code to inject this metadata into the build org as `settings.zip`:
+
+```
+cci task run create_package_version \
+  --package-name "Standard-Value-Sets" \
+  --package-type Unlocked  \
+  --org dev \
+  --force-upload True \
+  --settings-metadata-path standard-value-sets-unpackaged
+```
+
+I get back:
+
+```
+[02/22/23 21:22:24] Created package version:
+  Package2 Id: 0Ho4p0000000xxxCAQ
+  Package2Version Id: 05i4p0000000xxxAAM
+  SubscriberPackageVersion Id: 04t4p0000020xxxAAA
+  Version Number: 0.0.0.2
+  Dependencies: []
+```
+
+Sure enough - the platform deployed my Case Status metadata during the build, and it satisfied my build-time dependency on that `Evaluating` picklist value.
+
+Did it _work_? Is the package actually viable? Let's set up an org with the picklist values we want, and install the package:
+
+```
+cci task run deploy --path standard-value-sets-unpackaged --org dev
+cci task run install_managed --version 04t4p0000020xxxAAA --org dev
+```
+
+```
+Installing Package 04t4p000002016hAAA                                                         
+[02/22/23 21:41:59] In Progress
+[02/22/23 21:42:02] Success
+```
+
+Here's what we find under Support Processes in Setup:
+
+Our picklist value reference _is_ in the package! 
+
+---
+
+Where does this leave us?
+
+Well, it's an interesting capability. It gives us another view into the 2GP build org, and reinforces a link between the 1GP and 2GP stories.
