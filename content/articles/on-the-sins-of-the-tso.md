@@ -9,7 +9,7 @@ One of the most common methods of distributing Salesforce orgs and packages is t
 
 At the simplest, a TSO is a Salesforce org that you can copy. You install a product, set up all of the configuration, add sample data, and perform whatever other customization you wish. Then, you take a _snapshot_ of that org (using the Setup->Trialforce UI). The snapshot captures the complete state of that org at a point in time. You can have many snapshots over the evolution of the TSO's state.
 
-Once you have a snapshot, you can perform _signups_ against it. The `SignupRequest` API allows you to request a _new_ Salesforce org, whose state starts from a specific TSO snapshot. You pass the API the `0TT` id of your snapshot, and you get back authentication information for your new org. Where the _trial_ part of _Trialforce_ comes in is that that new org has a fixed lifespan, after which it has to be converted to a production org (or disposed). 30 days is a common trial length, but it's not mandatory.
+Once you have a snapshot, you can perform _signups_ against it. The `SignupRequest` API allows you to request a _new_ Salesforce org, whose state starts from a specific TSO snapshot. You pass the API the `0TT` id of your snapshot, and you get back authentication information for your new org. Where the _trial_ part of _Trialforce_ comes in is that that new org has a fixed lifespan, after which it has to be converted to a production org (or disposed). 30 days is a common trial length, but it's not universal.
 
 You can also use Environment Hub in a Partner Business Org to sign up copies of the TSO. These orgs aren't necessarily time-limited. (TODO: true?)
 
@@ -17,9 +17,18 @@ This functionality might sound quite nice. And in some ways, it is! TSOs are ver
 
 ## Use Cases
 
-- Customer delivery
-- QA
-- License replication
+With that basic statement of TSO capability in mind, let's look at some key TSO use cases, running the gamut from internal to customer-facing to partner support.
+
+### Engineering 
+
+### QA, PM, and Other Stakeholders
+
+### Partners
+
+### Customer Delivery
+
+### Conclusions
+
 
 ## The Source-of-Truth Problem
 
@@ -29,11 +38,15 @@ Modern development projects focus on version control as the _source of truth_: t
 
 A corollary to the source-of-truth problem is _knowledge limitation_.
 
-When your team works heavily with TSOs, the TSO itself _de facto_ becomes part of the source of truth. Users can easily create orgs that match the requirements of the product! But - they no longer need to know or care what the requirements of the product _are_. That knowledge becomes lost inside the TSO, whose state is difficult to review and has limited history tracking.
+When your team works heavily with TSOs, the TSO itself _de facto_ becomes part, not just of your source of truth, but of your knowledge base about the product and how it works. Users can easily create orgs that match the requirements of the product! But - they no longer need to know or care what the requirements of the product _are_. That knowledge becomes lost inside the TSO, whose state is difficult to review and has limited history tracking.
 
 Does your team know which licenses, features, and settings your product requires? The TSO knows, but it cannot tell you.
 
 The discoverability issue
+
+## SDLC Process and Compliance
+
+TSO changes are difficult to review, which has the effect of risking compliance needs.
 
 ## TSO as Binary Blob
 
@@ -43,7 +56,7 @@ Binary blobs pose a number of challenges in the SDLC.
 
 ## TSO as Agility Blocker
 
-TSOs can deliver only new orgs. There is no such thing as a modular TSO; you cannot layer a TSO on top of an existing org. That means that the effort cliff on composability is a vertical line.
+TSOs can deliver only new orgs. There is no such thing as a modular TSO; you cannot layer a TSO on top of an existing org. That means that the effort cliff on _composability_ is a vertical line.
 
 Here's what I mean by this. Let's look at the lifespan of a product:
 
@@ -63,7 +76,7 @@ Whither the TSO?
 - What about combinations of those five products? That could start to be a _lot_ of TSOs you're managing.
 - What about Solution Engineering - will they still need their own, separate TSOs for demo configurations?
 
-Suddenly your team, instead of updating _one_ org every release, is making the same changes in a dozen, or two dozen, orgs. There's essentially no way to share that work. You've just got to repeat it two dozen times. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. State drifts. The documentation does not match. You're spending tons of time that could be used to create customer value just updating all these damn orgs. And before long, you no longer have any clarity about how the product is actually meant to be delivered.
+Suddenly your team, instead of updating _one_ org every release, is making the same changes in a dozen, or two dozen, orgs. There's essentially no way to share that work - in fact, some of it is different in every org, because the orgs don't share the same state. You've just got to repeat it two dozen times. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. State drifts. The documentation does not match. You're spending tons of time that could be used to create customer value just updating all these damn orgs. And before long, you no longer have any clarity about how the product is actually meant to be delivered.
 
 ---
 
@@ -90,3 +103,19 @@ Org Snapshots are much
 I've said a lot against TSOs. Let me say one thing for them: TSOs work well for their core purpose, which is generating a new org for a user or customer. The `SignupRequest` API is simple to use and the process is effective.
 
 We can consume that core function of the TSO without sacrificing our SDLC goals - without incurring all of the problems discussed above. We do that by using a _source-driven TSO_ model.
+
+The source-driven TSO model reflects best practices for developing against production Salesforce orgs throughout the ecosystem. _Don't develop in production!_ With the source-driven model, we externalize the TSO's source of truth into version-control-based metadata, data, and automation, much like how customers externalize their production source of truth into a repository. For TSOs, though, we go even further. We don't just store our application metadata in version control, but also data that we wish to represent in our trial configuration, and setup automation that brings our TSO to the state we desire.
+
+Then, just like with a best-practices production org, we make a rule: no changes directly in production! Instead, you develop changes in an isolated environment, preferably a scratch org, that looks just like the TSO. (It looks just like the TSO because we use _the same automation_ to create it). We capture changes from that org and persist them in version control. Then, once we move that change through our SDLC, that automation is run against the production TSO to update its state. Finally, a new snapshot is created and shared with stakeholders to allow signup.
+
+The source-driven TSO model might at first blush sound like quite a bit of extra work. And it's true, if we consider only the span between defining a change and making that change, on the one hand through automation and source control and on the other hand through direct changes in the production TSO.
+
+If we expand the scope of our awareness across the product lifecycle and consider all of the challenges we discussed above, the cost/benefit analysis of the source-driven TSO model dramatically changes.
+
+### Source of Truth and Visibility
+
+### SDLC Best Practices and Compliance
+
+### Disaster Recovery
+
+### Composability
