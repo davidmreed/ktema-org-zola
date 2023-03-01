@@ -54,6 +54,10 @@ A "binary blob", in software engineering, refers to a component that cannot be i
 
 Binary blobs pose a number of challenges in the SDLC. 
 
+## Use Case Divergence
+
+If you build out multiple TSOs, you will certainly encounter state drift. This results in, for example, QA or product demos not reflecting the state that is actually delivered to customers.
+
 ## TSO as Agility Blocker
 
 TSOs can deliver only new orgs. There is no such thing as a modular TSO; you cannot layer a TSO on top of an existing org. That means that the effort cliff on _composability_ is a vertical line.
@@ -90,13 +94,6 @@ That's a shame. Is it a product-breaker? Probably not. But it means that you can
 
 ## Disaster Recovery
 
-
-
-## Org Snapshots
-
-Org Snapshots are much 
-
-## TSOs and Org Snapshots as Operational Tool
 
 ## Source-Driven TSOs
 
