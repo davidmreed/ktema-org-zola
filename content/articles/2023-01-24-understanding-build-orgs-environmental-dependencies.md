@@ -47,7 +47,7 @@ These environmental sensitivities come in uncountable forms. Many are related to
 
 As noted earlier, there's no way to directly access the build org. You can't log in to configure it, and even if you could, it'd be an anti-pattern — you don't want to bring manual steps into your release processes! 
 
-There are a dizzying array of factors that go into determining the shape of the org, and hence the elements upon which your package might find an environmental dependency. The edition, release, language, features, settings, and org settings all contribute to the final org shape. However, the platform gives you four primary tools to configure the build org as part of the scratch org definition file. Those are `features`, `settings`, `orgSettings`, and `sourceOrg`/`/snapshot`.
+There are a dizzying array of factors that go into determining the shape of the org, and hence the elements upon which your package might find an environmental dependency. The edition, release, language, features, settings, and org settings all contribute to the final org shape. However, the platform gives you four primary tools to configure the build org as part of the scratch org definition file. Those are `features`, `settings`, `objectSettings`, and `sourceOrg`/`/snapshot`.
 
 > These tools are also used for building plain old scratch orgs! Here, we'll focus on how they apply to satisfying package dependency scenarios.
 
@@ -202,7 +202,7 @@ No such column 'RecordTypeId' on entity 'Account'. If you are attempting to use 
 
 As with most deployment errors, this message highlights a symptom (a field that your metadata references isn't available), but doesn't provide indicators of _why_ it is not present or how to address it. Experience, and internalizing patterns like those we're reviewing here, gives you the tools to interpret this error message as indicating a feature dependency on Account Record Types.
 
-These dependencies are satisfied via the confusingly-named `orgSettings` key in the scratch org definition file. This key allows you to specify default Record Types and Sharing Models in the build org. By modifying the build org definition to include
+These dependencies are satisfied via the confusingly-named `objectSettings` key in the scratch org definition file. This key allows you to specify default Record Types and Sharing Models in the build org. By modifying the build org definition to include
 
 ```json
 "objectSettings": {
