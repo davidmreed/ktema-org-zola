@@ -3,7 +3,7 @@ title="On Creating Products"
 draft=true
 +++
 
-I learned the skill from Jason Lantz of seeing the product hiding inside the business problem. While it's more an art than a science, I think there's a kernel of repeatability to how I've practiced it.
+I learned the skill from [Jason Lantz](https://muselab.com/) of seeing the product hiding inside the business problem. While it's more an art than a science, I think there's a kernel of repeatability to how I've practiced it.
 
 It's usually not about scale, and it's almost never about technology stack. I can't think of a time when a colleague presented me with a business problem and the "product" answer was "Yeah, but let's do that at web scale", or "Yeah, but let's build it in React." You can build narrow, non-product solutions to business problems in any stack, and scale them as high as you want - they're still not products.
 
