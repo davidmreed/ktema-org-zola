@@ -3,7 +3,7 @@ title="You Are Not Really Talking about Return to the Office"
 draft=true
 +++
 
-Companies and leaders that believe they need in-office work to succeed usually have critical weaknesses that have little or nothing to do with offices or with remote work.
+_My thesis_: Companies and leaders that believe they need in-office work to succeed usually have critical weaknesses that have little or nothing to do with offices or with remote work.
 
 Take [this article from Fortune](https://fortune.com/2023/05/05/openai-ceo-sam-altman-remote-work-mistake-return-to-office/) for example.
 
@@ -11,7 +11,7 @@ The article itself is not particularly interesting. It doesn't bother to do any 
 
 I won't bother responding to the headline claim from Sam Altman. It's mostly a factual question: does working remotely affect productivity, or does it not? I'm not a social scientist and can only answer from my own experience that _for me_ it does. Altman doesn't cite data at all, which isn't surprising since (at least based on the studies I've read) it doesn't support him very well.
 
-I'm actually more interested in looking at the other claims in the piece. They represent a buffet of various qualitative arguments that are advanced in favor of return-to-office programs, and against the general idea of working remotely. And they're more or less representative of the kind of maxims that are often quoted in the press from business leaders.
+I'm actually more interested in looking at the other claims aggregated in the piece. They represent a buffet of various qualitative arguments that are advanced in favor of return-to-office programs, and against the general idea of working remotely. And they're more or less representative of the kind of maxims that are often quoted in the press from business leaders.
 
 Each of these arguments, though, can be turned on its head, and each reveals when so inverted that the argument actually has very little to do with working remotely or in the office. Instead, they highlight critical weaknesses in business process that can manifest in either working style, but which are often hidden from view in an in-office context.
 
@@ -47,7 +47,7 @@ Suppose I flip the script here, and instead tell you:
 
 In this version, I didn't actually say anything about remote work or in-office work.The argument has little to do with either as such. Clarke's argument, nominally in favor of in-office work, is actually trying to use office colocation to hide key business weaknesses. (It's also failing to grasp new opportunities to create value, expressing a rather pathetic possessiveness of employees' time, and generally creating the sense of a business leader as a petty tyrant). You don’t need to drive people back into the office so that they won’t use AI — you need to create contexts for them to use AI well, and in ways that multiply their impact on the bottom line!
 
-But at a much more basic level, a leader that cannot effectively measure and evaluate their workers remotely _likely also cannot effectively measure and evaluate their workers in person_. And there's a good chance that those who claim to do so are not rigorously measuring productivity but are deliberately or otherwise applying other criteria, opening up risk that they're creating inequity in their businesses due to unconscious bias.
+But at a much more basic level, a leader that cannot effectively measure and evaluate their workers remotely _likely also cannot effectively measure and evaluate their workers in person_. And there's a good chance that those who claim to do so are not rigorously measuring productivity but are deliberately or otherwise applying other criteria. That might mean that they favor those employees who are good at looking busy rather than being busy, or it could manifest in ways that reflect systemic biases, opening up risk that they're creating inequity or even incurring legal risk.
 
 ---
 
@@ -55,7 +55,7 @@ Lastly we hear from Arvind Krishna of IBM:
 
 > [Krishna] also said while you might be just as productive working from home, “your career does suffer” if you work remotely.
 
-Performance measurement again, but with a new wrinkle! 
+Performance measurement again, but with a new wrinkle!
 
 Isn’t Krishna telling us here that IBM workers’ career ladders aren’t based on objective metrics, on productivity, on impact — but rather on social connections? That’s not something we should hold up as a model. Quite the opposite. We want to build a career ladder that rewards performance, vision, and impact, not schmoozing. We want to be able to show, with hard data, that we’re meeting our equity goals and promoting top performers.
 

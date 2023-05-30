@@ -61,7 +61,7 @@ Let's see if we can get that package to create by stuffing some extra metadata i
 
 We add a new metadata directory, `standard-value-sets-unpackaged`. We include this metadata in that directory as `standardValueSets/CaseStatus.standardValueSet-meta.xml`, configuring the Case Status picklist to match expectations.
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StandardValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <sorted>false</sorted>

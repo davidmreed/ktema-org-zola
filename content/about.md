@@ -25,7 +25,7 @@ To preserve transparency and the community spirit of Salesforce Stack Exchange, 
 
 ## Colophon
 
-This site is built with <a href="https://getzola.org">Zola</a>. The design is a heavily-customized <a href="https://simplecss.org/">Simple.css</a>. The icons are locally-hosted SVGs by <a href="https://fontawesome.com/">FontAwesome</a>.
+This site is built with <a href="https://getzola.org">Zola</a>. The design is a heavily-customized <a href="https://simplecss.org/">Simple.css</a> with [gruvbox](https://github.com/morhetz/gruvbox)-inspired color schemes. The icons are locally-hosted SVGs by <a href="https://fontawesome.com/">FontAwesome</a>.
 
 Ktema.org uses no:
 - JavaScript
