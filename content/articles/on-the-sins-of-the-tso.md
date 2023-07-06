@@ -9,15 +9,11 @@ One of the most common methods of distributing Salesforce orgs and packages is t
 
 At the simplest, a TSO is a Salesforce org that you can copy. You install a product, set up all of the configuration, add sample data, and perform whatever other customization you wish. Then, you take a _snapshot_ of that org (using the Setup->Trialforce UI). The snapshot captures the complete state of that org at a point in time. You can have many snapshots over the evolution of the TSO's state.
 
-Once you have a snapshot, you can perform _signups_ against it. The `SignupRequest` API allows you to request a _new_ Salesforce org, whose state starts from a specific TSO snapshot. You pass the API the `0TT` id of your snapshot, and you get back authentication information for your new org. Where the _trial_ part of _Trialforce_ comes in is that that new org has a fixed lifespan, after which it has to be converted to a production org (or disposed). 30 days is a common trial length, but it's not universal.
+Once you have a snapshot, you can perform _signups_ against it. The `SignupRequest` API allows you to request a _new_ Salesforce org whose state starts from a specific TSO snapshot. You pass the API the `0TT` id of your snapshot, and you get back authentication information for your new org. Where the _trial_ part of _Trialforce_ comes in is that that new org has a fixed lifespan, after which it has to be converted to a production org (or disposed). 30 days is a common trial length, but it's not universal.
 
 You can also use Environment Hub in a Partner Business Org to sign up copies of the TSO. These orgs aren't necessarily time-limited. (TODO: true?)
 
 This functionality might sound quite nice. And in some ways, it is! TSOs are very effective at delivering copies of whole Salesforce orgs, including configuration that is very time-consuming to set up from scratch. But there are a number of patterns in how TSOs are used that have deep negative effects on the software development and delivery lifecycle. My purpose in this article is to explore those negative effects and show you how to avoid them. Thoughout, I'll use an imaginary development team building a managed package-based product called Massive Events.
-
-## Part 1: How TSOs Fail Your SDLC
-
-> Thesis: TSOs divide the source of truth for the product.
 
 With that basic statement of TSO capability in mind, let's look at some key TSO use cases, running the gamut from internal to customer-facing to partner support.
 
@@ -31,6 +27,10 @@ With that basic statement of TSO capability in mind, let's look at some key TSO 
 
 ### Conclusions
 
+
+## Part 1: How TSOs Fail Your SDLC
+
+> Thesis: TSOs divide the source of truth for the product.
 
 Modern development projects focus on version control as the _source of truth_. Your version control repository (usually, but not always, Git) is the canonical definition of what makes up your product, and it's the operational hub of your software development lifecycle (SDLC). Version control comes with a litany of benefits I won't evangelize in any detail here.
 
@@ -55,9 +55,11 @@ The Massive Events is going through their annual compliance audit. This year, th
 1. The product manager has the only login to the TSO.
     a. The auditor looks _very_ concerned. "What if the product manager were a bad actor? They could deliver anything in the TSO, even malicious code."
 
-Is using a TSO a genuine risk to an audit, given a clever enough auditor? I have no idea. I'm not an expert on the complexities of SOC2 and the like. But I think it's clear that TSO-based development as it's often done - in-org, outside the context of a well-defined SDLC - absolutely violates the spirit of many audit goals. It's not trackable in version control. It may or may not be thoroughly reviewed. And there are limited tools (the Setup Audit Trail) to understand and evaluate changes made in the org.
+Is using a TSO a genuine risk to an audit, given a clever enough auditor? I have no idea. I'm not an expert on the complexities of SOC2 and the like. Could you mitigate these risks with appropriate process enhancements? Yes, you could. But I think it's clear that TSO-based development _as it's often done_ - in-org, outside the context of a well-defined SDLC - absolutely violates the spirit of many audit goals. It's not trackable in version control. It is likely not reviewed and approved by a distinct member of the team. And there are limited tools (the Setup Audit Trail) to understand and evaluate changes made in the org. 
 
-Whether or not it's actually of concern to auditors, it should absolutely be of concern to anyone who has an eye on the underlying goals of audit and compliance processes. 
+All of those core capabilities are built in to every version control system under the sun.
+
+Whether or not these process shortfalls are actually of concern to auditors, they should absolutely be of concern to anyone who has an eye on the underlying goals of audit and compliance processes. 
 
 ## Part 2: How TSOs Fail Your Team
 
@@ -70,10 +72,6 @@ When your team works heavily with TSOs, the TSO itself _de facto_ becomes part, 
 Does your team know which licenses, features, and settings your product requires? The TSO knows, but it cannot tell you.
 
 The discoverability issue
-
-## SDLC Process and Compliance
-
-TSO changes are difficult to review, which has the effect of risking compliance needs.
 
 ## TSO as Binary Blob
 
