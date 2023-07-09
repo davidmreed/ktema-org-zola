@@ -69,7 +69,7 @@ A corollary to the source-of-truth problem is _knowledge limitation_.
 
 When your team works heavily with TSOs, the TSO itself _de facto_ becomes part, not just of your source of truth, but of your knowledge base about the product and how it works. Users can easily create orgs that match the requirements of the product! But - they no longer need to know or care what the requirements of the product _are_. That knowledge becomes lost inside the TSO, whose state is difficult to review and has limited history tracking.
 
-Does your team know which licenses, features, and settings your product requires? The TSO knows, but it cannot tell you.
+Does your team know which licenses, features, and settings your product requires? The TSO knows, but it cannot tell you - at least, not easily.
 
 The discoverability issue
 
