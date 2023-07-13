@@ -17,15 +17,11 @@ This functionality might sound quite nice. And in some ways, it is! TSOs are ver
 
 With that basic statement of TSO capability in mind, let's look at some key TSO use cases, running the gamut from internal to customer-facing to partner support.
 
-### Engineering 
-
-### QA, PM, and Other Stakeholders
-
-### Partners
-
-### Customer Delivery
-
-### Conclusions
+- **Engineers** use TSO snapshots to spin up orgs that they use operationally, to execute development, explore product configuration or perform early-stage testing. In some cases, this can be a TSO that is specifically designed for internal or operational use cases, rather than the customer-facing TSO. 
+- **Quality engineers** use TSO snapshots to test their product in a fully-configured environment, without paying the expense of environment setup every time.
+- **Product managers** and **demo or sales engineers** use TSOs 
+- **Partners** use TSO snapshots you share with them to jump-start their customer implementations, as well as to support internal learning and training use cases.
+- **Customer delivery** is the core use case for TSOs. Customers are provisioned a new Salesforce org by cloning from a TSO snapshot. This results in the customer org starting from a fully-configured position.
 
 
 ## Part 1: How TSOs Fail Your SDLC
@@ -77,7 +73,16 @@ The discoverability issue
 
 > Thesis: TSOs do not reflect the customer experience.
 
-When you have a TSO, you have a statement about how your product is installed and used. But that statement is 
+When you have a TSO, you have a story about how your product is installed and used. That story is true, but it's very limited: it only reflects one path through which customers obtain and use your product.
+
+The story your TSO tells about product delivery and use omits a swathe of other true customers stories. When 
+
+- a Massive Events implementation partner starts a project from the TSO, but wipes out much of the delivered configuration and then builds their own;
+- an implementation partner skips the TSO and prepares an implementation from scratch;
+- a customer brings Massive Events into an existing, heavily customized org;
+- a customer starts a fresh org with Massive Events, but it's a Professional Edition rather than Enterprise Edition;
+- a learner installs Massive Events in their Trailhead Playground;
+
 
 ## Disaster Recovery
 
@@ -134,7 +139,7 @@ Maybe your story doesn't quite match this one. You don't get acquired. You have 
 
 You build out a new, incremental release. It adds a really slick new feature, but the feature needs to be enabled by customers. That work takes a while - a few days of work for a skilled administrator. Your docs team write excellent content to enable admins, and your staff use that documentation to update the TSO. Now, new customers will start with that feature fully enabled and ready to use. They can realize the value on day 1.
 
-... but what about your existing customers? They've already got customized orgs. They cannot use the TSO to get your pre-built enablement for this new feature. Their admins are stuck doing those days of work based on your documentation.
+... but what about your existing customers? Or your new customers who already own Salesforce orgs? They've already got customized orgs and don't need a new one matching your TSO. They cannot use the TSO to get your pre-built enablement for this new feature. Their admins are stuck doing those days of work based on your documentation.
 
 That's a shame. Is it a product-breaker? Probably not. But it means that you cannot deliver that value through any channel other than a brand-new customer org signup.
 
