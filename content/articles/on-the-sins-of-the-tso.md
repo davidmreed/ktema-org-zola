@@ -17,14 +17,14 @@ This functionality might sound quite nice. And in some ways, it is! TSOs are ver
 
 With that basic statement of TSO capability in mind, let's look at some key TSO use cases, running the gamut from internal to customer-facing to partner support.
 
-- **Engineers** use TSO snapshots to spin up orgs that they use operationally, to execute development, explore product configuration or perform early-stage testing. In some cases, this can be a TSO that is specifically designed for internal or operational use cases, rather than the customer-facing TSO. 
+- **Engineers** use TSO snapshots to spin up orgs that they use operationally, to execute development, explore product configuration or perform early-stage testing. In some cases, this can be a separate TSO that is specifically designed for internal or operational use cases, rather than the customer-facing TSO. 
 - **Quality engineers** use TSO snapshots to test their product in a fully-configured environment, without paying the expense of environment setup every time.
 - **Product managers** and **demo or sales engineers** use TSOs 
 - **Partners** use TSO snapshots you share with them to jump-start their customer implementations, as well as to support internal learning and training use cases.
 - **Customer delivery** is the core use case for TSOs. Customers are provisioned a new Salesforce org by cloning from a TSO snapshot. This results in the customer org starting from a fully-configured position.
 
 
-## Part 1: How TSOs Fail Your SDLC
+## Part 1: How TSOs Fail Your Team
 
 > Thesis: TSOs divide the source of truth for the product.
 
@@ -32,7 +32,8 @@ Modern development projects focus on version control as the _source of truth_. Y
 
 When you introduce a TSO into your product development, the source of truth becomes ambiguous. Here's a failure case.
 
-<TODO: development story>
+The Massive Events team is building out a new feature.
+
 
 ---
 
@@ -51,31 +52,29 @@ The Massive Events is going through their annual compliance audit. This year, th
 1. The product manager has the only login to the TSO.
     a. The auditor looks _very_ concerned. "What if the product manager were a bad actor? They could deliver anything in the TSO, even malicious code."
 
-Is using a TSO a genuine risk to an audit, given a clever enough auditor? I have no idea. I'm not an expert on the complexities of SOC2 and the like. Could you mitigate these risks with appropriate process enhancements? Yes, you could. But I think it's clear that TSO-based development _as it's often done_ - in-org, outside the context of a well-defined SDLC - absolutely violates the spirit of many audit goals. It's not trackable in version control. It is likely not reviewed and approved by a distinct member of the team. And there are limited tools (the Setup Audit Trail) to understand and evaluate changes made in the org. 
+Is using a TSO a genuine risk to an audit, given a clever enough auditor? I have no idea. Although I've answered a lot of questions from compliance auditors, I'm not an expert on the complexities of SOC2 and the like. Could you mitigate these risks with appropriate process enhancements? Yes, you could. But I think it's clear that TSO-based development _as it's often done_ - in-org, outside the context of a well-defined SDLC - absolutely violates the spirit of many audit goals. It's not trackable in version control. It is likely not reviewed and approved by a distinct member of the team. And there are limited tools (the Setup Audit Trail) to understand and evaluate changes made in the org. 
 
 All of those core capabilities are built in to every version control system under the sun.
 
 Whether or not these process shortfalls are actually of concern to auditors, they should absolutely be of concern to anyone who has an eye on the underlying goals of audit and compliance processes. 
 
-## Part 2: How TSOs Fail Your Team
+---
 
 > Thesis: TSOs inhibit teams from socializing critical knowledge about the product and how it works.
 
 A corollary to the source-of-truth problem is _knowledge limitation_.
 
-When your team works heavily with TSOs, the TSO itself _de facto_ becomes part, not just of your source of truth, but of your knowledge base about the product and how it works. Users can easily create orgs that match the requirements of the product! But - they no longer need to know or care what the requirements of the product _are_. That knowledge becomes lost inside the TSO, whose state is difficult to review and has limited history tracking.
+When your team works heavily with TSOs, the TSO itself _de facto_ becomes part, not just of your source of truth, but of your knowledge base about the product and how it works. Users can easily create orgs that match the requirements of the product! But - they no longer need to know or care what the requirements of the product _are_, or what the journey to set up the product looks like. That knowledge becomes lost inside the TSO, whose state is difficult to review and has limited history tracking.
 
-Does your team know which licenses, features, and settings your product requires? The TSO knows, but it cannot tell you - at least, not easily.
+Does your team know which licenses, features, and settings your product requires? Does your team know how to execute setup, from scratch, for a new customer? The TSO does. But it can't tell you.
 
 The discoverability issue
 
-## TSO as Binary Blob
+---
 
 > Thesis: TSOs do not reflect the customer experience.
 
-When you have a TSO, you have a story about how your product is installed and used. That story is true, but it's very limited: it only reflects one path through which customers obtain and use your product.
-
-The story your TSO tells about product delivery and use omits a swathe of other true customers stories. When 
+When you have a TSO, you have a story about how your product is installed and used. That story is true, but it's very limited: it only reflects one path through which customers obtain and use your product. In a few cases, like OEMs, that path might be the only one. But for most ISVs, the story your TSO tells about product delivery and use omits a swathe of other true customers stories. When, for example,
 
 - a Massive Events implementation partner starts a project from the TSO, but wipes out much of the delivered configuration and then builds their own;
 - an implementation partner skips the TSO and prepares an implementation from scratch;
@@ -83,8 +82,11 @@ The story your TSO tells about product delivery and use omits a swathe of other 
 - a customer starts a fresh org with Massive Events, but it's a Professional Edition rather than Enterprise Edition;
 - a learner installs Massive Events in their Trailhead Playground;
 
+the story looks very different, and the org that results also looks very different.
 
-## Disaster Recovery
+This gap impacts users across the application lifecycle. Engineers miss risk because they're used to the TSO and don't know the heterogeneity of customer orgs. Quality engineers test in one version of the customer story, but don't see others, and bugs slip through. Product managers lose sight of the breadth of their customer base. And Support has to track down complex challenges that they don't have resources to address.
+
+---
 
 > Thesis: TSOs have no disaster recoverability.
 
@@ -98,38 +100,29 @@ Robin's stuck. She made an honest mistake, but it's a mistake that will take day
 
 Robin's mistake is one of the more dramatic ways to break or damage a TSO, but it's far from the only one. Creating extra users; enabling Record Types on a new sObject; turning on Person Accounts: many changes have permanent or semi-permanent impacts, and those impacts can vary from a mild annoyance to a complete business stoppage. Because there's no capability to roll back a TSO's state, you're fundamentally without a disaster recovery (DR) strategy other than creating a new TSO. Ensuring that that creation is possible at a reasonable cost requires care and discipline. (Or, as we'll see below, a comprehensive source-driven strategy).
 
+---
 
-## Part 3: How TSOs Fail Your Customers
+> Thesis: as the product evolves and grows, the lack of modularity implicit in the TSO strategy imposes greater and greater cost on your delivery strategy.
 
-> Thesis: as the product evolves and grows, the lack of modularity implicit in the TSO strategy becomes a stronger and stronger blocker.
+TSOs can deliver only new orgs. There is no such thing as a modular TSO; you cannot layer a TSO on top of an existing org. The consequences of this fact are not always obvious: "That's the point of a TSO," you might say. But as a product and customer base grows, the weaknesses of the TSO as a delivery strategy become more and more apparent. Let's look at some key points during the lifespan of the Massive Events product:
 
-If you build out multiple TSOs, you will certainly encounter state drift. This results in, for example, QA or product demos not reflecting the state that is actually delivered to customers.
+Massive Events starts small, with one managed package, and delivers to customers via a TSO. That's great - it keeps effort nice and low, and Massive Events can serve customers and internal stakeholders with the same TSO-based artifacts.
 
-## TSO as Agility Blocker
+The product evolves. Soon, a Solution Engineering team comes on board, and they've got their own ideas about how to set up the product to support demos and sales most effectively. Massive Events spins up a new TSO to support demo orgs, configured just the way Solution Engineering likes it. The QA team, seeing an opportunity to dramatically reduce their manual setup time, starts using the new TSO as well. Before long, they're asking for their own TSO with a few variations on what Solution Engineering uses.
 
-TSOs can deliver only new orgs. There is no such thing as a modular TSO; you cannot layer a TSO on top of an existing org. That means that the effort cliff on _composability_ is a vertical line.
+Meanwhile, Engineering keeps refining the product. They update the TSO each time they do a release to match the current known-good configuration of the product. But now, they have two, or maybe three, TSOs to update. Communication and ownership between Engineering and Solution Engineering start to become a challenge. Who owns the other TSOs? Who's responsible for defining the "right" configuration of each new product feature? And how are the internal shapes reconciled with what's delivered to customers?
 
-Here's what I mean by this. Let's look at the lifespan of a product:
+Massive Events makes a big push and releases Version 2 of the product. It's now three managed packages working in concert. Many of the configurations Massive Events previously recommended are no longer preferred. The TSO (well, all of the TSOs) gets a top-to-bottom overhaul. But what can the company do to support existing customers? They don't receive the changes to the TSO, and must manually reconfigure their orgs to match the new setup.
 
-It starts on the left at inception, and delivers to customers via a TSO. That's great - it keeps effort nice and low, and we can serve customers and internal stakeholders with the same TSO-based artifacts.
+The company's been acquired. That's great! New ownership doubles down on the product line. Now, Massive Events needs to integrate with a suite of five other products serving multiple verticals, with Events for Nonprofits, Education, Entertainment, and Sports. Each vertical demands a comprehensive configuration, with different packages and configuration. What does the team do about their delivery strategy?
 
-The product evolves. You bring in a solution engineering team, and they've got their own ideas about how to set up the product to support demos and sales most effectively. You spin up a new TSO to support your demo orgs.
+- Should they build out five new TSOs, to represent the deliverable state of the product with each of those other applications?
+- What about customers that fall in more than one vertical, like a higher education customer that also does sports events? That use case requires yet another configuration. It starts to look like quite a lot of TSOs.
+- What about Solution Engineering and QA - will they still need their own, separate TSOs for demo configurations?
 
-Meanwhile, Engineering keeps refining the product. They update the TSO each time they do a release to match the current known-good configuration of the product. But now, you've got two TSOs to update. Communication and ownership between Engineering and Solution Engineering start to become a challenge.
+Suddenly the Massive Events team, instead of updating _one_ org every release, is making the same changes in half a dozen, or a dozen, orgs. There's essentially no way to share that work. They've just got to repeat it two dozen times. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. State drifts. The documentation does not match. Massive Events is spending tons of time that could be used to create customer value just updating all these cursed orgs. 
 
-You make a big push and release Version 2 of the product. Your product grows by leaps and bounds, and many of the configurations you formerly recommended to customers are no longer valid. You 
-
-The company's been acquired. That's great! The new ownership doubles down on your product line. Now, Massive Events will be serving multiple verticals, and needs to integrate with a suite of five other products to bring it to the highest level.
-
-Whither the TSO? 
-
-- Are you going to make five new TSOs, to represent the deliverable state of the product with each of those other applications?
-- What about combinations of those five products? That could start to be a _lot_ of TSOs you're managing.
-- What about Solution Engineering - will they still need their own, separate TSOs for demo configurations?
-
-Suddenly your team, instead of updating _one_ org every release, is making the same changes in a dozen, or two dozen, orgs. There's essentially no way to share that work. You've just got to repeat it two dozen times. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. State drifts. The documentation does not match. You're spending tons of time that could be used to create customer value just updating all these cursed orgs. 
-
-Before long, you no longer have any clarity about how the product is actually meant to be delivered.
+Before long, no member of the Massive Events team has clarity about how the product is actually meant to be delivered.
 
 ---
 
@@ -143,7 +136,7 @@ You build out a new, incremental release. It adds a really slick new feature, bu
 
 That's a shame. Is it a product-breaker? Probably not. But it means that you cannot deliver that value through any channel other than a brand-new customer org signup.
 
-## Part 4: How to Use TSOs Effectively
+## Part 2: How to Use TSOs Effectively
 
 > Thesis: TSOs and Org Snapshots are effective operational tools, but they're not part of your product.
 
