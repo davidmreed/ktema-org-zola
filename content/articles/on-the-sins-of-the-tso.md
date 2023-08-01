@@ -120,7 +120,7 @@ The company's been acquired. That's great! New ownership doubles down on the pro
 - What about customers that fall in more than one vertical, like a higher education customer that also does sports events? That use case requires yet another configuration. It starts to look like quite a lot of TSOs.
 - What about Solution Engineering and QA - will they still need their own, separate TSOs for demo configurations?
 
-Suddenly the Massive Events team, instead of updating _one_ org every release, is making the same changes in half a dozen, or a dozen, orgs. There's essentially no way to share that work. They've just got to repeat it two dozen times. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. State drifts. The documentation does not match. Massive Events is spending tons of time that could be used to create customer value just updating all these cursed orgs. 
+Suddenly the Massive Events team, instead of updating _one_ org every release, is making the same changes in half a dozen, or a dozen, orgs. There's no way to share that work. They've just got to repeat it two dozen times. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. State drifts. The documentation does not match. Massive Events is spending tons of time that could be used to create value just updating all these cursed orgs. Customer cases start to pile up with issues in this TSO or that TSO or the documentation.
 
 Before long, no member of the Massive Events team has clarity about how the product is actually meant to be delivered.
 
