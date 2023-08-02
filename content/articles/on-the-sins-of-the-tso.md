@@ -24,7 +24,9 @@ With that basic statement of TSO capability in mind, let's look at some key TSO 
 - **Customer delivery** is the core use case for TSOs. Customers are provisioned a new Salesforce org by cloning from a TSO snapshot. This results in the customer org starting from a fully-configured position.
 
 
-## Part 1: How TSOs Fail Your Team
+## Part 1: How TSOs Fail Your Team and Your Customers
+
+### Challenge: The Source of Truth
 
 > Thesis: TSOs divide the source of truth for the product.
 
@@ -35,7 +37,7 @@ When you introduce a TSO into your product development, the source of truth beco
 The Massive Events team is building out a new feature.
 
 
----
+### Challenge: Compliance
 
 > Thesis: Most TSO-based development is inherently noncompliant.
 
@@ -58,7 +60,7 @@ All of those core capabilities are built in to every version control system unde
 
 Whether or not these process shortfalls are actually of concern to auditors, they should absolutely be of concern to anyone who has an eye on the underlying goals of audit and compliance processes. 
 
----
+### Challenge: Product Knowledge
 
 > Thesis: TSOs inhibit teams from socializing critical knowledge about the product and how it works.
 
@@ -70,7 +72,7 @@ Does your team know which licenses, features, and settings your product requires
 
 The discoverability issue
 
----
+### Challenge: Customer Experience
 
 > Thesis: TSOs do not reflect the customer experience.
 
@@ -86,7 +88,7 @@ the story looks very different, and the org that results also looks very differe
 
 This gap impacts users across the application lifecycle. Engineers miss risk because they're used to the TSO and don't know the heterogeneity of customer orgs. Quality engineers test in one version of the customer story, but don't see others, and bugs slip through. Product managers lose sight of the breadth of their customer base. And Support has to track down complex challenges that they don't have resources to address.
 
----
+### Challenge: Disaster Recovery
 
 > Thesis: TSOs have no disaster recoverability.
 
@@ -100,7 +102,7 @@ Robin's stuck. She made an honest mistake, but it's a mistake that will take day
 
 Robin's mistake is one of the more dramatic ways to break or damage a TSO, but it's far from the only one. Creating extra users; enabling Record Types on a new sObject; turning on Person Accounts: many changes have permanent or semi-permanent impacts, and those impacts can vary from a mild annoyance to a complete business stoppage. Because there's no capability to roll back a TSO's state, you're fundamentally without a disaster recovery (DR) strategy other than creating a new TSO. Ensuring that that creation is possible at a reasonable cost requires care and discipline. (Or, as we'll see below, a comprehensive source-driven strategy).
 
----
+### Challenge: Serving Product Growth
 
 > Thesis: as the product evolves and grows, the lack of modularity implicit in the TSO strategy imposes greater and greater cost on your delivery strategy.
 
@@ -120,42 +122,27 @@ The company's been acquired. That's great! New ownership doubles down on the pro
 - What about customers that fall in more than one vertical, like a higher education customer that also does sports events? That use case requires yet another configuration. It starts to look like quite a lot of TSOs.
 - What about Solution Engineering and QA - will they still need their own, separate TSOs for demo configurations?
 
-Suddenly the Massive Events team, instead of updating _one_ org every release, is making the same changes in half a dozen, or a dozen, orgs. There's no way to share that work. They've just got to repeat it two dozen times. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. State drifts. The documentation does not match. Massive Events is spending tons of time that could be used to create value just updating all these cursed orgs. Customer cases start to pile up with issues in this TSO or that TSO or the documentation.
+Suddenly the Massive Events team, instead of updating _one_ org every release, is making the same changes in half a dozen, or a dozen, orgs. There's no way to share that work. They've just got to repeat it over and over again. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. Different stakeholders aren't aligned on the best approaches. State drifts. The documentation does not match. Massive Events is spending tons of time that could be used to create value updating all these orgs, and answering questions about all these orgs. Customer cases start to pile up with issues in this TSO or that TSO or the documentation.
 
 Before long, no member of the Massive Events team has clarity about how the product is actually meant to be delivered.
 
 ---
 
-> Thesis: TSOs prevent you from serving existing customers well.
+There are other ways Massive Events' story could go. They don't get acquired. They have a single product. They grow it slowly, and they stick with one TSO - sorry, Solution Engineering! But their agility is still hampered.
 
-Maybe your story doesn't quite match this one. You don't get acquired. You have a single product. You grow it slowly, and you stick with one TSO. But your agility is still hampered! 
+Massive Events build out a new, incremental product release. It adds a really slick new feature using predictive analytics to forecast event attendance. The feature has many components in the package, and also needs setup on Page Layouts and other customer-owned components. The setup work takes a while: a few days of work for a skilled administrator.
 
-You build out a new, incremental release. It adds a really slick new feature, but the feature needs to be enabled by customers. That work takes a while - a few days of work for a skilled administrator. Your docs team write excellent content to enable admins, and your staff use that documentation to update the TSO. Now, new customers will start with that feature fully enabled and ready to use. They can realize the value on day 1.
+The docs team write excellent content to enable admins, and Massive Events teams use that documentation to update the TSO. Now, new customers will start with that feature fully enabled and ready to use. They can realize the value on day 1. That's the promise of TSO-based delivery!
 
-... but what about your existing customers? Or your new customers who already own Salesforce orgs? They've already got customized orgs and don't need a new one matching your TSO. They cannot use the TSO to get your pre-built enablement for this new feature. Their admins are stuck doing those days of work based on your documentation.
+Here's the problem, though: Massive Events has thousands of stakeholders - customers, partners, and internal users - who all want that enablement too. Those users have existing orgs. Some are customer business orgs; others are customized demo environments; still others are the orgs partners use to start implementations. A TSO only spawns new orgs. There's no way to graft those in-TSO changes for the new feature into these existing environments.
 
-That's a shame. Is it a product-breaker? Probably not. But it means that you cannot deliver that value through any channel other than a brand-new customer org signup.
+All of those stakeholders are stuck doing days or weeks of work based on the documentation.
 
-## Part 2: How to Use TSOs Effectively
+That's a shame. Is it a product-breaker? Probably not. But it means that Massive Events cannot effectively deliver the new value they build through any channel other than a brand-new customer org signup. That raises costs for their customers and stakeholders, and it hampers customer adoption and value generation. 
 
-> Thesis: TSOs and Org Snapshots are effective operational tools, but they're not part of your product.
+## Conclusion
 
-I've said a lot against TSOs. Let me say one thing for them: TSOs work well for their core purpose, which is generating a new org for a user or customer. The `SignupRequest` API is simple to use and the process is effective.
+TSOs are great at what they do: deliver a new org that looks just like an org you've created. But they come with uncomfortable long-term costs, and limit the agility of an ISV. 
 
-We can consume that core function of the TSO without sacrificing our SDLC goals - without incurring all of the problems discussed above. We do that by using a _source-driven TSO_ model.
+In part 2 of this series, I'll look at how to use TSOs (or "org artifacts" more broadly) in an effective way.
 
-The source-driven TSO model reflects best practices for developing against production Salesforce orgs throughout the ecosystem. _Don't develop in production!_ With the source-driven model, we externalize the TSO's source of truth into version-control-based metadata, data, and automation, much like how customers externalize their production source of truth into a repository. For TSOs, though, we go even further. We don't just store our application metadata in version control, but also data that we wish to represent in our trial configuration, and setup automation that brings our TSO to the state we desire.
-
-Then, just like with a best-practices production org, we make a rule: no changes directly in production! Instead, you develop changes in an isolated environment, preferably a scratch org, that looks just like the TSO. (It looks just like the TSO because we use _the same automation_ to create it). We capture changes from that org and persist them in version control. Then, once we move that change through our SDLC, that automation is run against the production TSO to update its state. Finally, a new snapshot is created and shared with stakeholders to allow signup.
-
-The source-driven TSO model might at first blush sound like quite a bit of extra work. And it's true, if we consider only the span between defining a change and making that change, on the one hand through automation and source control and on the other hand through direct changes in the production TSO.
-
-If we expand the scope of our awareness across the product lifecycle and consider all of the challenges we discussed above, the cost/benefit analysis of the source-driven TSO model dramatically changes.
-
-### Source of Truth and Visibility
-
-### SDLC Best Practices and Compliance
-
-### Disaster Recovery
-
-### Composability
