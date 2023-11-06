@@ -50,7 +50,7 @@ The Massive Events is going through their annual compliance audit. This year, th
 1. The product manager logs into the TSO and installs the new package version. They update some Page Layouts and Profiles to reflect the new version, and walk through the user experience to make sure everything looks right. If there's an issue, they fix it along the way.
     a. "Where is this work tracked?" the auditor asks. "Who approves it?"
 1. The product manager creates a new TSO snapshot and enables it for customer signup.
-    a. The auditor starts to look concerned. "Isn't this the actual release? Who signs off on this artifact?"
+    a. The auditor starts to look concerned. "Isn't this the actual release? Who signs off on this artifact? How is it tested?"
 1. The product manager has the only login to the TSO.
     a. The auditor looks _very_ concerned. "What if the product manager were a bad actor? They could deliver anything in the TSO, even malicious code."
 
