@@ -10,6 +10,8 @@ I have expertise in high-scale managed packaging, automation and CI/CD for Sales
 
 My passions include teaching and technical evangelism, open source, science fiction, classical languages, and gardening. My background is in Ancient Greek and Platonic philosophy.
 
+I'm not currently seeking new roles but you're always welcome to check out my [resume](/Resume-David-Reed.pdf).
+
 ## Contact Me
 
 <aside>
