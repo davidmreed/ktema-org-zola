@@ -78,9 +78,11 @@ Achieving these automation projects is a virtuous cycle with changing the perspe
 
 ### Hows to Whys to Hows
 
-To move from a "how" understanding of their process to a "why" understanding - unlocking a new "how".
+It is very common for operations teams and teams that are primarily focused on compliance objectives to have a strong focus on "how" a process is executed. That's not a critique; it's a fact of how many businesses structure those teams.
 
-I find that this is very common in operations teams and in teams that are primarily focused on compliance objectives.
+Understanding the hands-on reality of a process is an enormous asset. My team referred to this as a "practitioner mindset". It can also be an impediment. 
+
+The first shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. The touchpoint to allow this shift to happen is the next layer of goal.
 
 With the first shift, you focus on value and outcome, rather than implementation. Implementation often becomes ossified: "we've always done it this way". It takes trust to make this shift, but that trust can be won by focusing on the shared value of the outcome.
 
