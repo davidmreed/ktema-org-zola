@@ -53,13 +53,13 @@ I[Leaders]
 I-->J(1)
 ```
 
-The big problem with this approach is that it often leaves transformative opportunities on the table.
+The big problem with this approach is that it often leaves transformative opportunities on the table. You've automated _the elements of the process_, but you haven't changed _the overall shape of the process_. 
 
 Given that limitation, a key question is whether effort invested on this type of automation is wasted or can form an incremental step towards a deeper goal. There's no global answer; it's case-specific. Broadly, automation capabilities - like software that orchestrates a sequence of steps - _may_ be reusable as a program moves to levels (2) and (3). However, some of these capabilities might become irrelevant as the overall shape of the process changes.
 
 Further, pursuing this type of automation may necessitate investment that is always going to be wasted. For example, engineering that's dedicated to managing hand-offs between various stakeholders or notifications of individual step statuses is likely to be discarded in a level (2) or (3) solution.
 
-It can be very tempting to over-invest on this type of process automation. Giving in to that temptation risks reifying inefficiencies permanently, instead of investing a similar level of effort to wipe them out.
+It can be very tempting to over-invest on this type of process automation. Giving in to that temptation risks reifying inefficiencies permanently, instead of investing a similar level of effort to wipe them out. This type of automation can also represent situations where the overall business process does not have an owner. A single stakeholder can be motivated to automate _their pieces_ of the process, but either do not have the holistic view, do not have the buy-in from other stakeholders, or do not have the capacity to undertake a broader effort.
 
 ### Automate the outcome of the process, which might radically change its shape.
 
