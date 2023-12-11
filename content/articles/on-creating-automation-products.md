@@ -87,7 +87,7 @@ The first shift an automation project invites of its stakeholders is to move fro
 With the first shift, you focus on value and outcome, rather than implementation. Implementation often becomes ossified: "we've always done it this way". It takes trust to make this shift, but that trust can be won by focusing on the shared value of the outcome.
 
 
-### Keyholes
+### Keyholes to Vistas
 
 To move from a keyhole view of a business process or objective to a holistic one.
 
@@ -96,7 +96,7 @@ This is a common paradigm shift for teams with very mature manual processes that
 With the second shift, you embrace all of the other people and data flows that accrue towards that shared goal.
 
 
-### Generalization
+### Problem Instances to Problem Classes
 
 To understand their process or challenge as an instance of a much more general one.
 
