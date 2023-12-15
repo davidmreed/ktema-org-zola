@@ -4,11 +4,9 @@ template="page.html"
 weight=1
 +++
 
-I'm David Reed. I am a Principal Member of Technical Staff at Salesforce, where I work on the [Cumulus Suite](https://cumulusci.readthedocs.io) toolchain. Opinions expressed on this site are my own.
+I'm David Reed. I am a software engineer at Slack, where I work on developer productivity for the Quip and Canvas products. I was previously at Salesforce, where I helped build the [Cumulus Suite](https://cumulusci.readthedocs.io) toolchain. Opinions expressed on this site are my own.
 
-I have expertise in high-scale managed packaging, automation and CI/CD for Salesforce, and Salesforce platform development and architecture. I work in Python, Apex, JavaScript, and Rust.
-
-My passions include teaching and technical evangelism, open source, science fiction, classical languages, and gardening. My background is in Ancient Greek and Platonic philosophy.
+My passions include teaching and technical evangelism, open source, science fiction, classical languages, women's flat track roller derby, and gardening. I like writing Python and Rust, and my technical interests are in platform engineering and automation.
 
 I'm not currently seeking new roles but you're always welcome to check out my [resume](/Resume-David-Reed.pdf).
 
@@ -21,9 +19,6 @@ I'm not currently seeking new roles but you're always welcome to check out my [r
 I love receiving notes, questions, and feedback; various methods of contacting me are shown in the sidebar. 
 
 As a Salesforce employee, I'm unable to provide private consulting, but I love speaking to community groups and conferences.
-
-To preserve transparency and the community spirit of Salesforce Stack Exchange, where I'm an elected moderator, I ask that issues related to that community remain on [Stack Exchange](https://salesforce.meta.stackexchange.com/) unless they specifically require private outreach.
-
 
 ## Colophon
 
