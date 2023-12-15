@@ -7,7 +7,7 @@ The most important skill I learned from [Jason Lantz](https://muselab.com/) was 
 
 It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023.
 
-I'm going to frame this as two sets of threes: three shapes that an automation effort can take, and three perspective shifts that stakeholders move through in an automation effort. 
+I'm going to frame this along two different axes. The first is the shapes that an automation effort can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in an automation effort as it grows towards a product. 
 
 Jason might articulate this quite differently than I do: the formulation here is mine, but the vision is his.
 
@@ -15,32 +15,34 @@ Jason might articulate this quite differently than I do: the formulation here is
 
 Suppose you have a business process in place. It's entirely manual, labor-intensive, and involves person-to-person handoffs between at least three different stakeholders. How do you approach automating that process?
 
-Throughout this essay, I'll use a process as an example that draws on reality, although I've tweaked it a bit for the sake of illustration and elided some steps. This diagram represents how software might be released.
+Throughout this essay, I'll refer to an example software release process. This example draws on real processes I've worked on and automated in the past, but I'll emphasize that I've constructed the example as an illustration and it does not represent actual process at any company.
+
+Here's our process starting point. I'm using color to add dimension to this schematic flow: red represents hands-on-keyboard actions; xxx represents scripted operations... TK
 
 ```mermaid
 flowchart LR
 
 subgraph Ops Team
-1["Build artifacts"]-->2-->3
-2-->4
+1["Build artifact"]-->2["Wait for test run"]-->3["File change approvals"]
+2-->4["Reroute to engineering"]
 end
 
 3-->5
 
 subgraph Release Managers
-5-->6
-6-->7
+5["Review change request"]-->6
+6["Record approvals"]-->7
 end
 7-->8
 
 subgraph Ops Team Redux
-8-->9
+8["Promote artifact"]-->9
 end
 
 9-->10
 
 subgraph Leaders
-10-->11
+10["Request updates"]-->11["Act on escalation"]
 end
 ```
 
@@ -55,7 +57,9 @@ All three of these stakeholders pass information back and forth, engage at diffe
 I've seen at least three paradigms for an automation effort across a process like this goes. Here's how I think about those paradigms.
 
 <aside>
-I'm not calling out _who_ the people driving the automation effort are. It might be the Ops team, seeking to liberate themselves from manual effort; it might be leadership, trying to reduce costs and reallocate their staff; it might be Release Management, seeking to better guarantee their compliance requirements; it might be an external consulting or engineering team; or it might be a different stakeholder entirely.
+
+I'm not calling out _who_ the people driving the automation effort are. It might be the Ops team, seeking to free themselves from manual effort and do more creative work; it might be leadership, trying to reduce costs and reallocate their staff; it might be Release Management, seeking to better guarantee their compliance requirements; it might be an external consulting or engineering team; or it might be a different stakeholder entirely.
+
 </aside>
 
 ### Stepwise Automation
@@ -72,23 +76,33 @@ Usually, this approach means there are still people's hands on the keyboard - th
 
 ```mermaid
 flowchart LR
+subgraph Ops Team
+1["Initiate process \nby running script"]
+end
 
-A[Ops Team]-->B(Automation)
-B-->E
-E[RelMg]
-E-->F(Automation)
-F-->G[Ops Team]
-G-->H
-H(Automation)-->I
-I[Leaders]
-I-->J(1)
+1-->6
+
+subgraph Release Managers
+6["Record approvals"]-->7
+end
+7-->8
+
+subgraph Ops Team Redux
+8["Promote artifact\n by running script"]-->9
+end
+
+9-->10
+
+subgraph Leaders
+10["View updates"]-->11["Act on escalation"]
+end
 ```
 
-Notice what changes and what stays the same here. The start and end of the process, and touchpoints between stakeholders along the way, remain fixed. Between those fixed points, we compress and automate sequences of actions that previously required hands-on effort, nonproductive wait time, and context switching.
+Notice what changes and what stays the same here. The start and end of the process, and touchpoints between stakeholders along the way, remain fixed. Between those fixed points, we compress and automate sequences of actions that previously required hands-on effort, nonproductive wait time, and context switching. That's a major improvement in the day-to-day experience and productivity of these stakeholders.
 
 The big problem with this approach is that it often leaves transformative opportunities on the table. You've automated _the elements of the process_, but you haven't changed _the overall shape of the process_. 
 
-Given that limitation, a key question is whether effort invested on this type of automation is wasted or can form an incremental step towards a deeper goal. There's no global answer; it's case-specific. Broadly, automation capabilities - like software that orchestrates a sequence of steps - _may_ be reusable as a program moves to levels (2) and (3). However, some of these capabilities might become irrelevant as the overall shape of the process changes.
+Given that limitation, a key question is whether effort invested on this type of automation is wasted or can form an incremental step towards a deeper goal. There's no global answer; it's case-specific. Broadly, automation capabilities - like software that orchestrates a sequence of steps - _may_ be reusable as a program moves towards outcome or value automation. However, some of these capabilities might become irrelevant as the overall shape of the process changes, and others may be built in ways that don't align to the needs of those more product-like approaches.
 
 Pursuing this type of automation may necessitate investment that is always going to be wasted. For example, engineering that's dedicated to managing hand-offs between various stakeholders or notifications of individual step statuses is likely to be discarded in a level (2) or (3) solution.
 
@@ -96,27 +110,84 @@ It can be very tempting to over-invest on stepwise automation. Giving in to that
 
 Another common driver of a stepwise automation approach is a lack of overall business process ownership or high-level collaboration between stakeholders. A single stakeholder can be motivated to automate _their pieces_ of the process, but they may not not have the holistic view, the buy-in from other stakeholders, or the capacity to undertake a broader effort.
 
-## Conceptual Shifts
-
 ### Outcome Automation
 
 We start to get transformative change when we go one step further, re-evaluating and automating all of the actions between the endpoints of the process. 
 
 ```mermaid
 flowchart LR
+
+subgraph Automated System
+cr["Create artifacts"]
+cr-->ts["Execute and monitor tests"]
+ts-->nf["Notify of negative outcomes"]
+nf-->cc["Create change request"]
+cc-->ca["Intake change approval"]
+ca-->pm["Promote artifacts"]
+pm-->sp["Ship"]
+db["Dashboards"]
+end
+
+subgraph Ops Team
+1["Initiate process"]-->cr
+end
+
+subgraph RM["Release Managers"]
+6["Record approvals"]-->ca
+end
+
+subgraph Leaders
+10["Review dashboards"]-->db
+end
 ```
 
-
-
 Submerge all of those operational touchpoints! Automate the journey between the start and end of the process, _proactively_ pulling in users only when their intervention is needed. Start thinking in dashboards instead of buttons, and monitoring failures instead of operations. Assume that the process succeeds, and notify only when it doesn't.
+
+Notice here that we've removed manual handovers or touch points. We've also added interactions that match the needs of a different user population: our leaders are reviewing dashboards, rather than having data pushed to them through some expedient channel.
+
+This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum.
 
 This is where you start to get transformative change: humans freed to do creative, strategic work instead of operations.
 
 ### Value Automation
 
-What if the end of the process isn't really the end - the goal - of the whole shebang? The most satisfying insight can be that the entire process does not need to exist. Take a different path - a shortening of the way, if you will - to achieve that larger outcome. That change can reshape other processes around it, too.
+What if the end of the process isn't really the end - the goal - of the whole shebang? The most satisfying insight can be that the entire process does not need to exist. Take a different path <aside> a shortening of the way, if you will </aside> to achieve that larger outcome. That change can reshape other processes around it, too.
 
 At this level, the conversations you're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
+
+Here's one example of how value automation could radically reshape the original process.
+
+1. We _disintermediate_ the delivery process by putting engineering and product in control of their own release destiny.
+2. The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation.
+3. Not only leadership, but all stakeholders, are looking at dashboards to assess release health, rather than engaging hands-on or receiving notifications that may not contain any actionable information.
+
+```mermaid
+flowchart LR
+
+subgraph Product Team
+gr["Set release goal"]
+end
+
+subgraph Self-Service System
+cr["Create artifacts"]
+cr-->ts["Execute and monitor tests"]
+ts-->nf["Notify of negative outcomes"]
+nf-->cc["Create change request"]
+cc-->ca["Intake change approval"]
+ca-->pm["Promote artifacts"]
+pm-->sp["Ship"]
+db["Dashboards"]
+end
+
+subgraph RM["Release Managers"]
+6["Record approvals"]-->ca
+end
+
+subgraph Leaders
+10["Review dashboards"]-->db
+end
+```
+
 
 ## Perspective Shifts
 
@@ -133,6 +204,8 @@ A practitioner mindset can also be an impediment. When stakeholders have a keyho
 The first shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia. A practitioner mindset can show its value again during this conversation. Because "whys" often stem from values, the conversation can also be self-grounding: stakeholders who might otherwise resist change see their goals reflected in the articulation of "why", and become more open to reconsidering "how". Focusing on the shared value of the outcome creates trust.
 
 Establishing a new "how" opens up possibilities to go beyond stepwise automation to outcome or value automation.
+
+### Disintermediation and Self-Service by Default
 
 ### Keyholes to Vistas
 
@@ -165,7 +238,7 @@ Another is a will from the stakeholders. Am I willing to rethink how I do things
 There is a fork in the road: 
 
 1. You can automate the process _exactly_ as executed today and come out the other side with a tool. The tool can likely be used only by your company, and will need to be continuously updated to match the process's evolution.
-2. or you can tweak the process just a bit and see it become an instance of a process
+2. or you can tweak the process just a bit and see it become an instance of a process.
 
 Trust plays a critical role here too. When business-oriented stakeholders and technology-oriented stakeholders trust each other, based on a shared goal, and communicate with each other at a level beyond the simplistic notion of "requirements", they can work together to create more value.
 
@@ -173,7 +246,7 @@ Trust plays a critical role here too. When business-oriented stakeholders and te
 
 The distinction between a *tool* and a *product* almost never has anything to do with scale, with technology stack, or with ... I can't think of a single instance when a colleague presented me with a business problem and the "product" answer was "Yeah, but let's do that at web scale", or "Yeah, but let's build it in React." You can build narrow, non-product solutions to business problems in any stack, and scale them as high as you want. They're still not products.
 
-The distinction has far more to do with how you frame what you are building. Are you going to the root of the business problem? Are you imagining the general problem of which this is a specific instance? Are you inviting, persuading, cajoling your stakeholders to reimagine how they could reach their goals? You're probably building a product. Are you reifying every nuance of the way things are done today in code? Are you spending effort more on edge cases than capabilities? Do you understand the _how_, but not the _why_, of what you're creating? You're likely building a tool.
+The distinction has far more to do with how you frame what you are building. Are you going to the root of the business problem? Are you imagining the general problem of which this is a specific instance? Are you inviting, persuading, cajoling your stakeholders to reimagine how they could reach their goals? You're probably building a product. Are you reifying the way things are done by hand today in code? Is what you're building fragile to small changes in business process or stakeholder requests? Do you understand the _how_, but not the _why_, of what you're creating? You're likely building a tool.
 
 There's nothing wrong with building tools. Sometimes it's the right move: you can generate a lot of cost savings and business value, often at a relatively low upfront cost. But products are far more interesting. Building a tool comes with a more-or-less fixed ceiling on the value you can create. Products don't. Products are more rewarding for the people who create them, and they're often more rewarding for the business as a whole too.
 
@@ -182,4 +255,3 @@ Show cost and value curves for products and tools
 ```
 
 So that's my pitch. Build products. Build tools where you need to, to buy yourself back time to build products. Think deeply about business problems and what's most real about them. Create trust between stakeholders. Bring a practitioner mindset, but also bring a "why on Earth do we do this?" mindset. And if you don't have scope to do those things, go somewhere you will.
-
