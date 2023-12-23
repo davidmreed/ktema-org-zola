@@ -7,7 +7,7 @@ The most important skill I learned from [Jason Lantz](https://muselab.com/) was 
 
 It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023.
 
-I'm going to frame this along two different axes. The first is the shapes that an automation effort can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in an automation effort as it grows towards a product. 
+I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building as it grows towards a product. 
 
 Jason might articulate this quite differently than I do: the formulation here is mine, but the vision is his.
 
@@ -17,33 +17,38 @@ Suppose you have a business process in place. It's entirely manual, labor-intens
 
 Throughout this essay, I'll refer to an example software release process. This example draws on real processes I've worked on and automated in the past, but I'll emphasize that I've constructed the example as an illustration and it does not represent actual process at any company.
 
-Here's our process starting point. I'm using color to add dimension to this schematic flow: red represents hands-on-keyboard actions; xxx represents scripted operations... TK
+Here's our process starting point. 
 
-```mermaid
-flowchart LR
+```plantuml
+@startuml
+|Product Team|
+|Ops Team|
+start
+:Build artifacts;
+: //20 steps//;
+:File change approvals;
+|Release Managers|
+:Validate compliance;
+: //8 steps// ;
+:Confirm schedule;
+|Ops Team|
+:Promote artifacts;
+://5 steps//;
+:Start production delivery;
+stop
 
-subgraph Ops Team
-1["Build artifact"]-->2["Wait for test run"]-->3["File change approvals"]
-2-->4["Reroute to engineering"]
-end
+|Release Managers|
+start
+  while (In progress)
+   :Share status;
+|Leadership|
+   :Review status;
+  endwhile
 
-3-->5
-
-subgraph Release Managers
-5["Review change request"]-->6
-6["Record approvals"]-->7
-end
-7-->8
-
-subgraph Ops Team Redux
-8["Promote artifact"]-->9
-end
-
-9-->10
-
-subgraph Leaders
-10["Request updates"]-->11["Act on escalation"]
-end
+|Release Managers|
+:Close release;
+stop
+@enduml
 ```
 
 There are three stakeholders in the current version of this process:
@@ -74,28 +79,30 @@ One way of approaching an automation project in the context of this process is t
 
 Usually, this approach means there are still people's hands on the keyboard - they're just running one command instead of 20. Cost improvement can be significant. The capacity of the Ops team might double or triple if they didn't have to be hands-on with each individual step or mediate the transitions between steps that they own.
 
-```mermaid
-flowchart LR
-subgraph Ops Team
-1["Initiate process \nby running script"]
-end
+```plantuml
+@startuml
+|Product Team|
+|Ops Team|
+start
+:Execute release script;
+|Release Managers|
+:Run compliance tool;
+|Ops Team|
+:Run promotion script;
+stop
 
-1-->6
+|Release Managers|
+start
+  while (In progress)
+   :Share status;
+|Leadership|
+   :Review status;
+  endwhile
 
-subgraph Release Managers
-6["Record approvals"]-->7
-end
-7-->8
-
-subgraph Ops Team Redux
-8["Promote artifact\n by running script"]-->9
-end
-
-9-->10
-
-subgraph Leaders
-10["View updates"]-->11["Act on escalation"]
-end
+|Release Managers|
+:Close release;
+stop
+@enduml
 ```
 
 Notice what changes and what stays the same here. The start and end of the process, and touchpoints between stakeholders along the way, remain fixed. Between those fixed points, we compress and automate sequences of actions that previously required hands-on effort, nonproductive wait time, and context switching. That's a major improvement in the day-to-day experience and productivity of these stakeholders.
@@ -137,13 +144,13 @@ subgraph RM["Release Managers"]
 end
 
 subgraph Leaders
-10["Review dashboards"]-->db
+10["Review dashboards"]-->db  
 end
 ```
 
 Submerge all of those operational touchpoints! Automate the journey between the start and end of the process, _proactively_ pulling in users only when their intervention is needed. Start thinking in dashboards instead of buttons, and monitoring failures instead of operations. Assume that the process succeeds, and notify only when it doesn't.
 
-Notice here that we've removed manual handovers or touch points. We've also added interactions that match the needs of a different user population: our leaders are reviewing dashboards, rather than having data pushed to them through some expedient channel.
+Notice here that we've removed manual handovers or touch points. We've also added interactions that match the needs of a different user population: our leaders are reviewing dashboards, rather than having data sent to them in an ad-hoc, human-mediated monitoring process.
 
 This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum.
 
@@ -151,11 +158,11 @@ This is where you start to get transformative change: humans freed to do creativ
 
 ### Value Automation
 
-What if the end of the process isn't really the end - the goal - of the whole shebang? The most satisfying insight can be that the entire process does not need to exist. Take a different path <aside> a shortening of the way, if you will </aside> to achieve that larger outcome. That change can reshape other processes around it, too.
+What if the end of the process isn't really the end - the goal - of the whole shebang? Or, for that matter, the beginning? The most satisfying insight can be that the entire process does not need to exist in its current form. Take a different path <aside> a shortening of the way, if you will </aside> to achieve that larger outcome. That change can reshape other processes around it, too.
 
 At this level, the conversations you're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
 
-Here's one example of how value automation could radically reshape the original process.
+Here's one example of how value automation could radically reshape the original process. 
 
 1. We _disintermediate_ the delivery process by putting engineering and product in control of their own release destiny.
 2. The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation.
