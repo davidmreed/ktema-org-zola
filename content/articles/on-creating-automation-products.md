@@ -13,7 +13,7 @@ Jason might articulate this quite differently than I do: the formulation here is
 
 ## Automating Processes
 
-Suppose you have a business process in place. It's entirely manual, labor-intensive, and involves person-to-person handoffs between at least three different stakeholders. How do you approach automating that process?
+Suppose you have a business process in place. It's entirely manual, labor-intensive, and involves person-to-person handoffs between at least four different stakeholders. How do you approach building a system that automates that process?
 
 Throughout this essay, I'll refer to an example software release process. This example draws on real processes I've worked on and automated in the past, but I'll emphasize that I've constructed the example as an illustration and it does not represent actual process at any company.
 
@@ -56,13 +56,14 @@ start
 stop
 @enduml```
 
-There are three stakeholders in the current version of this process:
+There are four stakeholders in the current version of this process:
 
-- the Ops Team is responsible for extensive hands-on processes to create and deliver software artifacts.
-- the Release Management team engages to validate compliance and sign-offs, and to communicate with
+- the Product team, who build customer-facing products and works to set release scope with 
+- the Ops Team, who are responsible for extensive hands-on processes to create and deliver software artifacts.
+- the Release Management team, who engage to validate compliance and sign-offs, and to communicate with
 - the Leadership team, who stay abreast of operations that have the potential to impact high-value customers.
 
-All three of these stakeholders pass information back and forth, engage at different stages of the process (sometimes at multiple stages), and perform stepwise, hands-on-keyboard work.
+All four of these stakeholders pass information back and forth, engage at different stages of the process (sometimes at multiple stages), and perform stepwise, hands-on-keyboard work.
 
 (The final stakeholder, of course, is the customer, who isn't shown on the process diagram but whose interests are pursued throughout).
 
@@ -136,7 +137,7 @@ Another common driver of a stepwise automation approach is a lack of overall bus
 
 ### Outcome Automation
 
-We start to get transformative change when we go one step further, re-evaluating and automating all of the actions between the endpoints of the process.
+We start to see transformative change when we go one step further, re-evaluating and automating all of the actions between the endpoints of the process.
 
 ```plantuml
 @startuml
@@ -162,25 +163,20 @@ stop
 @enduml
 ```
 
-Submerge all of those operational touchpoints! Automate the journey between the start and end of the process, _proactively_ pulling in users only when their intervention is needed. Start thinking in dashboards instead of buttons, and monitoring failures instead of operations. Assume that the process succeeds, and notify only when it doesn't.
+We've submerged all of those operational touchpoints within the context of a single, integrated system that executes our previously-manual processes. Instead of automating the individual step sequences for each stakeholder, we've automated the journey between the start and end of the process. The internal step sequences that are run by automation may have changed structure significantly; since the user interaction points have shifted, those step sequences are now abstracted from users' operations.
 
-Notice here that we've removed manual handovers or touch points. We've also added interactions that match the needs of a different user population: our leaders are reviewing dashboards, rather than having data sent to them in an ad-hoc, human-mediated monitoring process.
+This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum. 
 
-This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum.
+Conversely, there are major savings available. In particular, the process involves fewer person-to-person handoffs where stakeholders are idle or context-switching.
 
-This is where you start to get transformative change: humans freed to do creative, strategic work instead of operations.
+We're starting to see humans freed to do creative, strategic work instead of operations.
 
 ### Value Automation
 
-What if the end of the process isn't really the end - the goal - of the whole shebang? Or, for that matter, the beginning? The most satisfying insight can be that the entire process does not need to exist in its current form. Take a different path <aside> a shortening of the way, if you will </aside> to achieve that larger outcome. That change can reshape other processes around it, too.
-
-At this level, the conversations you're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
+What if the start and end of the process stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight can be that the entire process does not need to exist in its current form. Take a different path <aside> a shortening of the way, if you will </aside> to achieve that larger outcome. That change can reshape other processes around it, too. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
 
 Here's one example of how value automation could radically reshape the original process.
 
-1. We _disintermediate_ the delivery process by putting engineering and product in control of their own release destiny.
-2. The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation.
-3. Not only leadership, but all stakeholders, are looking at dashboards to assess release health, rather than engaging hands-on or receiving notifications that may not contain any actionable information.
 
 ```plantuml
 @startuml
@@ -198,6 +194,14 @@ start
 stop
 @enduml
 ```
+
+We've made deep structural changes not just to how stakeholders participate in the process, but to who, when, and why they're engaged.
+
+We've _disintermediated_ the delivery process by putting the product team in control of their own release destiny. By allowing the team to define the scope of their proposed release as a first-class capability _of the solution that executes that release_, we've eliminated back-and-forth with the ops team, along with its attendant delays, mistakes, and context-switching. We've also more deeply engaged the product team as owners of the full lifecycle of their product.
+
+The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation. Similarly, the release management team now plays a role more of oversight and goal-setting, without hands-on interaction. We've freed those people to focus on strategy and on building enduring value for the business, instead of executing one-off, hands-on processes.
+
+We start from a position of assuming the process succeeds, so we don't distract stakeholders with notifications that may not contain any actionable information. We notify only when we're _not_ meeting success criteria. Both leadership and our other stakeholders use dashboards pulled directly form the source of truth to assess long-term trends and metrics. 
 
 ## Perspective Shifts
 
