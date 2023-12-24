@@ -3,11 +3,11 @@ title="On Creating Automation Products"
 draft=true
 +++
 
-The most important skill I learned from [Jason Lantz](https://muselab.com/) was seeing *products* hiding inside business problems that are usually addressed with *tools*. It's the keystone of the success of the team that created [CumulusCI](https://cumulusci.readthedocs.io), [MetaDeploy](https://metadeploy.readthedocs.io/en/latest/), [Metecho](https://metecho.readthedocs.io/en/latest/), and a number of other automation-focused products for teams building on Salesforce. 
+The most important skill I learned from [Jason Lantz](https://muselab.com/) was seeing *products* hiding inside business problems that are usually addressed with *tools*. It's the keystone of the success of the team that created [CumulusCI](https://cumulusci.readthedocs.io), [MetaDeploy](https://metadeploy.readthedocs.io/en/latest/), [Metecho](https://metecho.readthedocs.io/en/latest/), and a number of other automation-focused products for teams building on Salesforce.
 
 It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023.
 
-I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building as it grows towards a product. 
+I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building as it grows towards a product. TODO conclusion.
 
 Jason might articulate this quite differently than I do: the formulation here is mine, but the vision is his.
 
@@ -17,13 +17,17 @@ Suppose you have a business process in place. It's entirely manual, labor-intens
 
 Throughout this essay, I'll refer to an example software release process. This example draws on real processes I've worked on and automated in the past, but I'll emphasize that I've constructed the example as an illustration and it does not represent actual process at any company.
 
-Here's our process starting point. 
+Here's our process starting point.
 
 ```plantuml
 @startuml
-|Product Team|
 |Ops Team|
 start
+while (Refine scope)
+|Product Team|
+:Provide input;
+|Ops Team|
+end while
 :Build artifacts;
 : //20 steps//;
 :File change approvals;
@@ -40,7 +44,9 @@ stop
 |Release Managers|
 start
   while (In progress)
-   :Share status;
+   :Retrieve status;
+   ://3 steps//;
+   :Send update messages;
 |Leadership|
    :Review status;
   endwhile
@@ -48,8 +54,7 @@ start
 |Release Managers|
 :Close release;
 stop
-@enduml
-```
+@enduml```
 
 There are three stakeholders in the current version of this process:
 
@@ -58,6 +63,8 @@ There are three stakeholders in the current version of this process:
 - the Leadership team, who stay abreast of operations that have the potential to impact high-value customers.
 
 All three of these stakeholders pass information back and forth, engage at different stages of the process (sometimes at multiple stages), and perform stepwise, hands-on-keyboard work.
+
+(The final stakeholder, of course, is the customer, who isn't shown on the process diagram but whose interests are pursued throughout).
 
 I've seen at least three paradigms for an automation effort across a process like this goes. Here's how I think about those paradigms.
 
@@ -81,9 +88,13 @@ Usually, this approach means there are still people's hands on the keyboard - th
 
 ```plantuml
 @startuml
-|Product Team|
 |Ops Team|
 start
+while (Refine scope)
+|Product Team|
+:Provide input;
+|Ops Team|
+end while
 :Execute release script;
 |Release Managers|
 :Run compliance tool;
@@ -94,7 +105,7 @@ stop
 |Release Managers|
 start
   while (In progress)
-   :Share status;
+   :Run status update tool;
 |Leadership|
    :Review status;
   endwhile
@@ -107,45 +118,48 @@ stop
 
 Notice what changes and what stays the same here. The start and end of the process, and touchpoints between stakeholders along the way, remain fixed. Between those fixed points, we compress and automate sequences of actions that previously required hands-on effort, nonproductive wait time, and context switching. That's a major improvement in the day-to-day experience and productivity of these stakeholders.
 
-The big problem with this approach is that it often leaves transformative opportunities on the table. You've automated _the elements of the process_, but you haven't changed _the overall shape of the process_. 
+---
+
+The primary challenge with this approach is that it often leaves transformative opportunities on the table. We've automated _the elements of the process_, but we haven't changed _the overall shape of the process_.
 
 Given that limitation, a key question is whether effort invested on this type of automation is wasted or can form an incremental step towards a deeper goal. There's no global answer; it's case-specific. Broadly, automation capabilities - like software that orchestrates a sequence of steps - _may_ be reusable as a program moves towards outcome or value automation. However, some of these capabilities might become irrelevant as the overall shape of the process changes, and others may be built in ways that don't align to the needs of those more product-like approaches.
 
-Pursuing this type of automation may necessitate investment that is always going to be wasted. For example, engineering that's dedicated to managing hand-offs between various stakeholders or notifications of individual step statuses is likely to be discarded in a level (2) or (3) solution.
+Pursuing this type of automation may necessitate investment that is always going to be wasted. For example, engineering that's dedicated to managing hand-offs between various stakeholders or notifications of individual step statuses is likely to be discarded in a solution where those touchpoints are handled differently or eliminated.
 
-It can be very tempting to over-invest on stepwise automation. Giving in to that temptation risks reifying inefficiencies permanently, instead of investing a similar level of effort to wipe them out. Stepwise automation _feels_ like an iterative approach to a fully-automated business. In some circumstances, it can be. But in others, as discussed further below, a stepwise approach can leave much deeper and more impactful changes on the table.
+Stepwise automation _feels_ like an iterative approach towards a fully-automated business. In some circumstances, it can be. But in others, as discussed further below, a stepwise approach can leave much deeper and more impactful changes on the table. It can be very tempting to over-invest on stepwise automation. Giving in to that temptation risks reifying inefficiencies permanently, instead of investing a similar level of effort to wipe them out.
+
+<aside>
 
 Another common driver of a stepwise automation approach is a lack of overall business process ownership or high-level collaboration between stakeholders. A single stakeholder can be motivated to automate _their pieces_ of the process, but they may not not have the holistic view, the buy-in from other stakeholders, or the capacity to undertake a broader effort.
 
+</aside>
+
 ### Outcome Automation
 
-We start to get transformative change when we go one step further, re-evaluating and automating all of the actions between the endpoints of the process. 
+We start to get transformative change when we go one step further, re-evaluating and automating all of the actions between the endpoints of the process.
 
-```mermaid
-flowchart LR
-
-subgraph Automated System
-cr["Create artifacts"]
-cr-->ts["Execute and monitor tests"]
-ts-->nf["Notify of negative outcomes"]
-nf-->cc["Create change request"]
-cc-->ca["Intake change approval"]
-ca-->pm["Promote artifacts"]
-pm-->sp["Ship"]
-db["Dashboards"]
-end
-
-subgraph Ops Team
-1["Initiate process"]-->cr
-end
-
-subgraph RM["Release Managers"]
-6["Record approvals"]-->ca
-end
-
-subgraph Leaders
-10["Review dashboards"]-->db  
-end
+```plantuml
+@startuml
+|Ops Team|
+start
+while (Refine scope)
+|Product Team|
+:Provide input;
+|Ops Team|
+end while
+:Initiate process;
+|Automation Product|
+:Validate compliance;
+:Run release process;
+  while (In progress)
+   :Send status update notifications;
+|Leadership|
+   :Review status;
+  endwhile
+|Automation Product|
+:Close release;
+stop
+@enduml
 ```
 
 Submerge all of those operational touchpoints! Automate the journey between the start and end of the process, _proactively_ pulling in users only when their intervention is needed. Start thinking in dashboards instead of buttons, and monitoring failures instead of operations. Assume that the process succeeds, and notify only when it doesn't.
@@ -162,43 +176,32 @@ What if the end of the process isn't really the end - the goal - of the whole sh
 
 At this level, the conversations you're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
 
-Here's one example of how value automation could radically reshape the original process. 
+Here's one example of how value automation could radically reshape the original process.
 
 1. We _disintermediate_ the delivery process by putting engineering and product in control of their own release destiny.
 2. The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation.
 3. Not only leadership, but all stakeholders, are looking at dashboards to assess release health, rather than engaging hands-on or receiving notifications that may not contain any actionable information.
 
-```mermaid
-flowchart LR
-
-subgraph Product Team
-gr["Set release goal"]
-end
-
-subgraph Self-Service System
-cr["Create artifacts"]
-cr-->ts["Execute and monitor tests"]
-ts-->nf["Notify of negative outcomes"]
-nf-->cc["Create change request"]
-cc-->ca["Intake change approval"]
-ca-->pm["Promote artifacts"]
-pm-->sp["Ship"]
-db["Dashboards"]
-end
-
-subgraph RM["Release Managers"]
-6["Record approvals"]-->ca
-end
-
-subgraph Leaders
-10["Review dashboards"]-->db
-end
+```plantuml
+@startuml
+|Product Team|
+start
+:Initiate release;
+|Automation Product|
+:Validate compliance;
+:Run release process;
+:Provide dashboards;
+|Leadership|
+:Review dashboards;
+|Automation Product|
+:Close release;
+stop
+@enduml
 ```
-
 
 ## Perspective Shifts
 
-Achieving these automation projects is a virtuous cycle with changing the perspectives of the stakeholders involved. Shifting your perspective helps unlock higher-level automation strategies, and building automation invites perspective shifts. 
+Achieving these automation projects is a virtuous cycle with changing the perspectives of the stakeholders involved. Shifting your perspective helps unlock higher-level automation strategies, and building automation invites perspective shifts.
 
 ### Hows to Whys to Hows
 
@@ -242,7 +245,7 @@ When I want to solve a whole class of problems, I want to do it in a way that _t
 
 Another is a will from the stakeholders. Am I willing to rethink how I do things, even just a little, in the name of ending up with a better solution?
 
-There is a fork in the road: 
+There is a fork in the road:
 
 1. You can automate the process _exactly_ as executed today and come out the other side with a tool. The tool can likely be used only by your company, and will need to be continuously updated to match the process's evolution.
 2. or you can tweak the process just a bit and see it become an instance of a process.
