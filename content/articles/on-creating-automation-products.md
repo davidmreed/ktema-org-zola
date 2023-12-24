@@ -221,6 +221,8 @@ Establishing a new "how" opens up possibilities to go beyond stepwise automation
 
 ### Disintermediation and Self-Service by Default
 
+It's tempting to privilege, in a fully-automated process, the same stakeholders who were privileged in the earlier version of the process. In the examples above, the Ops Team fits this paradigm. This isn't always the right choice.
+
 ### Keyholes to Vistas
 
 Teams with mature processes and scale often end up reflecting the structure of their processes in the structure of the team itself. A role is defined, for example, that executes specific steps within the process. Staff members in that role are trained on their steps, and they're very effective at executing them. They have a keyhole view of the overall business process: they may have a sense of the "why" for their specific role, but they aren't privileged to see the whole process or the ultimate outcomes and values.
