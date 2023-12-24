@@ -54,7 +54,8 @@ start
 |Release Managers|
 :Close release;
 stop
-@enduml```
+@enduml
+```
 
 There are four stakeholders in the current version of this process:
 
@@ -135,7 +136,7 @@ Another common driver of a stepwise automation approach is a lack of overall bus
 
 </aside>
 
-### Outcome Automation
+### Outcome-Centered Automation
 
 We start to see transformative change when we go one step further, re-evaluating and automating all of the actions between the endpoints of the process.
 
@@ -163,19 +164,17 @@ stop
 @enduml
 ```
 
-We've submerged all of those operational touchpoints within the context of a single, integrated system that executes our previously-manual processes. Instead of automating the individual step sequences for each stakeholder, we've automated the journey between the start and end of the process. The internal step sequences that are run by automation may have changed structure significantly; since the user interaction points have shifted, those step sequences are now abstracted from users' operations.
+We've submerged all of those operational touchpoints and handoffs within the context of a single, integrated system that executes our previously-manual processes. Instead of automating the individual step sequences for each stakeholder, we've automated the journey between the start and end of the process. The internal step sequences that are run by automation may have changed structure significantly; since the user interaction points have shifted, those step sequences are now abstracted from users' operations.
 
 This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum. 
 
 Conversely, there are major savings available. In particular, the process involves fewer person-to-person handoffs where stakeholders are idle or context-switching.
 
-We're starting to see humans freed to do creative, strategic work instead of operations.
+### Value-Centered Automation
 
-### Value Automation
+What if the start and end of the process stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight can be that the entire process does not need to exist in its current form. That change can reshape other processes around it, too. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
 
-What if the start and end of the process stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight can be that the entire process does not need to exist in its current form. Take a different path <aside> a shortening of the way, if you will </aside> to achieve that larger outcome. That change can reshape other processes around it, too. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
-
-Here's one example of how value automation could radically reshape the original process.
+Here's one example of how value-centered automation could radically reshape the original process.
 
 
 ```plantuml
@@ -201,7 +200,9 @@ We've _disintermediated_ the delivery process by putting the product team in con
 
 The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation. Similarly, the release management team now plays a role more of oversight and goal-setting, without hands-on interaction. We've freed those people to focus on strategy and on building enduring value for the business, instead of executing one-off, hands-on processes.
 
-We start from a position of assuming the process succeeds, so we don't distract stakeholders with notifications that may not contain any actionable information. We notify only when we're _not_ meeting success criteria. Both leadership and our other stakeholders use dashboards pulled directly form the source of truth to assess long-term trends and metrics. 
+We start from a position of assuming the process succeeds, so we don't distract stakeholders with notifications that may not contain any actionable information. We notify only when we're _not_ meeting success criteria. Both leadership and our other stakeholders use dashboards pulled directly form the source of truth to assess long-term trends and metrics.
+
+The upshot of all of these changes is that stakeholders 
 
 ## Perspective Shifts
 
@@ -231,7 +232,7 @@ When stakeholders come to an automation process with a keyhole view, they tend t
 
 Helping stakeholders widen their keyhole perspectives to a vista across the entire business process allows them to make that shift and consider other automation approaches that result in transformative change. Here, the discussions embrace all of the other people and data flows that accrue towards the shared goal.
 
-It is a fact that in mature teams with ossified, keyhole roles automation projects sometimes also have a moral or existential dimension. Are all of those step executors going to be laid off when their steps are automated? Or even more so, if we reimagine the process and _stop doing those steps_ the way they're done today? You cannot get buy-in from your hands-on stakeholders unless you've established trust and shown that there is a place for those people in the new process shape you're imagining together.
+It is a fact that, in mature teams with ossified, keyhole roles, automation projects sometimes also have a moral or existential dimension. Are all of those step-executors going to be laid off when their steps are automated? Or even more so, if we reimagine the process and _stop doing those steps_ the way they're done today? You cannot get buy-in from your stakeholders unless you've established trust and shown that there is a place for those people in the new process shape you're imagining together.
 
 ### Problem Instances to Problem Classes
 
