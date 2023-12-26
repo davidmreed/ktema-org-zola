@@ -2,7 +2,7 @@
 title="Hello!"
 weight=1
 +++
-<img style="float: right; height: 250px; margin-left: 2rem;" src="DavidReed.jpg" alt="David Reed">
+<img style="float: right; height: 12rem; margin-left: 2rem;" src="DavidReed.jpg" alt="David Reed">
 
 I'm David Reed. I am a software engineer at Slack, where I work on developer productivity for the Quip and Canvas products. I was previously at Salesforce, where I helped build the [Cumulus Suite](https://cumulusci.readthedocs.io) toolchain.
 
