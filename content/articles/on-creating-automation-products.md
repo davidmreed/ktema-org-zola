@@ -7,7 +7,7 @@ The most important skill I learned from [Jason Lantz](https://muselab.com/) was 
 
 It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023.
 
-I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building as it grows towards a product. TODO conclusion.
+I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building a solution as it grows towards a product. I won't present a hard-and-fast definition of either a tool or a product, but highlight qualities that make a particular solution more tool-like or more product-like.
 
 Jason might articulate this quite differently than I do: the formulation here is mine, but the vision is his.
 
@@ -124,7 +124,7 @@ Notice what changes and what stays the same here. The start and end of the proce
 
 The primary challenge with this approach is that it often leaves transformative opportunities on the table. We've automated _the elements of the process_, but we haven't changed _the overall shape of the process_.
 
-Given that limitation, a key question is whether effort invested on this type of automation is wasted or can form an incremental step towards a deeper goal. There's no global answer; it's case-specific. Broadly, automation capabilities - like software that orchestrates a sequence of steps - _may_ be reusable as a program moves towards outcome or value automation. However, some of these capabilities might become irrelevant as the overall shape of the process changes, and others may be built in ways that don't align to the needs of those more product-like approaches.
+Given that limitation, a key question is whether effort invested on this type of automation is wasted or can form an incremental step towards a deeper goal. There's no global answer; it's case-specific. Broadly, automation capabilities - like software that orchestrates a sequence of steps - _may_ be reusable as a program moves towards outcome- or value-centered automation. However, some of these capabilities might become irrelevant as the overall shape of the process changes, and others may be built in ways that don't align to the needs of those more product-like approaches.
 
 Pursuing this type of automation may necessitate investment that is always going to be wasted. For example, engineering that's dedicated to managing hand-offs between various stakeholders or notifications of individual step statuses is likely to be discarded in a solution where those touchpoints are handled differently or eliminated.
 
@@ -194,7 +194,7 @@ stop
 @enduml
 ```
 
-We've made deep structural changes not just to how stakeholders participate in the process, but to who, when, and why they're engaged.
+We've made deep structural changes not just to how stakeholders participate in the process, but to who is engaged and to when and why they're engaged.
 
 We've _disintermediated_ the delivery process by putting the product team in control of their own release destiny. By allowing the team to define the scope of their proposed release as a first-class capability _of the solution that executes that release_, we've eliminated back-and-forth with the ops team, along with its attendant delays, mistakes, and context-switching. We've also more deeply engaged the product team as owners of the full lifecycle of their product.
 
@@ -202,11 +202,11 @@ The ops team isn't an ops team anymore! They're now running engineering on the p
 
 We start from a position of assuming the process succeeds, so we don't distract stakeholders with notifications that may not contain any actionable information. We notify only when we're _not_ meeting success criteria. Both leadership and our other stakeholders use dashboards pulled directly form the source of truth to assess long-term trends and metrics.
 
-The upshot of all of these changes is that stakeholders 
+The upshot of all of these changes is that stakeholders across the landscape are enabled to bring their expertise directly to bear. We've wiped out most non-productive context switches, replaced proactive checks with reactive, failure-case-only review, and ... TODO
 
 ## Perspective Shifts
 
-Achieving these automation projects is a virtuous cycle with changing the perspectives of the stakeholders involved. Shifting your perspective helps unlock higher-level automation strategies, and building automation invites perspective shifts.
+Achieving automation projects like those described above is a virtuous cycle with changing the perspectives of the stakeholders involved. Shifting your perspective helps unlock higher-level process automation strategies, and building automation invites perspective shifts.
 
 ### Hows to Whys to Hows
 
@@ -216,13 +216,23 @@ Understanding the hands-on reality of a process is an enormous asset. My team re
 
 A practitioner mindset can also be an impediment. When stakeholders have a keyhole view (see the next section!) they often hold an explicit or implicit belief that the way the process runs today is the only viable shape of the process. "We've always done it this way" leads to "We have to do it this way". These beliefs create resistance to change, and even resistance to discussing change.
 
-The first shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia. A practitioner mindset can show its value again during this conversation. Because "whys" often stem from values, the conversation can also be self-grounding: stakeholders who might otherwise resist change see their goals reflected in the articulation of "why", and become more open to reconsidering "how". Focusing on the shared value of the outcome creates trust.
+The first shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia. 
 
-Establishing a new "how" opens up possibilities to go beyond stepwise automation to outcome or value automation.
+A practitioner mindset can show its value again during this conversation. Because "whys" often stem from values, the conversation can be self-grounding: stakeholders who might otherwise resist change see their goals reflected in the articulation of "why", and become more open to reconsidering "how". Focusing on the shared value of the outcome creates trust.
+
+Establishing a new "how" opens up possibilities to go beyond stepwise automation to outcome- or value-centered automation.
 
 ### Disintermediation and Self-Service by Default
 
-It's tempting to privilege, in a fully-automated process, the same stakeholders who were privileged in the earlier version of the process. In the examples above, the Ops Team fits this paradigm. This isn't always the right choice.
+It's tempting to privilege, in a fully-automated process, the same stakeholders who were privileged in the earlier version of the process. In the examples above, the Ops Team fits this paradigm. This isn't always the right choice. 
+
+The Ops Team hold privileged access to perform certain software release operations, which makes them an intermediary between the Product Team (who have the knowledge of what is being delivered and why) and the customers who consume that value. That privilege isn't misplaced; it's given to the Ops Team based on their specific skillsets and likely also to meet compliance goals. But those driving factors aren't the ultimate values stemming from this process, and that means they can be reconsidered as the process itself changes shape.
+
+In the value-centered automation paradigm discussed above, we made a point of disintermediating the relationship between those two endpoints, the product team and the customer. The ops team isn't required any more to work in a go-between capacity, because they created a new kind of value: they built a product that allowed the value-creating Product Team to self-service delivery to their customers.
+
+Disintermediation and self-service are hallmarks of a product approach to automation. When stakeholders are empowered in this way, they both get pragmatic improvements - fewer context switches, more productive hours in their days - but also opportunities to reconsider the overall shape of a process. Those outcome- and value-centered automation types that are exposed can offer far greater scope for productivity improvement and cost reduction.
+
+TODO: name Product Team is confusing
 
 ### Keyholes to Vistas
 
@@ -238,17 +248,11 @@ It is a fact that, in mature teams with ossified, keyhole roles, automation proj
 
 The final conceptual shift is about seeing the haunting general use case inside a problem that's just barely the wrong shape.
 
-```mermaid
-flowchart LR
-```
-
-Products are about generality: how can I serve many people who have instances of the same problem with a single investment of effort? Automation's always asymmetrical; those who need it are more numerous than those who build it. When I go to build automation, I want to get the maximum value for my effort. I do that by asking what the more generalized need is inside each specific problem.
+Products are about generality: how can we serve many people who have instances of the same problem with a single investment of effort? Automation's always asymmetrical; those who need it are more numerous than those who build it. When we go to build automation, we want to get the maximum value for our effort. We do that by asking what the more generalized need is inside each specific problem, such that our work can be specialized to serve more than just the use case in front of us.
 
 This shift arises in multiple contexts.
 
-One is a will from the automators. Do I want to automate this sequence of steps that is done by one company, today? Or do I want to generalize how I approach that sequence of steps, and build automation that can both evolve with my company and potentially serve other teams too? That's a tool/product decision, but it's also a stepwise/outcome/value decision.
-
-When I want to solve a whole class of problems, I want to do it in a way that _the person who has the problem has capabilities aligned with their agency over the problem_. That's a convoluted way of saying that my stakeholders shouldn't have to come to me to use the automation I'm building for them. They need to be able to self-service across onboarding and setup, process execution, and consumption of results. If they have to talk to me, I'm throwing away the scale advantages I obtained by thinking about problem classes in the first place.
+One is a will from the automators. Do we want to automate this sequence of steps that is done by one company, today? Or do we want to generalize how we approach that sequence of steps, and build automation that can both evolve with my company and potentially serve other teams too? That's a tool/product decision, but it's also a stepwise/outcome/value decision.
 
 Another is a will from the stakeholders. Am I willing to rethink how I do things, even just a little, in the name of ending up with a better solution?
 
@@ -258,6 +262,8 @@ There is a fork in the road:
 2. or you can tweak the process just a bit and see it become an instance of a process.
 
 Trust plays a critical role here too. When business-oriented stakeholders and technology-oriented stakeholders trust each other, based on a shared goal, and communicate with each other at a level beyond the simplistic notion of "requirements", they can work together to create more value.
+
+TODO: tighten up this section.
 
 ## Tools and Products
 
