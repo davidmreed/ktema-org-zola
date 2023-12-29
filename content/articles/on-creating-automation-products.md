@@ -5,7 +5,7 @@ draft=true
 
 The most important skill I learned from [Jason Lantz](https://muselab.com/) was seeing *products* hiding inside business problems that are usually addressed with *tools*. It's the keystone of the success of the team that created [CumulusCI](https://cumulusci.readthedocs.io), [MetaDeploy](https://metadeploy.readthedocs.io/en/latest/), [Metecho](https://metecho.readthedocs.io/en/latest/), and a number of other automation-focused products for teams building on Salesforce.
 
-It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023.
+It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023. It carries a lot of weight for me, and is closely tied to the successes of open source projects I've spent years of my career on. But the words "product" and "tool" mean different things to different folks. (You may have already objected to how I'm using them!) I'll ask your patience as we define these words through exploration.
 
 I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building a solution as it grows towards a product. I won't present a hard-and-fast definition of either a tool or a product, but highlight qualities that make a particular solution more tool-like or more product-like.
 
@@ -24,7 +24,7 @@ Here's our process starting point.
 |Ops Team|
 start
 while (Refine scope)
-|Product Team|
+|PM Team|
 :Provide input;
 |Ops Team|
 end while
@@ -59,7 +59,7 @@ stop
 
 There are four stakeholders in the current version of this process:
 
-- the Product team, who build customer-facing products and works to set release scope with 
+- the PM team, who lead creation of customer-facing features and works to set release scope with 
 - the Ops Team, who are responsible for extensive hands-on processes to create and deliver software artifacts.
 - the Release Management team, who engage to validate compliance and sign-offs, and to communicate with
 - the Leadership team, who stay abreast of operations that have the potential to impact high-value customers.
@@ -93,7 +93,7 @@ Usually, this approach means there are still people's hands on the keyboard - th
 |Ops Team|
 start
 while (Refine scope)
-|Product Team|
+|PM Team|
 :Provide input;
 |Ops Team|
 end while
@@ -136,16 +136,22 @@ Another common driver of a stepwise automation approach is a lack of overall bus
 
 </aside>
 
+This approach is *tool-like* because each stakeholder gets a piece of functionality they can grab off the shelf to improve their work lives. Those tools require the stakeholder's specific expertise and work within the confines of a specific hands-on process.
+
+Could those tools be shared (or sold) to other users? Perhaps, but their audience and scope is limited by their tight binding to the existing business process. They're also hamstrung because they don't have a thoroughly defined interface: their "input" is simply where they're situated in the existing process, and their "output" what's needed for the next hands-on step.
+
 ### Outcome-Centered Automation
 
-We start to see transformative change when we go one step further, re-evaluating and automating all of the actions between the endpoints of the process.
+The first step we can take towards a *product-like* solution is expanding the scope of what we do beyond step sequences to the broader process structure. This is where we start to see transformative change to the business, over and above productivity gains (which themselves continue to grow!) 
+
+TODO: this needs a better intro. After we re-evaluate and automate all of the actions between the endpoints of the process, we might end up with something like this:
 
 ```plantuml
 @startuml
 |Ops Team|
 start
 while (Refine scope)
-|Product Team|
+|PM Team|
 :Provide input;
 |Ops Team|
 end while
@@ -164,11 +170,13 @@ stop
 @enduml
 ```
 
-We've submerged all of those operational touchpoints and handoffs within the context of a single, integrated system that executes our previously-manual processes. Instead of automating the individual step sequences for each stakeholder, we've automated the journey between the start and end of the process. The internal step sequences that are run by automation may have changed structure significantly; since the user interaction points have shifted, those step sequences are now abstracted from users' operations.
+We've submerged all of those operational touchpoints and handoffs within the context of a single, integrated system that executes our previously-manual processes. The internal step sequences that are run by automation may have changed structure significantly; since the user interaction points have shifted, those step sequences are now abstracted from users' operations.
 
 This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum. 
 
 Conversely, there are major savings available. In particular, the process involves fewer person-to-person handoffs where stakeholders are idle or context-switching.
+
+This approach moves towards the *product-like* end of the spectrum because... TODO
 
 ### Value-Centered Automation
 
@@ -179,7 +187,7 @@ Here's one example of how value-centered automation could radically reshape the 
 
 ```plantuml
 @startuml
-|Product Team|
+|PM Team|
 start
 :Initiate release;
 |Automation Product|
@@ -196,13 +204,17 @@ stop
 
 We've made deep structural changes not just to how stakeholders participate in the process, but to who is engaged and to when and why they're engaged.
 
-We've _disintermediated_ the delivery process by putting the product team in control of their own release destiny. By allowing the team to define the scope of their proposed release as a first-class capability _of the solution that executes that release_, we've eliminated back-and-forth with the ops team, along with its attendant delays, mistakes, and context-switching. We've also more deeply engaged the product team as owners of the full lifecycle of their product.
+We've _disintermediated_ the delivery process by putting the PM team in control of their own release destiny. By allowing the team to define the scope of their proposed release as a first-class capability _of the solution that executes that release_, we've eliminated back-and-forth with the ops team, along with its attendant delays, mistakes, and context-switching. We've also more deeply engaged the PM team as owners of the full lifecycle of their product.
+
+This disintermediation forces qualitative changes to how we implement the solution. Ops teams tend to absorb the friction of un-ergonomic or slightly misaligned technical interfaces. When we onboard stakeholders like the PM team, who have full-time jobs _other than_ operating this system, that no longer flies. Our solution _must_ provide an ergonomic, self-service experience that's accessible to stakeholders who are experts on the business process, but not on our solution. That's a *product-like* quality, and opens the door wider to sharing this solution with other stakeholders.
 
 The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation. Similarly, the release management team now plays a role more of oversight and goal-setting, without hands-on interaction. We've freed those people to focus on strategy and on building enduring value for the business, instead of executing one-off, hands-on processes.
 
 We start from a position of assuming the process succeeds, so we don't distract stakeholders with notifications that may not contain any actionable information. We notify only when we're _not_ meeting success criteria. Both leadership and our other stakeholders use dashboards pulled directly form the source of truth to assess long-term trends and metrics.
 
-The upshot of all of these changes is that stakeholders across the landscape are enabled to bring their expertise directly to bear. We've wiped out most non-productive context switches, replaced proactive checks with reactive, failure-case-only review, and ... TODO
+The upshot of all of these changes is that stakeholders across the landscape are enabled to bring their expertise directly to bear. We've wiped out most non-productive context switches, replaced proactive checks with reactive, failure-case-only review, and taught our system to meet stakeholders where they are.
+
+This is a *product-like* solution. It maximizes the productivity and agency of all of the stakeholders, and it's primed to scale with our business _without_ adding head count just to execute operational processes.
 
 ## Perspective Shifts
 
@@ -226,13 +238,11 @@ Establishing a new "how" opens up possibilities to go beyond stepwise automation
 
 It's tempting to privilege, in a fully-automated process, the same stakeholders who were privileged in the earlier version of the process. In the examples above, the Ops Team fits this paradigm. This isn't always the right choice. 
 
-The Ops Team hold privileged access to perform certain software release operations, which makes them an intermediary between the Product Team (who have the knowledge of what is being delivered and why) and the customers who consume that value. That privilege isn't misplaced; it's given to the Ops Team based on their specific skillsets and likely also to meet compliance goals. But those driving factors aren't the ultimate values stemming from this process, and that means they can be reconsidered as the process itself changes shape.
+The Ops Team hold privileged access to perform certain software release operations, which makes them an intermediary between the PM Team (who have the knowledge of what is being delivered and why) and the customers who consume that value. That privilege isn't misplaced; it's given to the Ops Team based on their specific skillsets and likely also to meet compliance goals. But those driving factors aren't the ultimate values stemming from this process, and that means they can be reconsidered as the process itself changes shape.
 
-In the value-centered automation paradigm discussed above, we made a point of disintermediating the relationship between those two endpoints, the product team and the customer. The ops team isn't required any more to work in a go-between capacity, because they created a new kind of value: they built a product that allowed the value-creating Product Team to self-service delivery to their customers.
+In the value-centered automation paradigm discussed above, we made a point of disintermediating the relationship between those two endpoints, the PM team and the customer. The ops team isn't required any more to work in a go-between capacity, because they created a new kind of value: they built a product that allowed the value-creating PM team to self-service delivery to their customers.
 
 Disintermediation and self-service are hallmarks of a product approach to automation. When stakeholders are empowered in this way, they both get pragmatic improvements - fewer context switches, more productive hours in their days - but also opportunities to reconsider the overall shape of a process. Those outcome- and value-centered automation types that are exposed can offer far greater scope for productivity improvement and cost reduction.
-
-TODO: name Product Team is confusing
 
 ### Keyholes to Vistas
 
@@ -246,7 +256,7 @@ It is a fact that, in mature teams with ossified, keyhole roles, automation proj
 
 ### Problem Instances to Problem Classes
 
-The final conceptual shift is about seeing the haunting general use case inside a problem that's just barely the wrong shape.
+The final conceptual shift comes when you're haunted by the general use case tucked inside a specific business problem.
 
 Products are about generality: how can we serve many people who have instances of the same problem with a single investment of effort? Automation's always asymmetrical; those who need it are more numerous than those who build it. When we go to build automation, we want to get the maximum value for our effort. We do that by asking what the more generalized need is inside each specific problem, such that our work can be specialized to serve more than just the use case in front of us.
 
@@ -267,7 +277,7 @@ TODO: tighten up this section.
 
 ## Tools and Products
 
-The distinction between a *tool* and a *product* almost never has anything to do with scale, with technology stack, or with ... I can't think of a single instance when a colleague presented me with a business problem and the "product" answer was "Yeah, but let's do that at web scale", or "Yeah, but let's build it in React." You can build narrow, non-product solutions to business problems in any stack, and scale them as high as you want. They're still not products.
+The distinction between a *tool* and a *product* almost never has anything to do with scale or with technology stack. I can't think of a single instance when a colleague presented me with a business problem and the "product" answer was "Yeah, but let's do that at web scale", or "Yeah, but let's build it in React." You can build narrow, non-product solutions to business problems in any stack, and scale them as high as you want. They're still not products.
 
 The distinction has far more to do with how you frame what you are building. Are you going to the root of the business problem? Are you imagining the general problem of which this is a specific instance? Are you inviting, persuading, cajoling your stakeholders to reimagine how they could reach their goals? You're probably building a product. Are you reifying the way things are done by hand today in code? Is what you're building fragile to small changes in business process or stakeholder requests? Do you understand the _how_, but not the _why_, of what you're creating? You're likely building a tool.
 
