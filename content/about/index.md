@@ -2,6 +2,8 @@
 title="About"
 template="page.html"
 weight=1
+[extra]
+include_in_timeline = false
 +++
 
 I'm David Reed. I am a software engineer at Slack, where I work on developer productivity for the Quip and Canvas products. I was previously at Salesforce, where I helped build the [Cumulus Suite](https://cumulusci.readthedocs.io) toolchain. Opinions expressed on this site are my own.
