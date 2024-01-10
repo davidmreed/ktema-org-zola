@@ -3,7 +3,7 @@ title="On Creating Automation Products"
 draft=true
 +++
 
-The most important skill I learned from [Jason Lantz](https://muselab.com/) was seeing *products* hiding inside business problems that are usually addressed with *tools*. It's the keystone of the success of the team that created [CumulusCI](https://cumulusci.readthedocs.io), [MetaDeploy](https://metadeploy.readthedocs.io/en/latest/), [Metecho](https://metecho.readthedocs.io/en/latest/), and a number of other automation-focused products for teams building on Salesforce.
+The most important skill I learned from [Jason Lantz](https://muselab.com/) was seeing *products* hiding inside business problems that are usually addressed with *tools*. That approahc drove the success of the team that created [CumulusCI](https://cumulusci.readthedocs.io), [MetaDeploy](https://metadeploy.readthedocs.io/en/latest/), [Metecho](https://metecho.readthedocs.io/en/latest/), and a number of other automation-focused products for teams building on Salesforce.
 
 It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023. It carries a lot of weight for me, and is closely tied to the successes of open source projects I've spent years of my career on. But the words "product" and "tool" mean different things to different folks. (You may have already objected to how I'm using them!) I'll ask your patience as we define these words through exploration.
 
@@ -59,7 +59,7 @@ stop
 
 There are four stakeholders in the current version of this process:
 
-- the PM team, who lead creation of customer-facing features and works to set release scope with 
+- the PM team, who lead creation of customer-facing features and works to set release scope with
 - the Ops Team, who are responsible for extensive hands-on processes to create and deliver software artifacts.
 - the Release Management team, who engage to validate compliance and sign-offs, and to communicate with
 - the Leadership team, who stay abreast of operations that have the potential to impact high-value customers.
@@ -142,7 +142,7 @@ Could those tools be shared (or sold) to other users? Perhaps, but their audienc
 
 ### Outcome-Centered Automation
 
-The first step we can take towards a *product-like* solution is expanding the scope of what we do beyond step sequences to the broader process structure. This is where we start to see transformative change to the business, over and above productivity gains (which themselves continue to grow!) 
+The first step we can take towards a *product-like* solution is expanding the scope of what we do beyond step sequences to the broader process structure. This is where we start to see transformative change to the business, over and above productivity gains (which themselves continue to grow!)
 
 TODO: this needs a better intro. After we re-evaluate and automate all of the actions between the endpoints of the process, we might end up with something like this:
 
@@ -172,17 +172,25 @@ stop
 
 We've submerged all of those operational touchpoints and handoffs within the context of a single, integrated system that executes our previously-manual processes. The internal step sequences that are run by automation may have changed structure significantly; since the user interaction points have shifted, those step sequences are now abstracted from users' operations.
 
-This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum. 
+This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum.
 
-Conversely, there are major savings available. In particular, the process involves fewer person-to-person handoffs where stakeholders are idle or context-switching.
+Conversely, there are major savings available. In particular, the process involves fewer person-to-person handoffs where stakeholders are idle or context-switching. A hidden benefit of this transition is that this process scales with much lower expense in terms of staff time as the volume of business flowing through it grows. Where we might previously have needed to grow the Ops team more or less linearly as our volume grew, now we'll likely be growing that team sublinearly, and using their time primarily for higher-value engineering that multiples the efforts of other stakeholders rather than manual operations.
 
-This approach moves towards the *product-like* end of the spectrum because... TODO
+This approach moves towards the *product-like* end of the spectrum because it begins to allow users to think in terms of business outcomes rather than operational steps; because it encompasses a more-or-less complete business process in the scope of a cohesive software artifact; and because ... TODO
+
+Outcome-centered automation can be a trap: it might look like you're done with automating the original business process, while still preserving some of its underlying inefficiencies. I've fallen into this trap multiple times. I built a software-release tool, for example, that covered perhaps 40% of the equivalent of our example release process here. It was extraordinarily successful at cutting down context switching and hands-on-keyboard time for my operations team, taking the process from something like eight person-days to maybe a person-hour and scaling way sublinearly. And it did a good job abstracting away the inner step sequences of the process.
+
+But: it still operated in part on concepts from the "old way" of doing things. It didn't meet stakeholders where they were. It had a painful, complex, and highly technical interface. As a result, it required my ops team to do most of the hands-on operation of the system and to translate between the system and the other stakeholders.
+
+That solution _was_ very product-like in some respects. It was reusable; it was decoupled from the hands-on details of the manual processes that preceded it; it was thoroughly tested and documented; it converted a huge amount of ops time into available engineering time. But those limitations of how it was conceived inside the broader scope of stakeholders meant it left some value on the table.
 
 ### Value-Centered Automation
 
-What if the start and end of the process stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight can be that the entire process does not need to exist in its current form. That change can reshape other processes around it, too. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
+What if the interfaces between the process and its stakeholders stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight is that the entire process can be not just automated, but re-framed to "click" into place within the business context. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
 
-Here's one example of how value-centered automation could radically reshape the original process.
+The messy edges of the process, the interfaces to stakeholders, are what we focus on here: how do we TODO
+
+Here's one example of how value-centered automation could re-frame the original process.
 
 
 ```plantuml
@@ -228,7 +236,7 @@ Understanding the hands-on reality of a process is an enormous asset. My team re
 
 A practitioner mindset can also be an impediment. When stakeholders have a keyhole view (see the next section!) they often hold an explicit or implicit belief that the way the process runs today is the only viable shape of the process. "We've always done it this way" leads to "We have to do it this way". These beliefs create resistance to change, and even resistance to discussing change.
 
-The first shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia. 
+The first shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia.
 
 A practitioner mindset can show its value again during this conversation. Because "whys" often stem from values, the conversation can be self-grounding: stakeholders who might otherwise resist change see their goals reflected in the articulation of "why", and become more open to reconsidering "how". Focusing on the shared value of the outcome creates trust.
 
@@ -236,7 +244,7 @@ Establishing a new "how" opens up possibilities to go beyond stepwise automation
 
 ### Disintermediation and Self-Service by Default
 
-It's tempting to privilege, in a fully-automated process, the same stakeholders who were privileged in the earlier version of the process. In the examples above, the Ops Team fits this paradigm. This isn't always the right choice. 
+It's tempting to privilege, in a fully-automated process, the same stakeholders who were privileged in the earlier version of the process. In the examples above, the Ops Team fits this paradigm. This isn't always the right choice.
 
 The Ops Team hold privileged access to perform certain software release operations, which makes them an intermediary between the PM Team (who have the knowledge of what is being delivered and why) and the customers who consume that value. That privilege isn't misplaced; it's given to the Ops Team based on their specific skillsets and likely also to meet compliance goals. But those driving factors aren't the ultimate values stemming from this process, and that means they can be reconsidered as the process itself changes shape.
 
