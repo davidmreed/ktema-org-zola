@@ -190,7 +190,7 @@ That solution _was_ very product-like in some respects. It was reusable; it was 
 
 ### Value-Centered Automation
 
-What if the interfaces between the process and its stakeholders stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight is that the entire process can be not just automated, but re-framed to "click" into place within the business context. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
+What if the interfaces between the process and its stakeholders stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight is that the entire process can be not just automated, but re-framed to socket neatly into place within the business context. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
 
 The messy edges of the process, the interfaces to stakeholders, are what we focus on here: how do we TODO
 
@@ -240,7 +240,7 @@ Understanding the hands-on reality of a process is an enormous asset. My team re
 
 A practitioner mindset can also be an impediment. When stakeholders have a keyhole view (see the next section!) they often hold an explicit or implicit belief that the way the process runs today is the only viable shape of the process. "We've always done it this way" leads to "We have to do it this way". These beliefs create resistance to change, and even resistance to discussing change.
 
-The first shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia.
+The first conceptual shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia.
 
 A practitioner mindset can show its value again during this conversation. Because "whys" often stem from values, the conversation can be self-grounding: stakeholders who might otherwise resist change see their goals reflected in the articulation of "why", and become more open to reconsidering "how". Focusing on the shared value of the outcome creates trust.
 
@@ -276,9 +276,9 @@ There is a haunting sense I feel sometimes of a general use case tucked inside a
 
 Products are about generality: how can we serve many people who have instances of the same problem with a single investment of effort? (Creating automation and building products are always asymmetrical; those who use it are more numerous than those who build it). Those many people might be different users or departments or business units within our company, or they might be different companies, or they might be nonprofits or cooperatives or unaffiliated users.
 
-There are at least two different aspects to this way of thinking, an inward-facing and an outward-facing. What if our process is _just a hair away_ from being an instance of a more general problem? If we solved that general problem, and tweaked our process a bit, we could configure our solution to serve us _and_ many others who have similar problems. Are we willing to have that conversation about shifting our process, and end up with a more product-like solution?
+There are at least two different aspects to this way of thinking, an inward-facing and an outward-facing. Inwards: what if our process is _just a hair away_ from being an instance of a more general problem? If we solved that general problem, and tweaked our process a bit, we could configure our solution to serve us _and_ many others who have similar problems. Are we willing to have that conversation about shifting our process, and end up with a more product-like solution?
 
-Who else has needs similar to ours? It can be difficult to make a business case to tweak how we do our work or build a larger solution in the name of letting that solution also support some nebulous other. Taking a long view helps: that "other" might actually just be us in three years. Or it might be our colleagues over in another department. Or in the business we acquire next year. Or in the nonprofit or impact-focused organizations we partner with. Building for broad use cases can keep our total cost of ownership lower: as we evolve, a general solution, a product-like solution, may be able to evolve with configuration instead of code.
+Outwards: who else has needs similar to ours? It can be difficult to make a business case to tweak how we do our work or build a larger solution in the name of letting that solution also support some nebulous other. Taking a long view helps: that "other" might actually just be us in three years. Or it might be our colleagues over in another department. Or in the business we acquire next year. Or in the nonprofit or impact-focused organizations we partner with. Building for broad use cases can keep our total cost of ownership lower: as we evolve, a general solution, a product-like solution, may be able to evolve with configuration instead of code.
 
 Trust plays a critical role in this conversation, too. Business-oriented stakeholders and technology-oriented stakeholders need to be able to talk openly with one another about possibilities, including possibilities that require one or both of them to change. If those groups trust each other and are grounded in shared values and goals, that can work. If they're organizationally at odds with one another or communicate through one-way frameworks like "requirements", they'll struggle to connect at a level that can allow these co-evolutions to take place.
 
@@ -286,14 +286,18 @@ Trust plays a critical role in this conversation, too. Business-oriented stakeho
 
 I maintain that distinguishing between tools and products, or at least between tool-like and product-like solutions, is a useful thing to do. It's useful not because you can avoid building tools. It's useful because thinking about solutions in light of the "tool-like" and "product-like" qualities we've discussed here can _both_ ensure that what you're building is as good as it can be, and force you to think about the trade-offs you are making.
 
-The distinction essentially never has to do with things like tech stack or even scale. (We haven't said a word about languages or containers or web infrastructure). You can build a tool in Rust and prove it's memory-safe and logically sound until the cows come home; it's still a tool. You can build a product in some wackadoodle language nobody else uses or cares about; it's still a product. The technical decisions _do_ make a difference in the life of your solution, but they're not _determinative_ of where it falls in any of these spectra.
+The distinction essentially never has to do with things like tech stack or even scale. (We haven't said a word about languages or containers or web infrastructure). You can build a tool in Rust and prove it's memory-safe and logically sound until the cows come home; it's still a tool. You can build a product in BASIC; it's still a product. The technical decisions _do_ make a difference in the life of your solution, but they're not _determinative_ of where it falls in any of these spectra.
+
+<aside>
+
+Just because you _can_ build a product in BASIC doesn't mean you _should_.
+
+</aside>
 
 The distinction has far more to do with how you frame what you are building. Are you going to the root of the business problem? Are you imagining the general problem of which this is a specific instance? Are you inviting, persuading, cajoling your stakeholders to reimagine how they could reach their goals? You're probably building a product. Are you reifying the way things are done by hand today in code? Is what you're building fragile to small changes in business process or stakeholder requests? Do you understand the _how_, but not the _why_, of what you're creating? You're likely building a tool.
 
 There's nothing wrong with building tools. Sometimes it's the right move: you can generate a lot of cost savings and business value, often at a relatively low upfront cost. But products are far more interesting. Building a tool comes with a more-or-less fixed ceiling on the value you can create. Products don't. Products are more rewarding for the people who create them, and they're often more rewarding for the business as a whole too.
 
-```graph
-Show cost and value curves for products and tools
-```
+TODO: graph Show cost and value curves for products and tools
 
 So that's my pitch. Build products. Build tools where you need to, to buy yourself back time to build products. Think deeply about business problems and what's most real about them. Create trust between stakeholders. Bring a practitioner mindset, but also bring a "why on Earth do we do this?" mindset. And if you don't have scope to do those things, go somewhere you will.
