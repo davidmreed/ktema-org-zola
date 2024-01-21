@@ -7,6 +7,8 @@ The most important skill I learned from [Jason Lantz](https://muselab.com/) was 
 
 It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023. It carries a lot of weight for me, and is closely tied to the successes of open source projects I've spent years of my career on. But the words "product" and "tool" mean different things to different folks. (You may have already objected to how I'm using them!) I'll ask your patience as we define these words through exploration.
 
+---
+
 I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building a solution as it grows towards a product. I won't present a hard-and-fast definition of either a tool or a product, but highlight qualities that make a particular solution more tool-like or more product-like.
 
 Jason might articulate this quite differently than I do: the formulation here is mine, but the vision is his.
@@ -190,9 +192,11 @@ That solution _was_ very product-like in some respects. It was reusable; it was 
 
 ### Value-Centered Automation
 
-What if the interfaces between the process and its stakeholders stem from obsolete expediencies, not from the real flow of business value? The most satisfying insight is that the entire process can be not just automated, but re-framed to socket neatly into place within the business context. At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
+Those realizations I had at the end of an outcome-centered automation process can drive a set of higher-level questions that help us go further. 
 
-The messy edges of the process, the interfaces to stakeholders, are what we focus on here: how do we TODO
+What if the interfaces between the process and its stakeholders stem from obsolete expediencies, not from the real flow of business value? What if, just as we reconsidered the framing of the process inside its existing boundaries, we reexamined those boundaries too? And what if, in doing so, we found a way to give the process a twist in perspective that let it align neatly with the _actual_ business needs and the stakeholders involved?
+
+At this level, the conversations we're having are generally not about technology. They're about goals and needs, where value is present, and about what drove the design of this process in the first place.
 
 Here's one example of how value-centered automation could re-frame the original process.
 
@@ -214,15 +218,15 @@ stop
 @enduml
 ```
 
-We've made deep structural changes not just to how stakeholders participate in the process, but to who is engaged and to when and why they're engaged.
+We've made deep structural changes not just to how stakeholders participate in the process, but to who is engaged and to when and why they're engaged. Our ability to make those changes stems from asking about where business value lies, and directly connecting the interfaces of our automated systems to those value points.
 
-We've _disintermediated_ the delivery process by putting the PM team in control of their own release destiny. By allowing the team to define the scope of their proposed release as a first-class capability _of the solution that executes that release_, we've eliminated back-and-forth with the ops team, along with its attendant delays, mistakes, and context-switching. We've also more deeply engaged the PM team as owners of the full lifecycle of their product.
+We've _disintermediated_ the delivery process by putting the PM team in control of their own release destiny, instead of having to translate their product knowledge and goals through a privileged ops team. By allowing the team to define the scope of their proposed release as a first-class capability _of the solution that executes that release_, we've eliminated back-and-forth with the ops team, along with its attendant delays, mistakes, and context-switching. We've also more deeply engaged the PM team as owners of the full lifecycle of their product.
 
-This disintermediation forces qualitative changes to how we implement the solution. Ops teams tend to absorb the friction of un-ergonomic or slightly misaligned technical interfaces. When we onboard stakeholders like the PM team, who have full-time jobs _other than_ operating this system, that no longer flies. Our solution _must_ provide an ergonomic, self-service experience that's accessible to stakeholders who are experts on the business process, but not on our solution. That's a *product-like* quality, and opens the door wider to sharing this solution with other stakeholders.
+This disintermediation forces qualitative changes to how we implement the solution. Ops teams tend to absorb the friction of un-ergonomic or slightly misaligned technical interfaces. When we onboard stakeholders like the PM team, who have full-time jobs _other than_ operating this system, that no longer flies. Our solution _must_ provide an ergonomic, self-service experience that's accessible to stakeholders who are experts on the business process, but not on our solution. That's a *product-like* quality, and opens the door wider to sharing this solution with other stakeholders. Crucially, it also eliminates ops burden, which creates a stronger business case for the engineering effort.
 
 The ops team isn't an ops team anymore! They're now running engineering on the platform they built to support this process transformation. Similarly, the release management team now plays a role more of oversight and goal-setting, without hands-on interaction. We've freed those people to focus on strategy and on building enduring value for the business, instead of executing one-off, hands-on processes.
 
-We start from a position of assuming the process succeeds, so we don't distract stakeholders with notifications that may not contain any actionable information. We notify only when we're _not_ meeting success criteria. Both leadership and our other stakeholders use dashboards pulled directly form the source of truth to assess long-term trends and metrics.
+We start from a position of assuming the process succeeds, so we don't distract stakeholders with notifications that may not contain any actionable information. We notify only when we're _not_ meeting success criteria. Both leadership and our other stakeholders use dashboards pulled directly form the source of truth to assess long-term trends and metrics. Direct access helps build trust in the system, so that leaders don't need to be closely observing unless a proactive alert draws their attention.
 
 The upshot of all of these changes is that stakeholders across the landscape are enabled to bring their expertise directly to bear. We've wiped out most non-productive context switches, replaced proactive checks with reactive, failure-case-only review, and taught our system to meet stakeholders where they are.
 
@@ -238,7 +242,8 @@ It is very common for operations teams and teams that are primarily focused on c
 
 Understanding the hands-on reality of a process is an enormous asset. My team referred to this as a "practitioner mindset", and we saw it as critical to our ability to design products that both serve the actual needs of users and respond to the nuances of a complex problem space.
 
-A practitioner mindset can also be an impediment. When stakeholders have a keyhole view (see the next section!) they often hold an explicit or implicit belief that the way the process runs today is the only viable shape of the process. "We've always done it this way" leads to "We have to do it this way". These beliefs create resistance to change, and even resistance to discussing change.
+A practitioner mindset can also be an impediment. When stakeholders have a keyhole view (see the next section!) they often hold an explicit or implicit belief that the way the process runs today is the only viable shape of the process. "We've always done it this way" leads to "We have to do it this way". These beliefs create resistance to change, and even resistance to discussing change. The memory of past pains can also contribute to a conservative view: 
+"before we did it this way, my life was much worse".
 
 The first conceptual shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia.
 
@@ -258,7 +263,7 @@ Self-service is a theme that spans the entire lifecycle of a stakeholder with a 
 
 Disintermediation and self-service are hallmarks of a product approach to automation. When stakeholders are empowered in this way, they both get pragmatic improvements - fewer context switches, more productive hours in their days - but also opportunities to reconsider the overall shape of a process. Those outcome- and value-centered automation types that are exposed can offer far greater scope for productivity improvement and cost reduction.
 
-### Keyholes to Vistas
+### Expanding Keyhole Views
 
 Teams with mature processes and scale often end up reflecting the structure of their processes in the structure of the team itself. A role is defined, for example, that executes specific steps within the process. Staff members in that role are trained on their steps, and they're very effective at executing them. They have a keyhole view: they aren't privileged to see the whole process or the ultimate outcomes and values, and may only be dimly aware of what happens beyond their own ambit.
 
@@ -284,7 +289,7 @@ Trust plays a critical role in this conversation, too. Business-oriented stakeho
 
 ## Tools and Products
 
-I maintain that distinguishing between tools and products, or at least between tool-like and product-like solutions, is a useful thing to do. It's useful not because you can avoid building tools. It's useful because thinking about solutions in light of the "tool-like" and "product-like" qualities we've discussed here can _both_ ensure that what you're building is as good as it can be, and force you to think about the trade-offs you are making.
+I maintain that distinguishing between tools and products, or at least between tool-like and product-like solutions, is a useful thing to do. It's useful not because you can or should avoid building tools _per se_. It's useful because thinking about solutions in light of the "tool-like" and "product-like" qualities we've discussed here can _both_ ensure that what you're building is as good as it can be, and force you to think about the trade-offs you are making.
 
 The distinction essentially never has to do with things like tech stack or even scale. (We haven't said a word about languages or containers or web infrastructure). You can build a tool in Rust and prove it's memory-safe and logically sound until the cows come home; it's still a tool. You can build a product in BASIC; it's still a product. The technical decisions _do_ make a difference in the life of your solution, but they're not _determinative_ of where it falls in any of these spectra.
 
