@@ -1,17 +1,16 @@
 +++
 title="On Creating Automation Products"
-draft=true
 +++
 
-The most important skill I learned from [Jason Lantz](https://muselab.com/) was seeing *products* hiding inside business problems that are usually addressed with *tools*. That approahc drove the success of the team that created [CumulusCI](https://cumulusci.readthedocs.io), [MetaDeploy](https://metadeploy.readthedocs.io/en/latest/), [Metecho](https://metecho.readthedocs.io/en/latest/), and a number of other automation-focused products for teams building on Salesforce.
+The most important skill I learned from [Jason Lantz](https://muselab.com/) was seeing *products* hiding inside business problems that are usually addressed with *tools*. That approach drove the success of the team that created [CumulusCI](https://cumulusci.readthedocs.io), [MetaDeploy](https://metadeploy.readthedocs.io/en/latest/), [Metecho](https://metecho.readthedocs.io/en/latest/), and a number of other automation-focused products for teams building on Salesforce.
 
-It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023. It carries a lot of weight for me, and is closely tied to the successes of open source projects I've spent years of my career on. But the words "product" and "tool" mean different things to different folks. (You may have already objected to how I'm using them!) I'll ask your patience as we define these words through exploration.
+It's also a subtle distinction, between *products* and *tools*. I've been slowly turning over this attempt to elucidate that distinction and how it's brought into practice for most of 2023. It carries a lot of weight for me, and is closely tied to the successes of open source projects I've spent years of my career on. But the words "product" and "tool" mean different things to different folks. (You may have already objected to how I'm using them!) I'll ask your patience as I try to define these words through exploration.
 
 ---
 
 I'm going to frame this along two different axes. The first is the shapes that an effort to automate a process can take, starting more towards a tool approach and ending more towards a product approach. The second is a group of perspective shifts that stakeholders move through in building a solution as it grows towards a product. I won't present a hard-and-fast definition of either a tool or a product, but highlight qualities that make a particular solution more tool-like or more product-like.
 
-Jason might articulate this quite differently than I do: the formulation here is mine, but the vision is his.
+Jason might articulate this quite differently than I do. While the vision comes from him, the formulation here is mine.
 
 ## Automating Processes
 
@@ -20,6 +19,8 @@ Suppose you have a business process in place. It's entirely manual, labor-intens
 Throughout this essay, I'll refer to an example software release process. This example draws on real processes I've worked on and automated in the past, but I'll emphasize that I've constructed the example as an illustration and it does not represent actual process at any company.
 
 Here's our process starting point.
+
+<!--
 
 ```plantuml
 @startuml
@@ -59,6 +60,16 @@ stop
 @enduml
 ```
 
+-->
+
+![Initial process diagram](./initial-diagram.svg)
+
+<aside>
+
+I'm not calling out _who_ the people driving the automation effort are. It might be the Ops team, seeking to free themselves from manual effort and do more creative work; it might be leadership, trying to reduce costs and reallocate their staff; it might be Release Management, seeking to better guarantee their compliance requirements; it might be an external consulting or engineering team; or it might be a different stakeholder entirely.
+
+</aside>
+
 There are four stakeholders in the current version of this process:
 
 - the PM team, who lead creation of customer-facing features and works to set release scope with
@@ -72,12 +83,6 @@ All four of these stakeholders pass information back and forth, engage at differ
 
 I've seen at least three paradigms for an automation effort across a process like this goes. Here's how I think about those paradigms.
 
-<aside>
-
-I'm not calling out _who_ the people driving the automation effort are. It might be the Ops team, seeking to free themselves from manual effort and do more creative work; it might be leadership, trying to reduce costs and reallocate their staff; it might be Release Management, seeking to better guarantee their compliance requirements; it might be an external consulting or engineering team; or it might be a different stakeholder entirely.
-
-</aside>
-
 ### Stepwise Automation
 
 Each of the stakeholders shown in the process above has a series of manual steps to execute. Those sub-processes can be arbitrarily complex; perhaps the Ops Team has a deeply branching workflow that responds to the outcomes of the steps they execute or the conditions on the ground. Perhaps different layers of leadership are engaged based on the status of the process.
@@ -89,6 +94,8 @@ When a process is in this state, it's common for users to do a great deal of con
 One way of approaching an automation project in the context of this process is to automate those individual step sequences.
 
 Usually, this approach means there are still people's hands on the keyboard - they're just running one command instead of 20. Cost improvement can be significant. The capacity of the Ops team might double or triple if they didn't have to be hands-on with each individual step or mediate the transitions between steps that they own.
+
+<!--
 
 ```plantuml
 @startuml
@@ -120,6 +127,10 @@ stop
 @enduml
 ```
 
+-->
+
+![Process diagram after applying stepwise automation](./stepwise-automation.svg)
+
 Notice what changes and what stays the same here. The start and end of the process, and touchpoints between stakeholders along the way, remain fixed. Between those fixed points, we compress and automate sequences of actions that previously required hands-on effort, nonproductive wait time, and context switching. That's a major improvement in the day-to-day experience and productivity of these stakeholders.
 
 ---
@@ -130,13 +141,13 @@ Given that limitation, a key question is whether effort invested on this type of
 
 Pursuing this type of automation may necessitate investment that is always going to be wasted. For example, engineering that's dedicated to managing hand-offs between various stakeholders or notifications of individual step statuses is likely to be discarded in a solution where those touchpoints are handled differently or eliminated.
 
-Stepwise automation _feels_ like an iterative approach towards a fully-automated business. In some circumstances, it can be. But in others, as discussed further below, a stepwise approach can leave much deeper and more impactful changes on the table. It can be very tempting to over-invest on stepwise automation. Giving in to that temptation risks reifying inefficiencies permanently, instead of investing a similar level of effort to wipe them out.
-
 <aside>
 
 Another common driver of a stepwise automation approach is a lack of overall business process ownership or high-level collaboration between stakeholders. A single stakeholder can be motivated to automate _their pieces_ of the process, but they may not not have the holistic view, the buy-in from other stakeholders, or the capacity to undertake a broader effort.
 
 </aside>
+
+Stepwise automation _feels_ like an iterative approach towards a fully-automated business. In some circumstances, it can be. But in others, as discussed further below, a stepwise approach can leave much deeper and more impactful changes on the table. It can be very tempting to over-invest on stepwise automation. Giving in to that temptation risks reifying inefficiencies permanently, instead of investing a similar level of effort to wipe them out.
 
 This approach is *tool-like* because each stakeholder gets a piece of functionality they can grab off the shelf to improve their work lives. Those tools require the stakeholder's specific expertise and work within the confines of a specific hands-on process.
 
@@ -149,6 +160,8 @@ The friction of manual handoffs between stakeholders can spur a conversation tha
 Here's one shape the process might take with an "outcome-centered" approach. I've introduced a new swimlane (and even used the word "Product!") to represent how we're pulling the orchestration of this process together, expanding the scope of our technical implementation to include that next layer of structure.
 
 This isn't meant to be a technical architecture! There could be one or many software artifacts or services or applications under the rubric of the "automation product" we're imagining. What's important about it structurally is how it takes ownership of those interface points with different stakeholders.
+
+<!--
 
 ```plantuml
 @startuml
@@ -174,6 +187,10 @@ stop
 @enduml
 ```
 
+-->
+
+![Process diagram using outcome automation](./outcome-automation.svg)
+
 Because we've submerged those operational touchpoints and handoffs within the context of a single, integrated system, we've opened up a couple of different opportunities that might fairly be called transformative. The internal step sequences that are run by automation may have changed structure significantly. They're abstracted away from the operations that our stakeholders perform now, which means we can alter, reimagine, parallelize them without impinging on those stakeholders' day-to-day or requiring new training. We've also made the automation the common player in nearly all of the interactions between stakeholders and the process, rather than having 1:1 pairings of stakeholders responsible for individual forward motions. That gives us more freedom to serve each of those stakeholders' needs directly and without dependencies on one another.
 
 This approach _can_ be (but isn't necessarily) much more expensive than stepwise automation. For example, if our process includes both internal tools controlled by the stakeholders _and_ external platforms that are not so controlled, or that are difficult to integrate with effectively, the overall effort goes up steeply. Because engineering-oriented tools are often designed to integrate easily, they tend to be on the cheaper, smoother end of the spectrum.
@@ -192,7 +209,7 @@ That solution _was_ very product-like in some respects. It was reusable; it was 
 
 ### Value-Centered Automation
 
-Those realizations I had at the end of an outcome-centered automation process can drive a set of higher-level questions that help us go further. 
+Those realizations I had at the end of an outcome-centered automation process can drive a set of higher-level questions that help us go further.
 
 What if the interfaces between the process and its stakeholders stem from obsolete expediencies, not from the real flow of business value? What if, just as we reconsidered the framing of the process inside its existing boundaries, we reexamined those boundaries too? And what if, in doing so, we found a way to give the process a twist in perspective that let it align neatly with the _actual_ business needs and the stakeholders involved?
 
@@ -200,6 +217,7 @@ At this level, the conversations we're having are generally not about technology
 
 Here's one example of how value-centered automation could re-frame the original process.
 
+<!--
 
 ```plantuml
 @startuml
@@ -217,6 +235,10 @@ start
 stop
 @enduml
 ```
+
+-->
+
+![Process diagram using value automation](./value-automation.svg)
 
 We've made deep structural changes not just to how stakeholders participate in the process, but to who is engaged and to when and why they're engaged. Our ability to make those changes stems from asking about where business value lies, and directly connecting the interfaces of our automated systems to those value points.
 
@@ -242,10 +264,38 @@ It is very common for operations teams and teams that are primarily focused on c
 
 Understanding the hands-on reality of a process is an enormous asset. My team referred to this as a "practitioner mindset", and we saw it as critical to our ability to design products that both serve the actual needs of users and respond to the nuances of a complex problem space.
 
-A practitioner mindset can also be an impediment. When stakeholders have a keyhole view (see the next section!) they often hold an explicit or implicit belief that the way the process runs today is the only viable shape of the process. "We've always done it this way" leads to "We have to do it this way". These beliefs create resistance to change, and even resistance to discussing change. The memory of past pains can also contribute to a conservative view: 
-"before we did it this way, my life was much worse".
+A practitioner mindset can also be an impediment. When stakeholders have a keyhole view (see the next section!) they often hold an explicit or implicit belief that the way the process runs today is the only viable shape of the process. "We've always done it this way" leads to "We have to do it this way". These beliefs create resistance to change, and even resistance to discussing change. The memory of past pains can also contribute to a conservative view:
+"before we did it this way, my life was much worse, so we need to do it this way".
 
 The first conceptual shift an automation project invites of its stakeholders is to move from "how" the process is done today, to "why" the process is done that way, and then to "how" the process _could_ be done. It breaks those assumptions that today's way is the only way, and refocuses conversations around outcomes instead of hands-on minutia.
+
+<!--
+
+```plantuml
+@startuml
+!theme sketchy
+split
+-[hidden]->
+:How;
+split again
+-[hidden]->
+:How;
+split again
+-[hidden]->
+:How;
+split again
+-[hidden]->
+:How;
+end split
+:Shared values;
+:Why;
+:New How;
+@enduml
+```
+
+-->
+
+![Illustration of hows leading to whys and then a new how](./how-why-how.svg)
 
 A practitioner mindset can show its value again during this conversation. Because "whys" often stem from values, the conversation can be self-grounding: stakeholders who might otherwise resist change see their goals reflected in the articulation of "why", and become more open to reconsidering "how". Focusing on the shared value of the outcome creates trust.
 
@@ -291,18 +341,18 @@ Trust plays a critical role in this conversation, too. Business-oriented stakeho
 
 I maintain that distinguishing between tools and products, or at least between tool-like and product-like solutions, is a useful thing to do. It's useful not because you can or should avoid building tools _per se_. It's useful because thinking about solutions in light of the "tool-like" and "product-like" qualities we've discussed here can _both_ ensure that what you're building is as good as it can be, and force you to think about the trade-offs you are making.
 
-The distinction essentially never has to do with things like tech stack or even scale. (We haven't said a word about languages or containers or web infrastructure). You can build a tool in Rust and prove it's memory-safe and logically sound until the cows come home; it's still a tool. You can build a product in BASIC; it's still a product. The technical decisions _do_ make a difference in the life of your solution, but they're not _determinative_ of where it falls in any of these spectra.
-
 <aside>
 
 Just because you _can_ build a product in BASIC doesn't mean you _should_.
 
 </aside>
 
+The distinction essentially never has to do with things like tech stack or even scale. (We haven't said a word about languages or containers or web infrastructure). You can build a tool in Rust and prove it's memory-safe and logically sound until the cows come home; it's still a tool. You can build a product in BASIC; it's still a product. The technical decisions _do_ make a difference in the life of your solution, but they're not _determinative_ of where it falls in any of these spectra.
+
 The distinction has far more to do with how you frame what you are building. Are you going to the root of the business problem? Are you imagining the general problem of which this is a specific instance? Are you inviting, persuading, cajoling your stakeholders to reimagine how they could reach their goals? You're probably building a product. Are you reifying the way things are done by hand today in code? Is what you're building fragile to small changes in business process or stakeholder requests? Do you understand the _how_, but not the _why_, of what you're creating? You're likely building a tool.
 
 There's nothing wrong with building tools. Sometimes it's the right move: you can generate a lot of cost savings and business value, often at a relatively low upfront cost. But products are far more interesting. Building a tool comes with a more-or-less fixed ceiling on the value you can create. Products don't. Products are more rewarding for the people who create them, and they're often more rewarding for the business as a whole too.
 
-TODO: graph Show cost and value curves for products and tools
+---
 
 So that's my pitch. Build products. Build tools where you need to, to buy yourself back time to build products. Think deeply about business problems and what's most real about them. Create trust between stakeholders. Bring a practitioner mindset, but also bring a "why on Earth do we do this?" mindset. And if you don't have scope to do those things, go somewhere you will.
