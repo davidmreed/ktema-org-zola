@@ -5,7 +5,7 @@ draft=true
 
 ## Introduction to TSOs
 
-One of the most common methods of distributing Salesforce orgs and packages is the _TSO_: a _Trialforce Source Org_.
+One of the most common methods of distributing Salesforce orgs and products is the _TSO_: a _Trialforce Source Org_.
 
 At the simplest, a TSO is a Salesforce org that you can copy. You install a product, set up all of the configuration, add sample data, and perform whatever other customization you wish. Then, you take a _snapshot_ of that org (using the Setup->Trialforce UI). The snapshot captures the complete state of that org at a point in time. You can have many snapshots over the evolution of the TSO's state.
 
