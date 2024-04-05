@@ -19,7 +19,9 @@ In any case, you get back authentication information for your new org. For Envir
 
 Where the _trial_ part of _Trialforce_ comes in is that that new org has a fixed lifespan, after which it has to be converted to a production org (or disposed). 30 days is a common trial length, but it's not universal.
 
-This functionality might sound quite nice. And in some ways, it is! TSOs are very effective at delivering copies of whole Salesforce orgs, including configuration that is very time-consuming to set up from scratch. If it were all that straightforward, of course, this essay wouldn't be here. In fact, there are a number of patterns in how TSOs are used that have deep negative effects on the software development and delivery lifecycle. My purpose in this essay is to explore those negative effects and lay the groundwork for an alternate approach, in a second part to follow. Thoughout, I'll use an imaginary development team building a managed package-based product called Massive Events.
+This functionality might sound quite nice. And in some ways, it is! TSOs are very effective at delivering copies of whole Salesforce orgs, including configuration that is very time-consuming to set up from scratch.
+
+If it were all that straightforward, of course, this essay wouldn't be here. In fact, there are a number of patterns in how TSOs are used that have deep negative effects on the software development and delivery lifecycle. My purpose in this essay is to explore those negative effects and lay the groundwork for an alternate approach, in a second part to follow. Thoughout, I'll use an imaginary development team building a managed package-based product called Massive Events.
 
 ## The Source of Truth
 
@@ -29,7 +31,9 @@ Modern development projects focus on version control as the _source of truth_. Y
 
 When you introduce a TSO into your product development, the source of truth becomes ambiguous. Here's a failure case.
 
-The Massive Events team is building out a new feature.
+The Massive Events team is building out a new feature. TODO: finish.
+
+---
 
 A corollary to the source-of-truth problem is _knowledge limitation_.
 
@@ -37,7 +41,7 @@ When your team works heavily with TSOs, the TSO itself _de facto_ becomes part, 
 
 Does your team know which licenses, features, and settings your product requires? Does your team know how to execute setup, from scratch, for a new customer? The TSO does. But it can't tell you.
 
-If you only ever provision orgs via the TSO snapshots, that's fine: you don't need that knowledge! But that assumption's just not true for any real-world use case. If a customer comes in who has an existing org they want to activate your product in, are you going to tell them "Sorry, you have to provision a new org via our TSO?" (That's an OEM workflow, but it wouldn't be healthy for most ISVs!)
+If you only ever provision orgs via the TSO snapshots, that's fine: you don't need that knowledge! But that assumption's just not true for any real-world use case. If a customer comes in who has an existing org they want to activate your product in, are you going to tell them "Sorry, you have to provision a new org via our TSO?" (That's an OEM workflow, but it wouldn't be healthy for most ISVs!) Or what if a team member needs a product org with a different edition? You can't swap an Enterprise Edition TSO to Professional or Developer Edition!
 
 TODO: complete
 
@@ -70,10 +74,10 @@ Whether or not these process shortfalls are actually of concern to auditors, the
 
 When you have a TSO, you have a story about how your product is installed and used. That story is true, but it's very limited: it only reflects one path through which customers obtain and use your product. In a few cases, like OEMs, that path might be the only one. But for most ISVs, the story your TSO tells about product delivery and use omits a swathe of other true customers stories. When, for example,
 
-- a Massive Events implementation partner starts a project from the TSO, but wipes out much of the delivered configuration and then builds their own;
-- an implementation partner skips the TSO and prepares an implementation from scratch;
 - a customer brings Massive Events into an existing, heavily customized org;
 - a customer starts a fresh org with Massive Events, but it's a Professional Edition rather than Enterprise Edition;
+- a Massive Events implementation partner starts a project from the TSO, but wipes out much of the delivered configuration and then builds their own;
+- an implementation partner skips the TSO and prepares an implementation from scratch;
 - a learner installs Massive Events in their Trailhead Playground;
 
 the story looks very different, and the org that results also looks very different.
@@ -142,5 +146,5 @@ That's a shame. Is it a product-breaker? Probably not. But it means that Massive
 
 TSOs are great at what they do: delivering a new org that looks just like an org you've created. But they come with uncomfortable long-term costs, and limit the agility of an ISV. 
 
-In part 2 of this series, I'll look at how to use TSOs (or "org artifacts" more broadly) in an effective way.
+In part 2 of this series, I'll look at how to use TSOs (or "org artifacts" more broadly, because org snapshots follow the same paradigm!) in an effective way.
 
