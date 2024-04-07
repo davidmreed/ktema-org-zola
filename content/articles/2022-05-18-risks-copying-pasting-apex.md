@@ -9,6 +9,7 @@ What do you do? You're a problem-solver and you want to deliver value to the bus
 
 This is my plea to _not_ do what you've got in mind to do. Let's explore a couple of the risks. To set context, I have worked as a Salesforce admin, developer, and architect, and I've reviewed a great deal of good and awful Apex code. I want to help you understand the risks of consuming Apex that you don't fully understand.
 
+In 2024, these risks have become even more widespread than when I originally published this article in 2022. AI- (or "AI"-) powered tools put copy-and-pastable Apex code just a chat request away. And for all their air of authority, those tools are trained on the same mixture of flawed and viable code you might find yourself. They make mistakes just like human engineers do, but often _different_ sorts of mistakes that are tricky to spot.
 
 ## The Code You Find is Terrible (Or At Least Buggy)
 
@@ -152,8 +153,16 @@ The platform enforces testing as a quantitative rubric (you must meet a coverage
 
 You want the best outcome for your organization, and you want to deliver as much value as you can to support your users. Here's some routes you can pursue that honor that goal, without incurring code-based risk that you're not equipped to mitigate.
 
-As an admin or declarative developer, part of the value that you bring to the organization is your risk-assessment capability and your ability to communicate with your stakeholders about technical solutions. Use those skills here. You might come to your stakeholders with a declarative proposal that gets 80% of the way to the goal. You might apply your knowledge of the platform to side-step the ask by delivering an idiomatic solution that nails the underlying user need. Or you might write a proposal to engage a local consultancy or a freelancer to build some code to get you that extra 20% of the way. Whichever way you go, you can clearly define the risk landscape for your org: how the solution will scale, what the maintenance story and costs will look like, and what the timeline to completion might be.
+As an admin or declarative developer, part of the value that you bring to the organization is your risk-assessment capability and your ability to communicate with your stakeholders about technical solutions. Use those skills here!
 
-As a junior developer, or an aspiring developer, you might want to dive into the code, even if you're not completely comfortable with the shape of the solution. That's great! Don't just copy and paste, though: take solutions you find as opportunities to dig in and understand what makes Solution A strong, or Solution B risky. Be inspired by solutions you see as you write your own code. And make sure you do so in a context where you can get the review and guidance you need to ensure you deliver a safe, performant, best-practice solution. Your company should situate you in a team context where you can find review and resources from more senior developers. If they aren't doing that for you, you're in a situation that might put you at risk, both immediately in the context of completing high-risk assignments and in long-term risk to your career development. Take advantage of community resources like Trailblazer groups and online communities — but don't hesitate to consider if you might grow your career more effectively in a context where you have a supportive team to help you grow.
+- You might come to your stakeholders with a declarative proposal that gets 80% of the way to the goal.
+- You might apply your knowledge of the platform to side-step the ask by delivering an idiomatic solution that nails the underlying user need.
+- Or you might write a proposal to engage a local consultancy or a freelancer to build some code to get you that extra 20% of the way.
+
+Whichever way you go, you can clearly define the risk landscape for your org: how the solution will scale, what the maintenance story and costs will look like, and what the timeline to completion might be.
+
+As a junior developer, or an aspiring developer, you might want to dive into the code, even if you're not completely comfortable with the shape of the solution. That's great! Don't just copy and paste, though: take solutions you find as opportunities to dig in and understand what makes Solution A strong, or Solution B risky. Be inspired by solutions you see as you write your own code. And make sure you do so in a context where you can get the review and guidance you need to ensure you deliver a safe, performant, best-practice solution. 
+
+Your company should situate you in a team context where you can find review and resources from more senior developers. If they aren't doing that for you, you're in a situation that might put you at risk, both immediately in the context of completing high-risk assignments and in long-term risk to your career development. Take advantage of community resources like Trailblazer groups and online communities — but don't hesitate to consider if you might grow your career more effectively in a context where you have a supportive team to help you grow.
 
 But please don't copy and paste code into your org.
