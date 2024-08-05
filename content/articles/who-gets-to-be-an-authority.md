@@ -3,7 +3,7 @@ title="Who Gets to Be An Authority"
 draft=true
 +++
 
-I've published [articles](@2022-05-18-risks-copying-pasting-apex.md) before calling out widespread bad practices and advice in the Salesforce ecosystem. I'm always asked "As a junior engineer, how do I know what voices to listen to?" That is, how do you tell that someone presenting as authoritative actually is?
+I've published [articles](@2022-05-18-risks-copying-pasting-apex.md) before calling out widespread bad practices and advice in the Salesforce ecosystem. I'm nearly always asked in response "As a junior engineer, how do I know what voices to listen to?" That is, how do you tell that someone presenting as authoritative actually is?
 
 Quick detour: it connects, I promise. The other space in which I do a lot of education is officiating roller derby. Derby has 100+ pages of rules and cases to interpret, supplemented by experience and convention. And that's the problem: what officials typically learn is an undifferentiated farrago of (varying) conventions, actual rules, and consequences that follow from actual rules.
 

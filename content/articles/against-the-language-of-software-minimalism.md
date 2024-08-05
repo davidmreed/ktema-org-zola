@@ -1,7 +1,9 @@
 +++
-title="Some Thoughts on Software Minimalism"
+title="On Minimalism in Software"
 draft=true
 +++
+
+Particularly if you move in developer circles, 
 
 What does it mean for a piece of software to be "minimalist"? Of course, each exponent of this trope has their own sense, which may differ from one another. 
 
@@ -15,7 +17,7 @@ Points (1) and (2) are often but not always framed as consequences of (3).
 
 Minimalism elevates personal preference to a virtue. It's also pretty close to being tautological.
 
-So-called minimalist software may indeed be excellent software (for some specific purpose, or in respect of specific quality characteristics). But it's not excellent because it's minimalist, because that word by itself means almost nothing. Minimalist really just connotes that the software focuses on a set of features or workflows felt by its creator to be necessary, or that it makes specific trade-offs of capability against size or speed.
+So-called minimalist software may indeed be excellent software (for some specific purpose, or in respect of specific quality characteristics). But it's not excellent because it's minimalist, because that word by itself means almost nothing. Minimalist really just connotes that the software focuses on a set of features or workflows that align with its creator's goals, or that it makes specific trade-offs of capability against size or speed.
 
 _Articulate those tradeoffs instead of asserting minimalism_. This does at least three things for your discourse:
 
@@ -23,10 +25,10 @@ _Articulate those tradeoffs instead of asserting minimalism_. This does at least
 2. It requires you to understand or acknowledge viewpoints other than your own. Why might a user who's very different from me not like this tool? We should not be hubristic about our software; nothing is the best for everyone.
 3. It guides contributors to the software in working according to the actual principles that underlie its design.
 
-And _justify the claims that are made_. It's parodical how often software written in Rust is described as "blazingly fast" - but don't 
+And _justify the claims that are made_. It's parodical how often software written in Rust is described as "blazingly fast". It's rather less common for those claims to be backed up by benchmarks. 
 
 ---
 
 I want to be clear that I am in no way speaking against building software that does just enough, that has a well-defined scope, that is fast and efficient, or that omits capabilities whose impact does not justify their expense. As above, minimalist software may in fact be excellent software.
 
-I just ask that we say what we mean by "just enough"; that we make our tradeoffs explicit; and that in doing so we acknowledge that someone else might make different but equally valid choices.
+I only ask that we say what we mean by "just enough"; that we make our tradeoffs explicit; and that in doing so we acknowledge that someone else might make different but equally valid choices.

@@ -14,6 +14,7 @@ Once you have a snapshot, you can perform _signups_ against it. A signup creates
 - You can use Environment Hub in your Partner Business Org (PBO).
 - You can expose a snapshot in your AppExchange listing, allowing customers to sign up trials.
 - You can call the `SignupRequest` API from your own automation, passing the `0TT` id of your snapshot. (For this use case, you have to file a Case to have your template Id blessed).
+- You can create scratch orgs based on the snapshot via the `sf` CLI or your own automation.
 
 In any case, you get back authentication information for your new org. For Environment Hub and AppExchange signups, this means you get an email to set your user password; for API-based signups, your automation gets back an authentication code it can exchange for an OAuth refresh token. 
 
@@ -21,7 +22,7 @@ Where the _trial_ part of _Trialforce_ comes in is that that new org has a fixed
 
 This functionality might sound quite nice. And in some ways, it is! TSOs are very effective at delivering copies of whole Salesforce orgs, including configuration that is very time-consuming to set up from scratch.
 
-If it were all that straightforward, of course, this essay wouldn't be here. In fact, there are a number of patterns in how TSOs are used that have deep negative effects on the software development and delivery lifecycle. My purpose in this essay is to explore those negative effects and lay the groundwork for an alternate approach, in a second part to follow. Thoughout, I'll use an imaginary development team building a managed package-based product called Massive Events.
+If it were all that straightforward, of course, this essay wouldn't be here. In fact, there are a number of patterns in how TSOs are used that have negative effects on the software development and delivery lifecycle. My purpose in this essay is to explore those negative effects and lay the groundwork for an alternate approach, in a second part to follow. Thoughout, I'll use an imaginary development team building a managed package-based product called Massive Events.
 
 ## The Source of Truth
 
@@ -121,7 +122,7 @@ Massive Events makes a big push and releases Version 2 of the product. It's now 
 The company's been acquired. That's great! New ownership doubles down on the product line. Now, Massive Events needs to integrate with a suite of five other products serving multiple verticals, with Events for Nonprofits, Education, Entertainment, and Sports. Each vertical demands a comprehensive configuration, with different packages and configuration. What does the team do about their delivery strategy?
 
 - Should they build out five new TSOs, to represent the deliverable state of the product with each of those other applications?
-- What about customers that fall in more than one vertical, like a higher education customer that also does sports events? That use case requires yet another configuration. It starts to look like quite a lot of TSOs.
+- What about customers that fall in more than one vertical, like a higher education customer that also does sports events? That use case requires yet another configuration to meld those two vertical configurations. It starts to look like quite a lot of TSOs.
 - What about Solution Engineering and QA - will they still need their own, separate TSOs for demo configurations?
 
 Suddenly the Massive Events team, instead of updating _one_ org every release, is making the same changes in half a dozen, or a dozen, orgs. There's no way to share that work. They've just got to repeat it over and over again. Humans make mistakes. Tight deadlines result in one-off changes in this org or that org. Different stakeholders aren't aligned on the best approaches. State drifts. The documentation does not match. Massive Events is spending tons of time that could be used to create value updating all these orgs, and answering questions about all these orgs. Customer cases start to pile up with issues in this TSO or that TSO or their orgs that don't match the TSO or the documentation.
