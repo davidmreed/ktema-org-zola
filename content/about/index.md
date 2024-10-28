@@ -8,7 +8,9 @@ include_in_timeline = false
 
 I'm David Reed. I am a software engineer at Slack, where I work on developer productivity for the Quip and Canvas products. I was previously at Salesforce, where I helped build the [Cumulus Suite](https://cumulusci.readthedocs.io) toolchain. Opinions expressed on this site are my own.
 
-My passions include teaching and technical evangelism, open source, science fiction, classical languages, women's flat track roller derby, and gardening. I like writing Python and Rust, and my technical interests are in platform engineering and automation.
+My passions include teaching and technical evangelism, open source, science fiction, classical languages, and gardening. I like writing Python and Rust, and my technical interests are in platform engineering and automation.
+
+I officiate a lot of roller derby, where I am a WFTDA Certified Level 3 non-skating official. You can find my roller derby game history [here](/about/game-history).
 
 I'm not currently seeking new roles but you're always welcome to check out my [resume](/Resume-David-Reed.pdf).
 
