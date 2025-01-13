@@ -5,7 +5,7 @@ project_type="Website"
 [extra.resources.home]
 link="https://nonskating.club"
 [extra.resources.repo]
-link="github.com/davidmreed/nonskating.club"
+link="https://github.com/davidmreed/nonskating.club"
 +++
 
 I've launched a new project: a suite of manuals for tournament-level non-skating officiating. Check out [Non-Skating Official Guides](https://nonskating.club) (manuals for PBM and Jam Timer written so far!)
