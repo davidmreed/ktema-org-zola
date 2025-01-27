@@ -23,11 +23,11 @@ site_owner_name = "David Reed"
 site_title = "David Reed"
 use_icons = true
 use_tocs = false
-use_social_sharing = true
+use_social_sharing = false
 timeline_length = 5
 
 [extra.contact]
-order = ["email", "github", "mastodon", "linkedin", "sfse", "tbc"]
+order = ["email", "github", "mastodon", "linkedin", "sfse"]
 
 [extra.contact.email]
 link = "mailto:david@ktema.org"
@@ -38,14 +38,9 @@ link = "https://github.com/davidmreed"
 [extra.contact.linkedin]
 link = "https://www.linkedin.com/in/davidreedbuilds/"
 
-[extra.contact.tbc]
-link = "https://trailblazer.me/id/davidmreed"
-name = "Trailblazer Community"
-icon = "brands/salesforce"
-
 [extra.contact.sfse]
 link = "https://salesforce.stackexchange.com/users/46017/david-reed"
-name = "Salesforce Stack Exchange"
+name = "Stack Exchange"
 icon = "brands/stack-exchange"
 
 [extra.contact.mastodon]

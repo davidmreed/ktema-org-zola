@@ -22,7 +22,7 @@ Where the _trial_ part of _Trialforce_ comes in is that that new org has a fixed
 
 This functionality might sound quite nice. And in some ways, it is! TSOs are very effective at delivering copies of whole Salesforce orgs, including configuration that is very time-consuming to set up from scratch.
 
-If it were all that straightforward, of course, this essay wouldn't be here. In fact, there are a number of patterns in how TSOs are used that have negative effects on the software development and delivery lifecycle. My purpose in this essay is to explore those negative effects and lay the groundwork for an alternate approach, in a second part to follow. Thoughout, I'll use an imaginary development team building a managed package-based product called Massive Events.
+If it were all that straightforward, of course, this essay wouldn't be here. In fact, there are a number of patterns in how TSOs are used that have negative effects on the software development and delivery lifecycle. My purpose in this essay is to explore those negative effects and lay the groundwork for an alternate approach, in a second part to follow.
 
 ## The Source of Truth
 
@@ -48,7 +48,7 @@ TODO: complete
 
 ## Change Management and Compliance
 
-> Challenge: TSOs make change management and review very difficult. It's hard to practice TSO development within a compliance framework.
+TSOs make change management and review very difficult. It's hard to practice TSO development within a compliance framework.
 
 Compliance processes often focus heavily on version control. Git, combined with your system of record for tracking work, forms an audit log. It tells the story of how your product got to where it was: who made what change, why they made it, and who signed off to approve the change. TSOs make it difficult or impossible to answer those three questions. 
 
@@ -71,7 +71,7 @@ Whether or not these process shortfalls are actually of concern to auditors, the
 
 ## Customer Experience
 
-> Challenge: TSOs reflect one facet of the customer experience and tend to blot out its breadth and heterogeneity.
+TSOs reflect one facet of the customer experience and tend to blot out its breadth and heterogeneity.
 
 When you have a TSO, you have a story about how your product is installed and used. That story is true, but it's very limited: it only reflects one path through which customers obtain and use your product. In a few cases, like OEMs, that path might be the only one. But for most ISVs, the story your TSO tells about product delivery and use omits a swathe of other true customers stories. When, for example,
 
@@ -87,7 +87,7 @@ This gap impacts users across the application lifecycle. Engineers miss risk bec
 
 ## Rollback and Disaster Recovery
 
-> Challenge: TSOs are a dangerous persistent state that cannot be rolled back or restored easily.
+TSOs are a dangerous persistent state that cannot be rolled back or restored easily.
 
 TSOs suffer from the same problem as first-generation packaging orgs: they are long-lived orgs whose state _must_ be mutated during the development and delivery process, but whose state it is inherently dangerous to mutate. It's dangerous because if you make a mistake, you may not be able to put it back. And you might even put your org into an unrecoverable or difficult-to-recover state, imposing heavy costs on your business and blocking your ability to deliver to customers for an extended period of time.
 
@@ -107,7 +107,7 @@ Snapshots have to be approved if used in the SignupRequest API.
 
 ## Modularity and Serving Product Growth
 
-> Challenge: as the product evolves and grows, the lack of modularity implicit in the TSO strategy imposes greater and greater cost on your delivery strategy.
+As the product evolves and grows, the lack of modularity implicit in the TSO strategy imposes greater and greater cost on your delivery strategy.
 
 TSOs can deliver only new orgs. There is no such thing as a modular TSO; you cannot layer a TSO on top of an existing org. The consequences of this fact are not always obvious: "That's the point of a TSO," you might say. But as a product and customer base grows, the weaknesses of the TSO as a delivery strategy become more and more apparent. Let's look at some key points during the lifespan of the Massive Events product:
 

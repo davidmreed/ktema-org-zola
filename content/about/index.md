@@ -6,30 +6,21 @@ weight=1
 include_in_timeline = false
 +++
 
-I'm David Reed. I am a software engineer at Slack, where I work on developer productivity for the Quip and Canvas products. I was previously at Salesforce, where I helped build the [Cumulus Suite](https://cumulusci.readthedocs.io) toolchain. Opinions expressed on this site are my own.
+<img style="float: right; width: 10rem; margin: 1rem;" src="/DavidReed.jpg" alt="David Reed">
+I'm David Reed. My interests include teaching and technical evangelism, open source, science fiction, classical languages (I hold a master's degree in Ancient Greek), and gardening.
 
-My passions include teaching and technical evangelism, open source, science fiction, classical languages, and gardening. I like writing Python and Rust, and my technical interests are in platform engineering and automation.
-
-I officiate a lot of roller derby, where I am a WFTDA Certified Level 3 non-skating official. You can find my roller derby game history [here](/about/game-history).
-
-I'm not currently seeking new roles but you're always welcome to check out my [resume](/Resume-David-Reed.pdf).
-
-## Contact Me
-
-<aside>
+<aside style="clear: right; float: right; width: 10rem; margin: 1rem;">
 {{ contacts() }}
 </aside>
 
-I love receiving notes, questions, and feedback; various methods of contacting me are shown in the sidebar. 
+I like writing Python and Rust, and my technical passions are in platform engineering and automation. I work on developer productivity at Slack, focusing on the Quip and Canvas products. I was previously at Salesforce, where I helped build the [Cumulus Suite](https://cumulusci.readthedocs.io) toolchain.
 
-As a Salesforce employee, I'm unable to provide private consulting, but I love speaking to community groups and conferences.
+I officiate a lot of roller derby. I am a WFTDA Certified Level 3 non-skating official. You can find my roller derby game history [here](/about/game-history).
+
+I love receiving notes, questions, and feedback; various methods of contacting me are shown in the sidebar.
 
 ## Colophon
 
 This site is built with <a href="https://getzola.org">Zola</a>. The design is a heavily-customized <a href="https://simplecss.org/">Simple.css</a> with [gruvbox](https://github.com/morhetz/gruvbox)-inspired color schemes. The icons are locally-hosted SVGs by <a href="https://fontawesome.com/">FontAwesome</a>.
 
-Ktema.org uses no:
-- JavaScript
-- analytics
-- cookies
-- web fonts, CDNs, or other external resources
+`ktema.org` does not use JavaScript, cookies, or web fonts or other third-party resources. There is no visitor tracking and no analytics other than hit counts provided by my host.
