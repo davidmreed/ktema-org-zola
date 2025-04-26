@@ -44,4 +44,4 @@ name = "Stack Exchange"
 icon = "brands/stack-exchange"
 
 [extra.contact.mastodon]
-link = "https://fosstodon.org/web/@aoristdual"
+link = "https://floss.social/web/@aoristdual"
