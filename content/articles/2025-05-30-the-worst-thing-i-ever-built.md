@@ -1,13 +1,12 @@
 ---
 title: The Worst Thing I Ever Built
-draft: true
 ---
 
 More than twenty years ago, I cut a corner to save the princely sum of about $200. I am still supporting the technical debt from that decision _today_. This is the story of the worst system I've ever built.
 
 ---
 
-My father was already wearing many different hats for our local community association when they had need of a new bookkeeper. He _wasn't_ a bookkeeper, but we were confident we could set him up for it. I was a 17-year-old hobbyist programmer at the time, writing C and Pascal and HTML on a motley and mostly secondhand collection of Macs. (I'd also built the association's website, mercifully since redone - I checked while writing this story). So it fell to me to set up the software for this new job. (I'm sure a measure of hubris was involved on my part).
+My father was already wearing many different hats for our local community association when they had need of a new bookkeeper. He _wasn't_ a bookkeeper, but we were confident we could set him up for it. I was a 17-year-old hobbyist programmer at the time, writing C and Pascal and HTML on a motley and mostly secondhand collection of Macs. (I'd also built the association's website, mercifully since redone - I checked while writing this story). Hubris was certainly involved when I dove into this new project.
 
 The first question I had was "what software are we using?" QuickBooks. It's what the organization wanted. Do we have QuickBooks? We do not. But the last person to do this job did, and we can use their copy. Or something. It was never particularly clear. But a copy of QuickBooks 2002 on CD-ROM _did_ turn up. It was out of date even at the time, and more importantly, it was the Windows edition. We were a Mac family. It was also a trial edition. Did someone have the license key? Oh yes, they'll get it to us. (I don't need to tell you how that turned out, do I?)
 
@@ -24,7 +23,7 @@ It ran _very badly_, but it did run, and required the expenditure of $0.
 
 This was 2004 or 2005. Every single piece of this stack was already obsolete, and only got worse from there. QuickBooks was a version or two behind current. Windows 98 was already deep into end-of-life; XP had been out for several years. MacOS 9 had been superseded by the brand-new MacOS X. Connectix had been bought out by Microsoft. Not only was the G3 around 5 years old, but Apple had either just announced or was about to announce the transition from the PowerPC architecture to Intel processors. That last was especially ironic since we were using an old PowerPC to emulate an even older Intel chip.
 
-Over the following couple of years, my father and I developed a collection of tricks to keep this turducken of a workstation running. I discovered how to use `RegEdit` to make that trial version of QuickBooks think it hadn't yet expired. I had my father use the virtual machine's state saving feature to keep our trial version of QuickBooks running as long as possible, so he wouldn't have to go to `RegEdit`. I taught him to backup his work and exfiltrate his backups out of the virtual machine onto a USB drive. And my father, an inveterate and accomplished tinkerer with machines, accumulated a _remarkably_ deep inventory of ever-more-obsolete Power Macintosh G3s, which he switched in and used as spare parts as the aging hardware began to fail.
+Over the following couple of years, my father and I developed a collection of tricks to keep this turducken of a workstation running. I discovered how to tweak the Windows registry, keeping QuickBooks from complaining when it couldn't talk to the Internet. I taught him to backup his work and exfiltrate his backups out of the virtual machine onto a USB drive. And my father, an inveterate and accomplished tinkerer with machines, accumulated a _remarkably_ deep inventory of ever-more-obsolete Power Macintosh G3s, which he switched in and used as spare parts as the aging hardware began to fail.
 
 This went on for _twenty years_.
 
